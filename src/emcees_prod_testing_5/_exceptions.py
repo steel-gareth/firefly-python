@@ -18,11 +18,11 @@ __all__ = [
 ]
 
 
-class MoreConflictingError(Exception):
+class EmceesProdTesting5Error(Exception):
     pass
 
 
-class APIError(MoreConflictingError):
+class APIError(EmceesProdTesting5Error):
     message: str
     request: httpx.Request
 

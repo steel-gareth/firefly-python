@@ -1,8 +1,8 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from typing import Optional
-
-from pydantic import Field as FieldInfo
+from datetime import datetime
+from typing_extensions import Literal
 
 from .._models import BaseModel
 
@@ -10,19 +10,18 @@ __all__ = ["User"]
 
 
 class User(BaseModel):
-    id: Optional[int] = None
+    email: str
+    """The new users email address."""
 
-    email: Optional[str] = None
+    blocked: Optional[bool] = None
+    """Boolean to indicate if the user is blocked."""
 
-    first_name: Optional[str] = FieldInfo(alias="firstName", default=None)
+    blocked_code: Optional[Literal["email_changed"]] = None
+    """If you say the user must be blocked, this will be the reason code."""
 
-    last_name: Optional[str] = FieldInfo(alias="lastName", default=None)
+    created_at: Optional[datetime] = None
 
-    password: Optional[str] = None
+    role: Optional[Literal["owner", "demo"]] = None
+    """Role for the user. Can be empty or omitted."""
 
-    phone: Optional[str] = None
-
-    username: Optional[str] = None
-
-    user_status: Optional[int] = FieldInfo(alias="userStatus", default=None)
-    """User Status"""
+    updated_at: Optional[datetime] = None

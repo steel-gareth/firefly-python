@@ -1,26 +1,17 @@
-# More Conflicting Python API library
+# Emcees Prod Testing 5 Python API library
 
 <!-- prettier-ignore -->
 [![PyPI version](https://img.shields.io/pypi/v/emcees_prod_testing_5.svg?label=pypi%20(stable))](https://pypi.org/project/emcees_prod_testing_5/)
 
-The More Conflicting Python library provides convenient access to the More Conflicting REST API from any Python 3.9+
+The Emcees Prod Testing 5 Python library provides convenient access to the Emcees Prod Testing 5 REST API from any Python 3.9+
 application. The library includes type definitions for all request params and response fields,
 and offers both synchronous and asynchronous clients powered by [httpx](https://github.com/encode/httpx).
 
 It is generated with [Stainless](https://www.stainless.com/).
 
-## MCP Server
-
-Use the More Conflicting MCP Server to enable AI assistants to interact with this API, allowing them to explore endpoints, make test requests, and use documentation to help integrate this SDK into your application.
-
-[![Add to Cursor](https://cursor.com/deeplink/mcp-install-dark.svg)](https://cursor.com/en-US/install-mcp?name=emcees-prod-testing-5-mcp&config=eyJjb21tYW5kIjoibnB4IiwiYXJncyI6WyIteSIsImVtY2Vlcy1wcm9kLXRlc3RpbmctNS1tY3AiXSwiZW52Ijp7IlBFVFNUT1JFX0FQSV9LRVkiOiJNeSBBUEkgS2V5In19)
-[![Install in VS Code](https://img.shields.io/badge/_-Add_to_VS_Code-blue?style=for-the-badge&logo=data:image/svg%2bxml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGZpbGw9Im5vbmUiIHZpZXdCb3g9IjAgMCA0MCA0MCI+PHBhdGggZmlsbD0iI0VFRSIgZmlsbC1ydWxlPSJldmVub2RkIiBkPSJNMzAuMjM1IDM5Ljg4NGEyLjQ5MSAyLjQ5MSAwIDAgMS0xLjc4MS0uNzNMMTIuNyAyNC43OGwtMy40NiAyLjYyNC0zLjQwNiAyLjU4MmExLjY2NSAxLjY2NSAwIDAgMS0xLjA4Mi4zMzggMS42NjQgMS42NjQgMCAwIDEtMS4wNDYtLjQzMWwtMi4yLTJhMS42NjYgMS42NjYgMCAwIDEgMC0yLjQ2M0w3LjQ1OCAyMCA0LjY3IDE3LjQ1MyAxLjUwNyAxNC41N2ExLjY2NSAxLjY2NSAwIDAgMSAwLTIuNDYzbDIuMi0yYTEuNjY1IDEuNjY1IDAgMCAxIDIuMTMtLjA5N2w2Ljg2MyA1LjIwOUwyOC40NTIuODQ0YTIuNDg4IDIuNDg4IDAgMCAxIDEuODQxLS43MjljLjM1MS4wMDkuNjk5LjA5MSAxLjAxOS4yNDVsOC4yMzYgMy45NjFhMi41IDIuNSAwIDAgMSAxLjQxNSAyLjI1M3YuMDk5LS4wNDVWMzMuMzd2LS4wNDUuMDk1YTIuNTAxIDIuNTAxIDAgMCAxLTEuNDE2IDIuMjU3bC04LjIzNSAzLjk2MWEyLjQ5MiAyLjQ5MiAwIDAgMS0xLjA3Ny4yNDZabS43MTYtMjguOTQ3LTExLjk0OCA5LjA2MiAxMS45NTIgOS4wNjUtLjAwNC0xOC4xMjdaIi8+PC9zdmc+)](https://vscode.stainless.com/mcp/%7B%22name%22%3A%22emcees-prod-testing-5-mcp%22%2C%22command%22%3A%22npx%22%2C%22args%22%3A%5B%22-y%22%2C%22emcees-prod-testing-5-mcp%22%5D%2C%22env%22%3A%7B%22PETSTORE_API_KEY%22%3A%22My%20API%20Key%22%7D%7D)
-
-> Note: You may need to set environment variables in your MCP client.
-
 ## Documentation
 
-The full API of this library can be found in [api.md](api.md).
+The REST API documentation can be found on [firefly-iii.org](https://firefly-iii.org). The full API of this library can be found in [api.md](api.md).
 
 ## Installation
 
@@ -37,47 +28,37 @@ pip install git+ssh://git@github.com/stainless-sdks/emcees-prod-testing-5-python
 The full API of this library can be found in [api.md](api.md).
 
 ```python
-import os
-from emcees_prod_testing_5 import MoreConflicting
+from emcees_prod_testing_5 import EmceesProdTesting5
 
-client = MoreConflicting(
-    api_key=os.environ.get("PETSTORE_API_KEY"),  # This is the default and can be omitted
+client = EmceesProdTesting5(
+    # defaults to "production".
+    environment="environment_1",
 )
 
-order = client.store.orders.create(
-    pet_id=1,
-    quantity=1,
-    status="placed",
-)
-print(order.id)
+response = client.autocomplete.list_accounts()
 ```
 
-While you can provide an `api_key` keyword argument,
+While you can provide a `bearer_token` keyword argument,
 we recommend using [python-dotenv](https://pypi.org/project/python-dotenv/)
-to add `PETSTORE_API_KEY="My API Key"` to your `.env` file
-so that your API Key is not stored in source control.
+to add `EMCEES_PROD_TESTING_5_BEARER_TOKEN="My Bearer Token"` to your `.env` file
+so that your Bearer Token is not stored in source control.
 
 ## Async usage
 
-Simply import `AsyncMoreConflicting` instead of `MoreConflicting` and use `await` with each API call:
+Simply import `AsyncEmceesProdTesting5` instead of `EmceesProdTesting5` and use `await` with each API call:
 
 ```python
-import os
 import asyncio
-from emcees_prod_testing_5 import AsyncMoreConflicting
+from emcees_prod_testing_5 import AsyncEmceesProdTesting5
 
-client = AsyncMoreConflicting(
-    api_key=os.environ.get("PETSTORE_API_KEY"),  # This is the default and can be omitted
+client = AsyncEmceesProdTesting5(
+    # defaults to "production".
+    environment="environment_1",
 )
 
 
 async def main() -> None:
-    order = await client.store.orders.create(
-        pet_id=1,
-        quantity=1,
-        status="placed",
-    )
-    print(order.id)
+    response = await client.autocomplete.list_accounts()
 
 
 asyncio.run(main())
@@ -99,23 +80,16 @@ pip install 'emcees_prod_testing_5[aiohttp] @ git+ssh://git@github.com/stainless
 Then you can enable it by instantiating the client with `http_client=DefaultAioHttpClient()`:
 
 ```python
-import os
 import asyncio
 from emcees_prod_testing_5 import DefaultAioHttpClient
-from emcees_prod_testing_5 import AsyncMoreConflicting
+from emcees_prod_testing_5 import AsyncEmceesProdTesting5
 
 
 async def main() -> None:
-    async with AsyncMoreConflicting(
-        api_key=os.environ.get("PETSTORE_API_KEY"),  # This is the default and can be omitted
+    async with AsyncEmceesProdTesting5(
         http_client=DefaultAioHttpClient(),
     ) as client:
-        order = await client.store.orders.create(
-            pet_id=1,
-            quantity=1,
-            status="placed",
-        )
-        print(order.id)
+        response = await client.autocomplete.list_accounts()
 
 
 asyncio.run(main())
@@ -130,23 +104,6 @@ Nested request parameters are [TypedDicts](https://docs.python.org/3/library/typ
 
 Typed requests and responses provide autocomplete and documentation within your editor. If you would like to see type errors in VS Code to help catch bugs earlier, set `python.analysis.typeCheckingMode` to `basic`.
 
-## Nested params
-
-Nested parameters are dictionaries, typed using `TypedDict`, for example:
-
-```python
-from emcees_prod_testing_5 import MoreConflicting
-
-client = MoreConflicting()
-
-pet = client.pets.create(
-    name="doggie",
-    photo_urls=["string"],
-    category={},
-)
-print(pet.category)
-```
-
 ## Handling errors
 
 When the library is unable to connect to the API (for example, due to network connection problems or a timeout), a subclass of `emcees_prod_testing_5.APIConnectionError` is raised.
@@ -158,12 +115,12 @@ All errors inherit from `emcees_prod_testing_5.APIError`.
 
 ```python
 import emcees_prod_testing_5
-from emcees_prod_testing_5 import MoreConflicting
+from emcees_prod_testing_5 import EmceesProdTesting5
 
-client = MoreConflicting()
+client = EmceesProdTesting5()
 
 try:
-    client.store.list_inventory()
+    client.autocomplete.list_accounts()
 except emcees_prod_testing_5.APIConnectionError as e:
     print("The server could not be reached")
     print(e.__cause__)  # an underlying Exception, likely raised within httpx.
@@ -197,16 +154,16 @@ Connection errors (for example, due to a network connectivity problem), 408 Requ
 You can use the `max_retries` option to configure or disable retry settings:
 
 ```python
-from emcees_prod_testing_5 import MoreConflicting
+from emcees_prod_testing_5 import EmceesProdTesting5
 
 # Configure the default for all requests:
-client = MoreConflicting(
+client = EmceesProdTesting5(
     # default is 2
     max_retries=0,
 )
 
 # Or, configure per-request:
-client.with_options(max_retries=5).store.list_inventory()
+client.with_options(max_retries=5).autocomplete.list_accounts()
 ```
 
 ### Timeouts
@@ -215,21 +172,21 @@ By default requests time out after 1 minute. You can configure this with a `time
 which accepts a float or an [`httpx.Timeout`](https://www.python-httpx.org/advanced/timeouts/#fine-tuning-the-configuration) object:
 
 ```python
-from emcees_prod_testing_5 import MoreConflicting
+from emcees_prod_testing_5 import EmceesProdTesting5
 
 # Configure the default for all requests:
-client = MoreConflicting(
+client = EmceesProdTesting5(
     # 20 seconds (default is 1 minute)
     timeout=20.0,
 )
 
 # More granular control:
-client = MoreConflicting(
+client = EmceesProdTesting5(
     timeout=httpx.Timeout(60.0, read=5.0, write=10.0, connect=2.0),
 )
 
 # Override per-request:
-client.with_options(timeout=5.0).store.list_inventory()
+client.with_options(timeout=5.0).autocomplete.list_accounts()
 ```
 
 On timeout, an `APITimeoutError` is thrown.
@@ -242,10 +199,10 @@ Note that requests that time out are [retried twice by default](#retries).
 
 We use the standard library [`logging`](https://docs.python.org/3/library/logging.html) module.
 
-You can enable logging by setting the environment variable `MORE_CONFLICTING_LOG` to `info`.
+You can enable logging by setting the environment variable `EMCEES_PROD_TESTING_5_LOG` to `info`.
 
 ```shell
-$ export MORE_CONFLICTING_LOG=info
+$ export EMCEES_PROD_TESTING_5_LOG=info
 ```
 
 Or to `debug` for more verbose logging.
@@ -267,14 +224,14 @@ if response.my_field is None:
 The "raw" Response object can be accessed by prefixing `.with_raw_response.` to any HTTP method call, e.g.,
 
 ```py
-from emcees_prod_testing_5 import MoreConflicting
+from emcees_prod_testing_5 import EmceesProdTesting5
 
-client = MoreConflicting()
-response = client.store.with_raw_response.list_inventory()
+client = EmceesProdTesting5()
+response = client.autocomplete.with_raw_response.list_accounts()
 print(response.headers.get('X-My-Header'))
 
-store = response.parse()  # get the object that `store.list_inventory()` would have returned
-print(store)
+autocomplete = response.parse()  # get the object that `autocomplete.list_accounts()` would have returned
+print(autocomplete)
 ```
 
 These methods return an [`APIResponse`](https://github.com/stainless-sdks/emcees-prod-testing-5-python/tree/main/src/emcees_prod_testing_5/_response.py) object.
@@ -288,7 +245,7 @@ The above interface eagerly reads the full response body when you make the reque
 To stream the response body, use `.with_streaming_response` instead, which requires a context manager and only reads the response body once you call `.read()`, `.text()`, `.json()`, `.iter_bytes()`, `.iter_text()`, `.iter_lines()` or `.parse()`. In the async client, these are async methods.
 
 ```python
-with client.store.with_streaming_response.list_inventory() as response:
+with client.autocomplete.with_streaming_response.list_accounts() as response:
     print(response.headers.get("X-My-Header"))
 
     for line in response.iter_lines():
@@ -341,10 +298,10 @@ You can directly override the [httpx client](https://www.python-httpx.org/api/#c
 
 ```python
 import httpx
-from emcees_prod_testing_5 import MoreConflicting, DefaultHttpxClient
+from emcees_prod_testing_5 import EmceesProdTesting5, DefaultHttpxClient
 
-client = MoreConflicting(
-    # Or use the `MORE_CONFLICTING_BASE_URL` env var
+client = EmceesProdTesting5(
+    # Or use the `EMCEES_PROD_TESTING_5_BASE_URL` env var
     base_url="http://my.test.server.example.com:8083",
     http_client=DefaultHttpxClient(
         proxy="http://my.test.proxy.example.com",
@@ -364,9 +321,9 @@ client.with_options(http_client=DefaultHttpxClient(...))
 By default the library closes underlying HTTP connections whenever the client is [garbage collected](https://docs.python.org/3/reference/datamodel.html#object.__del__). You can manually close the client using the `.close()` method if desired, or with a context manager that closes when exiting.
 
 ```py
-from emcees_prod_testing_5 import MoreConflicting
+from emcees_prod_testing_5 import EmceesProdTesting5
 
-with MoreConflicting() as client:
+with EmceesProdTesting5() as client:
   # make requests here
   ...
 

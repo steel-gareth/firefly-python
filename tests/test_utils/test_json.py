@@ -5,8 +5,8 @@ from typing import Union
 
 import pydantic
 
-from emcees_prod_testing_5 import _compat
-from emcees_prod_testing_5._utils._json import openapi_dumps
+from firefly import _compat
+from firefly._utils._json import openapi_dumps
 
 
 class TestOpenapiDumps:

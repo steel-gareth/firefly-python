@@ -7,16 +7,16 @@ from typing import Any, cast
 
 import pytest
 
+from firefly import Firefly, AsyncFirefly
 from tests.utils import assert_matches_type
-from emcees_prod_testing_5 import EmceesProdTesting5, AsyncEmceesProdTesting5
-from emcees_prod_testing_5.types import (
+from firefly.types import (
     BillArray,
     RuleArray,
     BillSingle,
     AttachmentArray,
     TransactionArray,
 )
-from emcees_prod_testing_5._utils import parse_date, parse_datetime
+from firefly._utils import parse_date, parse_datetime
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -26,7 +26,7 @@ class TestBills:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_method_create(self, client: EmceesProdTesting5) -> None:
+    def test_method_create(self, client: Firefly) -> None:
         bill = client.bills.create(
             amount_max="123.45",
             amount_min="123.45",
@@ -38,7 +38,7 @@ class TestBills:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_method_create_with_all_params(self, client: EmceesProdTesting5) -> None:
+    def test_method_create_with_all_params(self, client: Firefly) -> None:
         bill = client.bills.create(
             amount_max="123.45",
             amount_min="123.45",
@@ -60,7 +60,7 @@ class TestBills:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_raw_response_create(self, client: EmceesProdTesting5) -> None:
+    def test_raw_response_create(self, client: Firefly) -> None:
         response = client.bills.with_raw_response.create(
             amount_max="123.45",
             amount_min="123.45",
@@ -76,7 +76,7 @@ class TestBills:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_streaming_response_create(self, client: EmceesProdTesting5) -> None:
+    def test_streaming_response_create(self, client: Firefly) -> None:
         with client.bills.with_streaming_response.create(
             amount_max="123.45",
             amount_min="123.45",
@@ -94,7 +94,7 @@ class TestBills:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_method_retrieve(self, client: EmceesProdTesting5) -> None:
+    def test_method_retrieve(self, client: Firefly) -> None:
         bill = client.bills.retrieve(
             id="123",
         )
@@ -102,7 +102,7 @@ class TestBills:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_method_retrieve_with_all_params(self, client: EmceesProdTesting5) -> None:
+    def test_method_retrieve_with_all_params(self, client: Firefly) -> None:
         bill = client.bills.retrieve(
             id="123",
             end=parse_date("2026-04-30"),
@@ -113,7 +113,7 @@ class TestBills:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_raw_response_retrieve(self, client: EmceesProdTesting5) -> None:
+    def test_raw_response_retrieve(self, client: Firefly) -> None:
         response = client.bills.with_raw_response.retrieve(
             id="123",
         )
@@ -125,7 +125,7 @@ class TestBills:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_streaming_response_retrieve(self, client: EmceesProdTesting5) -> None:
+    def test_streaming_response_retrieve(self, client: Firefly) -> None:
         with client.bills.with_streaming_response.retrieve(
             id="123",
         ) as response:
@@ -139,7 +139,7 @@ class TestBills:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_path_params_retrieve(self, client: EmceesProdTesting5) -> None:
+    def test_path_params_retrieve(self, client: Firefly) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             client.bills.with_raw_response.retrieve(
                 id="",
@@ -147,7 +147,7 @@ class TestBills:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_method_update(self, client: EmceesProdTesting5) -> None:
+    def test_method_update(self, client: Firefly) -> None:
         bill = client.bills.update(
             id="123",
             name="Rent",
@@ -156,7 +156,7 @@ class TestBills:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_method_update_with_all_params(self, client: EmceesProdTesting5) -> None:
+    def test_method_update_with_all_params(self, client: Firefly) -> None:
         bill = client.bills.update(
             id="123",
             name="Rent",
@@ -179,7 +179,7 @@ class TestBills:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_raw_response_update(self, client: EmceesProdTesting5) -> None:
+    def test_raw_response_update(self, client: Firefly) -> None:
         response = client.bills.with_raw_response.update(
             id="123",
             name="Rent",
@@ -192,7 +192,7 @@ class TestBills:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_streaming_response_update(self, client: EmceesProdTesting5) -> None:
+    def test_streaming_response_update(self, client: Firefly) -> None:
         with client.bills.with_streaming_response.update(
             id="123",
             name="Rent",
@@ -207,7 +207,7 @@ class TestBills:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_path_params_update(self, client: EmceesProdTesting5) -> None:
+    def test_path_params_update(self, client: Firefly) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             client.bills.with_raw_response.update(
                 id="",
@@ -216,13 +216,13 @@ class TestBills:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_method_list(self, client: EmceesProdTesting5) -> None:
+    def test_method_list(self, client: Firefly) -> None:
         bill = client.bills.list()
         assert_matches_type(BillArray, bill, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_method_list_with_all_params(self, client: EmceesProdTesting5) -> None:
+    def test_method_list_with_all_params(self, client: Firefly) -> None:
         bill = client.bills.list(
             end=parse_date("2026-04-01"),
             limit=10,
@@ -234,7 +234,7 @@ class TestBills:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_raw_response_list(self, client: EmceesProdTesting5) -> None:
+    def test_raw_response_list(self, client: Firefly) -> None:
         response = client.bills.with_raw_response.list()
 
         assert response.is_closed is True
@@ -244,7 +244,7 @@ class TestBills:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_streaming_response_list(self, client: EmceesProdTesting5) -> None:
+    def test_streaming_response_list(self, client: Firefly) -> None:
         with client.bills.with_streaming_response.list() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -256,7 +256,7 @@ class TestBills:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_method_delete(self, client: EmceesProdTesting5) -> None:
+    def test_method_delete(self, client: Firefly) -> None:
         bill = client.bills.delete(
             id="123",
         )
@@ -264,7 +264,7 @@ class TestBills:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_method_delete_with_all_params(self, client: EmceesProdTesting5) -> None:
+    def test_method_delete_with_all_params(self, client: Firefly) -> None:
         bill = client.bills.delete(
             id="123",
             x_trace_id="40c71bbb-c676-4f24-83cf-cc725d7d7a00",
@@ -273,7 +273,7 @@ class TestBills:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_raw_response_delete(self, client: EmceesProdTesting5) -> None:
+    def test_raw_response_delete(self, client: Firefly) -> None:
         response = client.bills.with_raw_response.delete(
             id="123",
         )
@@ -285,7 +285,7 @@ class TestBills:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_streaming_response_delete(self, client: EmceesProdTesting5) -> None:
+    def test_streaming_response_delete(self, client: Firefly) -> None:
         with client.bills.with_streaming_response.delete(
             id="123",
         ) as response:
@@ -299,7 +299,7 @@ class TestBills:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_path_params_delete(self, client: EmceesProdTesting5) -> None:
+    def test_path_params_delete(self, client: Firefly) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             client.bills.with_raw_response.delete(
                 id="",
@@ -307,7 +307,7 @@ class TestBills:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_method_list_attachments(self, client: EmceesProdTesting5) -> None:
+    def test_method_list_attachments(self, client: Firefly) -> None:
         bill = client.bills.list_attachments(
             id="123",
         )
@@ -315,7 +315,7 @@ class TestBills:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_method_list_attachments_with_all_params(self, client: EmceesProdTesting5) -> None:
+    def test_method_list_attachments_with_all_params(self, client: Firefly) -> None:
         bill = client.bills.list_attachments(
             id="123",
             limit=10,
@@ -326,7 +326,7 @@ class TestBills:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_raw_response_list_attachments(self, client: EmceesProdTesting5) -> None:
+    def test_raw_response_list_attachments(self, client: Firefly) -> None:
         response = client.bills.with_raw_response.list_attachments(
             id="123",
         )
@@ -338,7 +338,7 @@ class TestBills:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_streaming_response_list_attachments(self, client: EmceesProdTesting5) -> None:
+    def test_streaming_response_list_attachments(self, client: Firefly) -> None:
         with client.bills.with_streaming_response.list_attachments(
             id="123",
         ) as response:
@@ -352,7 +352,7 @@ class TestBills:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_path_params_list_attachments(self, client: EmceesProdTesting5) -> None:
+    def test_path_params_list_attachments(self, client: Firefly) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             client.bills.with_raw_response.list_attachments(
                 id="",
@@ -360,7 +360,7 @@ class TestBills:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_method_list_rules(self, client: EmceesProdTesting5) -> None:
+    def test_method_list_rules(self, client: Firefly) -> None:
         bill = client.bills.list_rules(
             id="123",
         )
@@ -368,7 +368,7 @@ class TestBills:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_method_list_rules_with_all_params(self, client: EmceesProdTesting5) -> None:
+    def test_method_list_rules_with_all_params(self, client: Firefly) -> None:
         bill = client.bills.list_rules(
             id="123",
             x_trace_id="40c71bbb-c676-4f24-83cf-cc725d7d7a00",
@@ -377,7 +377,7 @@ class TestBills:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_raw_response_list_rules(self, client: EmceesProdTesting5) -> None:
+    def test_raw_response_list_rules(self, client: Firefly) -> None:
         response = client.bills.with_raw_response.list_rules(
             id="123",
         )
@@ -389,7 +389,7 @@ class TestBills:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_streaming_response_list_rules(self, client: EmceesProdTesting5) -> None:
+    def test_streaming_response_list_rules(self, client: Firefly) -> None:
         with client.bills.with_streaming_response.list_rules(
             id="123",
         ) as response:
@@ -403,7 +403,7 @@ class TestBills:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_path_params_list_rules(self, client: EmceesProdTesting5) -> None:
+    def test_path_params_list_rules(self, client: Firefly) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             client.bills.with_raw_response.list_rules(
                 id="",
@@ -411,7 +411,7 @@ class TestBills:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_method_list_transactions(self, client: EmceesProdTesting5) -> None:
+    def test_method_list_transactions(self, client: Firefly) -> None:
         bill = client.bills.list_transactions(
             id="123",
         )
@@ -419,7 +419,7 @@ class TestBills:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_method_list_transactions_with_all_params(self, client: EmceesProdTesting5) -> None:
+    def test_method_list_transactions_with_all_params(self, client: Firefly) -> None:
         bill = client.bills.list_transactions(
             id="123",
             end=parse_date("2026-04-30"),
@@ -433,7 +433,7 @@ class TestBills:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_raw_response_list_transactions(self, client: EmceesProdTesting5) -> None:
+    def test_raw_response_list_transactions(self, client: Firefly) -> None:
         response = client.bills.with_raw_response.list_transactions(
             id="123",
         )
@@ -445,7 +445,7 @@ class TestBills:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_streaming_response_list_transactions(self, client: EmceesProdTesting5) -> None:
+    def test_streaming_response_list_transactions(self, client: Firefly) -> None:
         with client.bills.with_streaming_response.list_transactions(
             id="123",
         ) as response:
@@ -459,7 +459,7 @@ class TestBills:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_path_params_list_transactions(self, client: EmceesProdTesting5) -> None:
+    def test_path_params_list_transactions(self, client: Firefly) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             client.bills.with_raw_response.list_transactions(
                 id="",
@@ -473,7 +473,7 @@ class TestAsyncBills:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_method_create(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_method_create(self, async_client: AsyncFirefly) -> None:
         bill = await async_client.bills.create(
             amount_max="123.45",
             amount_min="123.45",
@@ -485,7 +485,7 @@ class TestAsyncBills:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_method_create_with_all_params(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_method_create_with_all_params(self, async_client: AsyncFirefly) -> None:
         bill = await async_client.bills.create(
             amount_max="123.45",
             amount_min="123.45",
@@ -507,7 +507,7 @@ class TestAsyncBills:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_raw_response_create(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_raw_response_create(self, async_client: AsyncFirefly) -> None:
         response = await async_client.bills.with_raw_response.create(
             amount_max="123.45",
             amount_min="123.45",
@@ -523,7 +523,7 @@ class TestAsyncBills:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_streaming_response_create(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_streaming_response_create(self, async_client: AsyncFirefly) -> None:
         async with async_client.bills.with_streaming_response.create(
             amount_max="123.45",
             amount_min="123.45",
@@ -541,7 +541,7 @@ class TestAsyncBills:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_method_retrieve(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_method_retrieve(self, async_client: AsyncFirefly) -> None:
         bill = await async_client.bills.retrieve(
             id="123",
         )
@@ -549,7 +549,7 @@ class TestAsyncBills:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_method_retrieve_with_all_params(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_method_retrieve_with_all_params(self, async_client: AsyncFirefly) -> None:
         bill = await async_client.bills.retrieve(
             id="123",
             end=parse_date("2026-04-30"),
@@ -560,7 +560,7 @@ class TestAsyncBills:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_raw_response_retrieve(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_raw_response_retrieve(self, async_client: AsyncFirefly) -> None:
         response = await async_client.bills.with_raw_response.retrieve(
             id="123",
         )
@@ -572,7 +572,7 @@ class TestAsyncBills:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_streaming_response_retrieve(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_streaming_response_retrieve(self, async_client: AsyncFirefly) -> None:
         async with async_client.bills.with_streaming_response.retrieve(
             id="123",
         ) as response:
@@ -586,7 +586,7 @@ class TestAsyncBills:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_path_params_retrieve(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_path_params_retrieve(self, async_client: AsyncFirefly) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             await async_client.bills.with_raw_response.retrieve(
                 id="",
@@ -594,7 +594,7 @@ class TestAsyncBills:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_method_update(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_method_update(self, async_client: AsyncFirefly) -> None:
         bill = await async_client.bills.update(
             id="123",
             name="Rent",
@@ -603,7 +603,7 @@ class TestAsyncBills:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_method_update_with_all_params(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_method_update_with_all_params(self, async_client: AsyncFirefly) -> None:
         bill = await async_client.bills.update(
             id="123",
             name="Rent",
@@ -626,7 +626,7 @@ class TestAsyncBills:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_raw_response_update(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_raw_response_update(self, async_client: AsyncFirefly) -> None:
         response = await async_client.bills.with_raw_response.update(
             id="123",
             name="Rent",
@@ -639,7 +639,7 @@ class TestAsyncBills:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_streaming_response_update(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_streaming_response_update(self, async_client: AsyncFirefly) -> None:
         async with async_client.bills.with_streaming_response.update(
             id="123",
             name="Rent",
@@ -654,7 +654,7 @@ class TestAsyncBills:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_path_params_update(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_path_params_update(self, async_client: AsyncFirefly) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             await async_client.bills.with_raw_response.update(
                 id="",
@@ -663,13 +663,13 @@ class TestAsyncBills:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_method_list(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_method_list(self, async_client: AsyncFirefly) -> None:
         bill = await async_client.bills.list()
         assert_matches_type(BillArray, bill, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_method_list_with_all_params(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_method_list_with_all_params(self, async_client: AsyncFirefly) -> None:
         bill = await async_client.bills.list(
             end=parse_date("2026-04-01"),
             limit=10,
@@ -681,7 +681,7 @@ class TestAsyncBills:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_raw_response_list(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_raw_response_list(self, async_client: AsyncFirefly) -> None:
         response = await async_client.bills.with_raw_response.list()
 
         assert response.is_closed is True
@@ -691,7 +691,7 @@ class TestAsyncBills:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_streaming_response_list(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_streaming_response_list(self, async_client: AsyncFirefly) -> None:
         async with async_client.bills.with_streaming_response.list() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -703,7 +703,7 @@ class TestAsyncBills:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_method_delete(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_method_delete(self, async_client: AsyncFirefly) -> None:
         bill = await async_client.bills.delete(
             id="123",
         )
@@ -711,7 +711,7 @@ class TestAsyncBills:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_method_delete_with_all_params(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_method_delete_with_all_params(self, async_client: AsyncFirefly) -> None:
         bill = await async_client.bills.delete(
             id="123",
             x_trace_id="40c71bbb-c676-4f24-83cf-cc725d7d7a00",
@@ -720,7 +720,7 @@ class TestAsyncBills:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_raw_response_delete(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_raw_response_delete(self, async_client: AsyncFirefly) -> None:
         response = await async_client.bills.with_raw_response.delete(
             id="123",
         )
@@ -732,7 +732,7 @@ class TestAsyncBills:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_streaming_response_delete(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_streaming_response_delete(self, async_client: AsyncFirefly) -> None:
         async with async_client.bills.with_streaming_response.delete(
             id="123",
         ) as response:
@@ -746,7 +746,7 @@ class TestAsyncBills:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_path_params_delete(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_path_params_delete(self, async_client: AsyncFirefly) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             await async_client.bills.with_raw_response.delete(
                 id="",
@@ -754,7 +754,7 @@ class TestAsyncBills:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_method_list_attachments(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_method_list_attachments(self, async_client: AsyncFirefly) -> None:
         bill = await async_client.bills.list_attachments(
             id="123",
         )
@@ -762,7 +762,7 @@ class TestAsyncBills:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_method_list_attachments_with_all_params(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_method_list_attachments_with_all_params(self, async_client: AsyncFirefly) -> None:
         bill = await async_client.bills.list_attachments(
             id="123",
             limit=10,
@@ -773,7 +773,7 @@ class TestAsyncBills:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_raw_response_list_attachments(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_raw_response_list_attachments(self, async_client: AsyncFirefly) -> None:
         response = await async_client.bills.with_raw_response.list_attachments(
             id="123",
         )
@@ -785,7 +785,7 @@ class TestAsyncBills:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_streaming_response_list_attachments(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_streaming_response_list_attachments(self, async_client: AsyncFirefly) -> None:
         async with async_client.bills.with_streaming_response.list_attachments(
             id="123",
         ) as response:
@@ -799,7 +799,7 @@ class TestAsyncBills:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_path_params_list_attachments(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_path_params_list_attachments(self, async_client: AsyncFirefly) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             await async_client.bills.with_raw_response.list_attachments(
                 id="",
@@ -807,7 +807,7 @@ class TestAsyncBills:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_method_list_rules(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_method_list_rules(self, async_client: AsyncFirefly) -> None:
         bill = await async_client.bills.list_rules(
             id="123",
         )
@@ -815,7 +815,7 @@ class TestAsyncBills:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_method_list_rules_with_all_params(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_method_list_rules_with_all_params(self, async_client: AsyncFirefly) -> None:
         bill = await async_client.bills.list_rules(
             id="123",
             x_trace_id="40c71bbb-c676-4f24-83cf-cc725d7d7a00",
@@ -824,7 +824,7 @@ class TestAsyncBills:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_raw_response_list_rules(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_raw_response_list_rules(self, async_client: AsyncFirefly) -> None:
         response = await async_client.bills.with_raw_response.list_rules(
             id="123",
         )
@@ -836,7 +836,7 @@ class TestAsyncBills:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_streaming_response_list_rules(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_streaming_response_list_rules(self, async_client: AsyncFirefly) -> None:
         async with async_client.bills.with_streaming_response.list_rules(
             id="123",
         ) as response:
@@ -850,7 +850,7 @@ class TestAsyncBills:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_path_params_list_rules(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_path_params_list_rules(self, async_client: AsyncFirefly) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             await async_client.bills.with_raw_response.list_rules(
                 id="",
@@ -858,7 +858,7 @@ class TestAsyncBills:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_method_list_transactions(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_method_list_transactions(self, async_client: AsyncFirefly) -> None:
         bill = await async_client.bills.list_transactions(
             id="123",
         )
@@ -866,7 +866,7 @@ class TestAsyncBills:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_method_list_transactions_with_all_params(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_method_list_transactions_with_all_params(self, async_client: AsyncFirefly) -> None:
         bill = await async_client.bills.list_transactions(
             id="123",
             end=parse_date("2026-04-30"),
@@ -880,7 +880,7 @@ class TestAsyncBills:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_raw_response_list_transactions(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_raw_response_list_transactions(self, async_client: AsyncFirefly) -> None:
         response = await async_client.bills.with_raw_response.list_transactions(
             id="123",
         )
@@ -892,7 +892,7 @@ class TestAsyncBills:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_streaming_response_list_transactions(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_streaming_response_list_transactions(self, async_client: AsyncFirefly) -> None:
         async with async_client.bills.with_streaming_response.list_transactions(
             id="123",
         ) as response:
@@ -906,7 +906,7 @@ class TestAsyncBills:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_path_params_list_transactions(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_path_params_list_transactions(self, async_client: AsyncFirefly) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             await async_client.bills.with_raw_response.list_transactions(
                 id="",

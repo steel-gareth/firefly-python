@@ -8,9 +8,9 @@ import pytest
 import pydantic
 from pydantic import Field
 
-from emcees_prod_testing_5._utils import PropertyInfo
-from emcees_prod_testing_5._compat import PYDANTIC_V1, parse_obj, model_dump, model_json
-from emcees_prod_testing_5._models import DISCRIMINATOR_CACHE, BaseModel, EagerIterable, construct_type
+from firefly._utils import PropertyInfo
+from firefly._compat import PYDANTIC_V1, parse_obj, model_dump, model_json
+from firefly._models import DISCRIMINATOR_CACHE, BaseModel, EagerIterable, construct_type
 
 
 class BasicModel(BaseModel):

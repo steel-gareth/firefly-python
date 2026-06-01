@@ -7,9 +7,9 @@ from typing import Any, cast
 
 import pytest
 
+from firefly import Firefly, AsyncFirefly
 from tests.utils import assert_matches_type
-from emcees_prod_testing_5 import EmceesProdTesting5, AsyncEmceesProdTesting5
-from emcees_prod_testing_5.types import (
+from firefly.types import (
     BillArray,
     RuleArray,
     AccountArray,
@@ -19,8 +19,8 @@ from emcees_prod_testing_5.types import (
     AvailableBudgetArray,
     CurrencyListResponse,
 )
-from emcees_prod_testing_5._utils import parse_date
-from emcees_prod_testing_5.types.budgets import BudgetLimitArray
+from firefly._utils import parse_date
+from firefly.types.budgets import BudgetLimitArray
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -30,7 +30,7 @@ class TestCurrencies:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_method_create(self, client: EmceesProdTesting5) -> None:
+    def test_method_create(self, client: Firefly) -> None:
         currency = client.currencies.create(
             code="AMS",
             name="Ankh-Morpork dollar",
@@ -40,7 +40,7 @@ class TestCurrencies:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_method_create_with_all_params(self, client: EmceesProdTesting5) -> None:
+    def test_method_create_with_all_params(self, client: Firefly) -> None:
         currency = client.currencies.create(
             code="AMS",
             name="Ankh-Morpork dollar",
@@ -54,7 +54,7 @@ class TestCurrencies:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_raw_response_create(self, client: EmceesProdTesting5) -> None:
+    def test_raw_response_create(self, client: Firefly) -> None:
         response = client.currencies.with_raw_response.create(
             code="AMS",
             name="Ankh-Morpork dollar",
@@ -68,7 +68,7 @@ class TestCurrencies:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_streaming_response_create(self, client: EmceesProdTesting5) -> None:
+    def test_streaming_response_create(self, client: Firefly) -> None:
         with client.currencies.with_streaming_response.create(
             code="AMS",
             name="Ankh-Morpork dollar",
@@ -84,7 +84,7 @@ class TestCurrencies:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_method_retrieve(self, client: EmceesProdTesting5) -> None:
+    def test_method_retrieve(self, client: Firefly) -> None:
         currency = client.currencies.retrieve(
             code="USD",
         )
@@ -92,7 +92,7 @@ class TestCurrencies:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_method_retrieve_with_all_params(self, client: EmceesProdTesting5) -> None:
+    def test_method_retrieve_with_all_params(self, client: Firefly) -> None:
         currency = client.currencies.retrieve(
             code="USD",
             x_trace_id="40c71bbb-c676-4f24-83cf-cc725d7d7a00",
@@ -101,7 +101,7 @@ class TestCurrencies:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_raw_response_retrieve(self, client: EmceesProdTesting5) -> None:
+    def test_raw_response_retrieve(self, client: Firefly) -> None:
         response = client.currencies.with_raw_response.retrieve(
             code="USD",
         )
@@ -113,7 +113,7 @@ class TestCurrencies:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_streaming_response_retrieve(self, client: EmceesProdTesting5) -> None:
+    def test_streaming_response_retrieve(self, client: Firefly) -> None:
         with client.currencies.with_streaming_response.retrieve(
             code="USD",
         ) as response:
@@ -127,7 +127,7 @@ class TestCurrencies:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_path_params_retrieve(self, client: EmceesProdTesting5) -> None:
+    def test_path_params_retrieve(self, client: Firefly) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `code` but received ''"):
             client.currencies.with_raw_response.retrieve(
                 code="",
@@ -135,7 +135,7 @@ class TestCurrencies:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_method_update(self, client: EmceesProdTesting5) -> None:
+    def test_method_update(self, client: Firefly) -> None:
         currency = client.currencies.update(
             path_code="EUR",
         )
@@ -143,7 +143,7 @@ class TestCurrencies:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_method_update_with_all_params(self, client: EmceesProdTesting5) -> None:
+    def test_method_update_with_all_params(self, client: Firefly) -> None:
         currency = client.currencies.update(
             path_code="EUR",
             body_code="AMS",
@@ -158,7 +158,7 @@ class TestCurrencies:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_raw_response_update(self, client: EmceesProdTesting5) -> None:
+    def test_raw_response_update(self, client: Firefly) -> None:
         response = client.currencies.with_raw_response.update(
             path_code="EUR",
         )
@@ -170,7 +170,7 @@ class TestCurrencies:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_streaming_response_update(self, client: EmceesProdTesting5) -> None:
+    def test_streaming_response_update(self, client: Firefly) -> None:
         with client.currencies.with_streaming_response.update(
             path_code="EUR",
         ) as response:
@@ -184,7 +184,7 @@ class TestCurrencies:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_path_params_update(self, client: EmceesProdTesting5) -> None:
+    def test_path_params_update(self, client: Firefly) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_code` but received ''"):
             client.currencies.with_raw_response.update(
                 path_code="",
@@ -192,13 +192,13 @@ class TestCurrencies:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_method_list(self, client: EmceesProdTesting5) -> None:
+    def test_method_list(self, client: Firefly) -> None:
         currency = client.currencies.list()
         assert_matches_type(CurrencyListResponse, currency, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_method_list_with_all_params(self, client: EmceesProdTesting5) -> None:
+    def test_method_list_with_all_params(self, client: Firefly) -> None:
         currency = client.currencies.list(
             limit=10,
             page=1,
@@ -208,7 +208,7 @@ class TestCurrencies:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_raw_response_list(self, client: EmceesProdTesting5) -> None:
+    def test_raw_response_list(self, client: Firefly) -> None:
         response = client.currencies.with_raw_response.list()
 
         assert response.is_closed is True
@@ -218,7 +218,7 @@ class TestCurrencies:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_streaming_response_list(self, client: EmceesProdTesting5) -> None:
+    def test_streaming_response_list(self, client: Firefly) -> None:
         with client.currencies.with_streaming_response.list() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -230,7 +230,7 @@ class TestCurrencies:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_method_delete(self, client: EmceesProdTesting5) -> None:
+    def test_method_delete(self, client: Firefly) -> None:
         currency = client.currencies.delete(
             code="GBP",
         )
@@ -238,7 +238,7 @@ class TestCurrencies:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_method_delete_with_all_params(self, client: EmceesProdTesting5) -> None:
+    def test_method_delete_with_all_params(self, client: Firefly) -> None:
         currency = client.currencies.delete(
             code="GBP",
             x_trace_id="40c71bbb-c676-4f24-83cf-cc725d7d7a00",
@@ -247,7 +247,7 @@ class TestCurrencies:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_raw_response_delete(self, client: EmceesProdTesting5) -> None:
+    def test_raw_response_delete(self, client: Firefly) -> None:
         response = client.currencies.with_raw_response.delete(
             code="GBP",
         )
@@ -259,7 +259,7 @@ class TestCurrencies:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_streaming_response_delete(self, client: EmceesProdTesting5) -> None:
+    def test_streaming_response_delete(self, client: Firefly) -> None:
         with client.currencies.with_streaming_response.delete(
             code="GBP",
         ) as response:
@@ -273,7 +273,7 @@ class TestCurrencies:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_path_params_delete(self, client: EmceesProdTesting5) -> None:
+    def test_path_params_delete(self, client: Firefly) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `code` but received ''"):
             client.currencies.with_raw_response.delete(
                 code="",
@@ -281,7 +281,7 @@ class TestCurrencies:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_method_disable(self, client: EmceesProdTesting5) -> None:
+    def test_method_disable(self, client: Firefly) -> None:
         currency = client.currencies.disable(
             code="GBP",
         )
@@ -289,7 +289,7 @@ class TestCurrencies:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_method_disable_with_all_params(self, client: EmceesProdTesting5) -> None:
+    def test_method_disable_with_all_params(self, client: Firefly) -> None:
         currency = client.currencies.disable(
             code="GBP",
             x_trace_id="40c71bbb-c676-4f24-83cf-cc725d7d7a00",
@@ -298,7 +298,7 @@ class TestCurrencies:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_raw_response_disable(self, client: EmceesProdTesting5) -> None:
+    def test_raw_response_disable(self, client: Firefly) -> None:
         response = client.currencies.with_raw_response.disable(
             code="GBP",
         )
@@ -310,7 +310,7 @@ class TestCurrencies:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_streaming_response_disable(self, client: EmceesProdTesting5) -> None:
+    def test_streaming_response_disable(self, client: Firefly) -> None:
         with client.currencies.with_streaming_response.disable(
             code="GBP",
         ) as response:
@@ -324,7 +324,7 @@ class TestCurrencies:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_path_params_disable(self, client: EmceesProdTesting5) -> None:
+    def test_path_params_disable(self, client: Firefly) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `code` but received ''"):
             client.currencies.with_raw_response.disable(
                 code="",
@@ -332,7 +332,7 @@ class TestCurrencies:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_method_enable(self, client: EmceesProdTesting5) -> None:
+    def test_method_enable(self, client: Firefly) -> None:
         currency = client.currencies.enable(
             code="USD",
         )
@@ -340,7 +340,7 @@ class TestCurrencies:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_method_enable_with_all_params(self, client: EmceesProdTesting5) -> None:
+    def test_method_enable_with_all_params(self, client: Firefly) -> None:
         currency = client.currencies.enable(
             code="USD",
             x_trace_id="40c71bbb-c676-4f24-83cf-cc725d7d7a00",
@@ -349,7 +349,7 @@ class TestCurrencies:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_raw_response_enable(self, client: EmceesProdTesting5) -> None:
+    def test_raw_response_enable(self, client: Firefly) -> None:
         response = client.currencies.with_raw_response.enable(
             code="USD",
         )
@@ -361,7 +361,7 @@ class TestCurrencies:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_streaming_response_enable(self, client: EmceesProdTesting5) -> None:
+    def test_streaming_response_enable(self, client: Firefly) -> None:
         with client.currencies.with_streaming_response.enable(
             code="USD",
         ) as response:
@@ -375,7 +375,7 @@ class TestCurrencies:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_path_params_enable(self, client: EmceesProdTesting5) -> None:
+    def test_path_params_enable(self, client: Firefly) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `code` but received ''"):
             client.currencies.with_raw_response.enable(
                 code="",
@@ -383,7 +383,7 @@ class TestCurrencies:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_method_list_accounts(self, client: EmceesProdTesting5) -> None:
+    def test_method_list_accounts(self, client: Firefly) -> None:
         currency = client.currencies.list_accounts(
             code="USD",
         )
@@ -391,7 +391,7 @@ class TestCurrencies:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_method_list_accounts_with_all_params(self, client: EmceesProdTesting5) -> None:
+    def test_method_list_accounts_with_all_params(self, client: Firefly) -> None:
         currency = client.currencies.list_accounts(
             code="USD",
             date=parse_date("2019-12-27"),
@@ -404,7 +404,7 @@ class TestCurrencies:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_raw_response_list_accounts(self, client: EmceesProdTesting5) -> None:
+    def test_raw_response_list_accounts(self, client: Firefly) -> None:
         response = client.currencies.with_raw_response.list_accounts(
             code="USD",
         )
@@ -416,7 +416,7 @@ class TestCurrencies:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_streaming_response_list_accounts(self, client: EmceesProdTesting5) -> None:
+    def test_streaming_response_list_accounts(self, client: Firefly) -> None:
         with client.currencies.with_streaming_response.list_accounts(
             code="USD",
         ) as response:
@@ -430,7 +430,7 @@ class TestCurrencies:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_path_params_list_accounts(self, client: EmceesProdTesting5) -> None:
+    def test_path_params_list_accounts(self, client: Firefly) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `code` but received ''"):
             client.currencies.with_raw_response.list_accounts(
                 code="",
@@ -438,7 +438,7 @@ class TestCurrencies:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_method_list_available_budgets(self, client: EmceesProdTesting5) -> None:
+    def test_method_list_available_budgets(self, client: Firefly) -> None:
         currency = client.currencies.list_available_budgets(
             code="EUR",
         )
@@ -446,7 +446,7 @@ class TestCurrencies:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_method_list_available_budgets_with_all_params(self, client: EmceesProdTesting5) -> None:
+    def test_method_list_available_budgets_with_all_params(self, client: Firefly) -> None:
         currency = client.currencies.list_available_budgets(
             code="EUR",
             limit=10,
@@ -457,7 +457,7 @@ class TestCurrencies:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_raw_response_list_available_budgets(self, client: EmceesProdTesting5) -> None:
+    def test_raw_response_list_available_budgets(self, client: Firefly) -> None:
         response = client.currencies.with_raw_response.list_available_budgets(
             code="EUR",
         )
@@ -469,7 +469,7 @@ class TestCurrencies:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_streaming_response_list_available_budgets(self, client: EmceesProdTesting5) -> None:
+    def test_streaming_response_list_available_budgets(self, client: Firefly) -> None:
         with client.currencies.with_streaming_response.list_available_budgets(
             code="EUR",
         ) as response:
@@ -483,7 +483,7 @@ class TestCurrencies:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_path_params_list_available_budgets(self, client: EmceesProdTesting5) -> None:
+    def test_path_params_list_available_budgets(self, client: Firefly) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `code` but received ''"):
             client.currencies.with_raw_response.list_available_budgets(
                 code="",
@@ -491,7 +491,7 @@ class TestCurrencies:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_method_list_bills(self, client: EmceesProdTesting5) -> None:
+    def test_method_list_bills(self, client: Firefly) -> None:
         currency = client.currencies.list_bills(
             code="USD",
         )
@@ -499,7 +499,7 @@ class TestCurrencies:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_method_list_bills_with_all_params(self, client: EmceesProdTesting5) -> None:
+    def test_method_list_bills_with_all_params(self, client: Firefly) -> None:
         currency = client.currencies.list_bills(
             code="USD",
             limit=10,
@@ -510,7 +510,7 @@ class TestCurrencies:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_raw_response_list_bills(self, client: EmceesProdTesting5) -> None:
+    def test_raw_response_list_bills(self, client: Firefly) -> None:
         response = client.currencies.with_raw_response.list_bills(
             code="USD",
         )
@@ -522,7 +522,7 @@ class TestCurrencies:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_streaming_response_list_bills(self, client: EmceesProdTesting5) -> None:
+    def test_streaming_response_list_bills(self, client: Firefly) -> None:
         with client.currencies.with_streaming_response.list_bills(
             code="USD",
         ) as response:
@@ -536,7 +536,7 @@ class TestCurrencies:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_path_params_list_bills(self, client: EmceesProdTesting5) -> None:
+    def test_path_params_list_bills(self, client: Firefly) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `code` but received ''"):
             client.currencies.with_raw_response.list_bills(
                 code="",
@@ -544,7 +544,7 @@ class TestCurrencies:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_method_list_budget_limits(self, client: EmceesProdTesting5) -> None:
+    def test_method_list_budget_limits(self, client: Firefly) -> None:
         currency = client.currencies.list_budget_limits(
             code="USD",
         )
@@ -552,7 +552,7 @@ class TestCurrencies:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_method_list_budget_limits_with_all_params(self, client: EmceesProdTesting5) -> None:
+    def test_method_list_budget_limits_with_all_params(self, client: Firefly) -> None:
         currency = client.currencies.list_budget_limits(
             code="USD",
             end=parse_date("2026-04-30"),
@@ -565,7 +565,7 @@ class TestCurrencies:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_raw_response_list_budget_limits(self, client: EmceesProdTesting5) -> None:
+    def test_raw_response_list_budget_limits(self, client: Firefly) -> None:
         response = client.currencies.with_raw_response.list_budget_limits(
             code="USD",
         )
@@ -577,7 +577,7 @@ class TestCurrencies:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_streaming_response_list_budget_limits(self, client: EmceesProdTesting5) -> None:
+    def test_streaming_response_list_budget_limits(self, client: Firefly) -> None:
         with client.currencies.with_streaming_response.list_budget_limits(
             code="USD",
         ) as response:
@@ -591,7 +591,7 @@ class TestCurrencies:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_path_params_list_budget_limits(self, client: EmceesProdTesting5) -> None:
+    def test_path_params_list_budget_limits(self, client: Firefly) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `code` but received ''"):
             client.currencies.with_raw_response.list_budget_limits(
                 code="",
@@ -599,7 +599,7 @@ class TestCurrencies:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_method_list_recurrences(self, client: EmceesProdTesting5) -> None:
+    def test_method_list_recurrences(self, client: Firefly) -> None:
         currency = client.currencies.list_recurrences(
             code="EUR",
         )
@@ -607,7 +607,7 @@ class TestCurrencies:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_method_list_recurrences_with_all_params(self, client: EmceesProdTesting5) -> None:
+    def test_method_list_recurrences_with_all_params(self, client: Firefly) -> None:
         currency = client.currencies.list_recurrences(
             code="EUR",
             limit=10,
@@ -618,7 +618,7 @@ class TestCurrencies:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_raw_response_list_recurrences(self, client: EmceesProdTesting5) -> None:
+    def test_raw_response_list_recurrences(self, client: Firefly) -> None:
         response = client.currencies.with_raw_response.list_recurrences(
             code="EUR",
         )
@@ -630,7 +630,7 @@ class TestCurrencies:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_streaming_response_list_recurrences(self, client: EmceesProdTesting5) -> None:
+    def test_streaming_response_list_recurrences(self, client: Firefly) -> None:
         with client.currencies.with_streaming_response.list_recurrences(
             code="EUR",
         ) as response:
@@ -644,7 +644,7 @@ class TestCurrencies:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_path_params_list_recurrences(self, client: EmceesProdTesting5) -> None:
+    def test_path_params_list_recurrences(self, client: Firefly) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `code` but received ''"):
             client.currencies.with_raw_response.list_recurrences(
                 code="",
@@ -652,7 +652,7 @@ class TestCurrencies:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_method_list_rules(self, client: EmceesProdTesting5) -> None:
+    def test_method_list_rules(self, client: Firefly) -> None:
         currency = client.currencies.list_rules(
             code="USD",
         )
@@ -660,7 +660,7 @@ class TestCurrencies:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_method_list_rules_with_all_params(self, client: EmceesProdTesting5) -> None:
+    def test_method_list_rules_with_all_params(self, client: Firefly) -> None:
         currency = client.currencies.list_rules(
             code="USD",
             limit=10,
@@ -671,7 +671,7 @@ class TestCurrencies:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_raw_response_list_rules(self, client: EmceesProdTesting5) -> None:
+    def test_raw_response_list_rules(self, client: Firefly) -> None:
         response = client.currencies.with_raw_response.list_rules(
             code="USD",
         )
@@ -683,7 +683,7 @@ class TestCurrencies:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_streaming_response_list_rules(self, client: EmceesProdTesting5) -> None:
+    def test_streaming_response_list_rules(self, client: Firefly) -> None:
         with client.currencies.with_streaming_response.list_rules(
             code="USD",
         ) as response:
@@ -697,7 +697,7 @@ class TestCurrencies:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_path_params_list_rules(self, client: EmceesProdTesting5) -> None:
+    def test_path_params_list_rules(self, client: Firefly) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `code` but received ''"):
             client.currencies.with_raw_response.list_rules(
                 code="",
@@ -705,7 +705,7 @@ class TestCurrencies:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_method_list_transactions(self, client: EmceesProdTesting5) -> None:
+    def test_method_list_transactions(self, client: Firefly) -> None:
         currency = client.currencies.list_transactions(
             code="USD",
         )
@@ -713,7 +713,7 @@ class TestCurrencies:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_method_list_transactions_with_all_params(self, client: EmceesProdTesting5) -> None:
+    def test_method_list_transactions_with_all_params(self, client: Firefly) -> None:
         currency = client.currencies.list_transactions(
             code="USD",
             end=parse_date("2026-04-30"),
@@ -727,7 +727,7 @@ class TestCurrencies:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_raw_response_list_transactions(self, client: EmceesProdTesting5) -> None:
+    def test_raw_response_list_transactions(self, client: Firefly) -> None:
         response = client.currencies.with_raw_response.list_transactions(
             code="USD",
         )
@@ -739,7 +739,7 @@ class TestCurrencies:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_streaming_response_list_transactions(self, client: EmceesProdTesting5) -> None:
+    def test_streaming_response_list_transactions(self, client: Firefly) -> None:
         with client.currencies.with_streaming_response.list_transactions(
             code="USD",
         ) as response:
@@ -753,7 +753,7 @@ class TestCurrencies:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_path_params_list_transactions(self, client: EmceesProdTesting5) -> None:
+    def test_path_params_list_transactions(self, client: Firefly) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `code` but received ''"):
             client.currencies.with_raw_response.list_transactions(
                 code="",
@@ -767,7 +767,7 @@ class TestAsyncCurrencies:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_method_create(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_method_create(self, async_client: AsyncFirefly) -> None:
         currency = await async_client.currencies.create(
             code="AMS",
             name="Ankh-Morpork dollar",
@@ -777,7 +777,7 @@ class TestAsyncCurrencies:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_method_create_with_all_params(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_method_create_with_all_params(self, async_client: AsyncFirefly) -> None:
         currency = await async_client.currencies.create(
             code="AMS",
             name="Ankh-Morpork dollar",
@@ -791,7 +791,7 @@ class TestAsyncCurrencies:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_raw_response_create(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_raw_response_create(self, async_client: AsyncFirefly) -> None:
         response = await async_client.currencies.with_raw_response.create(
             code="AMS",
             name="Ankh-Morpork dollar",
@@ -805,7 +805,7 @@ class TestAsyncCurrencies:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_streaming_response_create(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_streaming_response_create(self, async_client: AsyncFirefly) -> None:
         async with async_client.currencies.with_streaming_response.create(
             code="AMS",
             name="Ankh-Morpork dollar",
@@ -821,7 +821,7 @@ class TestAsyncCurrencies:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_method_retrieve(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_method_retrieve(self, async_client: AsyncFirefly) -> None:
         currency = await async_client.currencies.retrieve(
             code="USD",
         )
@@ -829,7 +829,7 @@ class TestAsyncCurrencies:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_method_retrieve_with_all_params(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_method_retrieve_with_all_params(self, async_client: AsyncFirefly) -> None:
         currency = await async_client.currencies.retrieve(
             code="USD",
             x_trace_id="40c71bbb-c676-4f24-83cf-cc725d7d7a00",
@@ -838,7 +838,7 @@ class TestAsyncCurrencies:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_raw_response_retrieve(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_raw_response_retrieve(self, async_client: AsyncFirefly) -> None:
         response = await async_client.currencies.with_raw_response.retrieve(
             code="USD",
         )
@@ -850,7 +850,7 @@ class TestAsyncCurrencies:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_streaming_response_retrieve(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_streaming_response_retrieve(self, async_client: AsyncFirefly) -> None:
         async with async_client.currencies.with_streaming_response.retrieve(
             code="USD",
         ) as response:
@@ -864,7 +864,7 @@ class TestAsyncCurrencies:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_path_params_retrieve(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_path_params_retrieve(self, async_client: AsyncFirefly) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `code` but received ''"):
             await async_client.currencies.with_raw_response.retrieve(
                 code="",
@@ -872,7 +872,7 @@ class TestAsyncCurrencies:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_method_update(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_method_update(self, async_client: AsyncFirefly) -> None:
         currency = await async_client.currencies.update(
             path_code="EUR",
         )
@@ -880,7 +880,7 @@ class TestAsyncCurrencies:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_method_update_with_all_params(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_method_update_with_all_params(self, async_client: AsyncFirefly) -> None:
         currency = await async_client.currencies.update(
             path_code="EUR",
             body_code="AMS",
@@ -895,7 +895,7 @@ class TestAsyncCurrencies:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_raw_response_update(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_raw_response_update(self, async_client: AsyncFirefly) -> None:
         response = await async_client.currencies.with_raw_response.update(
             path_code="EUR",
         )
@@ -907,7 +907,7 @@ class TestAsyncCurrencies:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_streaming_response_update(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_streaming_response_update(self, async_client: AsyncFirefly) -> None:
         async with async_client.currencies.with_streaming_response.update(
             path_code="EUR",
         ) as response:
@@ -921,7 +921,7 @@ class TestAsyncCurrencies:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_path_params_update(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_path_params_update(self, async_client: AsyncFirefly) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_code` but received ''"):
             await async_client.currencies.with_raw_response.update(
                 path_code="",
@@ -929,13 +929,13 @@ class TestAsyncCurrencies:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_method_list(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_method_list(self, async_client: AsyncFirefly) -> None:
         currency = await async_client.currencies.list()
         assert_matches_type(CurrencyListResponse, currency, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_method_list_with_all_params(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_method_list_with_all_params(self, async_client: AsyncFirefly) -> None:
         currency = await async_client.currencies.list(
             limit=10,
             page=1,
@@ -945,7 +945,7 @@ class TestAsyncCurrencies:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_raw_response_list(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_raw_response_list(self, async_client: AsyncFirefly) -> None:
         response = await async_client.currencies.with_raw_response.list()
 
         assert response.is_closed is True
@@ -955,7 +955,7 @@ class TestAsyncCurrencies:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_streaming_response_list(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_streaming_response_list(self, async_client: AsyncFirefly) -> None:
         async with async_client.currencies.with_streaming_response.list() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -967,7 +967,7 @@ class TestAsyncCurrencies:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_method_delete(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_method_delete(self, async_client: AsyncFirefly) -> None:
         currency = await async_client.currencies.delete(
             code="GBP",
         )
@@ -975,7 +975,7 @@ class TestAsyncCurrencies:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_method_delete_with_all_params(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_method_delete_with_all_params(self, async_client: AsyncFirefly) -> None:
         currency = await async_client.currencies.delete(
             code="GBP",
             x_trace_id="40c71bbb-c676-4f24-83cf-cc725d7d7a00",
@@ -984,7 +984,7 @@ class TestAsyncCurrencies:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_raw_response_delete(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_raw_response_delete(self, async_client: AsyncFirefly) -> None:
         response = await async_client.currencies.with_raw_response.delete(
             code="GBP",
         )
@@ -996,7 +996,7 @@ class TestAsyncCurrencies:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_streaming_response_delete(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_streaming_response_delete(self, async_client: AsyncFirefly) -> None:
         async with async_client.currencies.with_streaming_response.delete(
             code="GBP",
         ) as response:
@@ -1010,7 +1010,7 @@ class TestAsyncCurrencies:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_path_params_delete(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_path_params_delete(self, async_client: AsyncFirefly) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `code` but received ''"):
             await async_client.currencies.with_raw_response.delete(
                 code="",
@@ -1018,7 +1018,7 @@ class TestAsyncCurrencies:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_method_disable(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_method_disable(self, async_client: AsyncFirefly) -> None:
         currency = await async_client.currencies.disable(
             code="GBP",
         )
@@ -1026,7 +1026,7 @@ class TestAsyncCurrencies:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_method_disable_with_all_params(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_method_disable_with_all_params(self, async_client: AsyncFirefly) -> None:
         currency = await async_client.currencies.disable(
             code="GBP",
             x_trace_id="40c71bbb-c676-4f24-83cf-cc725d7d7a00",
@@ -1035,7 +1035,7 @@ class TestAsyncCurrencies:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_raw_response_disable(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_raw_response_disable(self, async_client: AsyncFirefly) -> None:
         response = await async_client.currencies.with_raw_response.disable(
             code="GBP",
         )
@@ -1047,7 +1047,7 @@ class TestAsyncCurrencies:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_streaming_response_disable(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_streaming_response_disable(self, async_client: AsyncFirefly) -> None:
         async with async_client.currencies.with_streaming_response.disable(
             code="GBP",
         ) as response:
@@ -1061,7 +1061,7 @@ class TestAsyncCurrencies:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_path_params_disable(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_path_params_disable(self, async_client: AsyncFirefly) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `code` but received ''"):
             await async_client.currencies.with_raw_response.disable(
                 code="",
@@ -1069,7 +1069,7 @@ class TestAsyncCurrencies:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_method_enable(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_method_enable(self, async_client: AsyncFirefly) -> None:
         currency = await async_client.currencies.enable(
             code="USD",
         )
@@ -1077,7 +1077,7 @@ class TestAsyncCurrencies:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_method_enable_with_all_params(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_method_enable_with_all_params(self, async_client: AsyncFirefly) -> None:
         currency = await async_client.currencies.enable(
             code="USD",
             x_trace_id="40c71bbb-c676-4f24-83cf-cc725d7d7a00",
@@ -1086,7 +1086,7 @@ class TestAsyncCurrencies:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_raw_response_enable(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_raw_response_enable(self, async_client: AsyncFirefly) -> None:
         response = await async_client.currencies.with_raw_response.enable(
             code="USD",
         )
@@ -1098,7 +1098,7 @@ class TestAsyncCurrencies:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_streaming_response_enable(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_streaming_response_enable(self, async_client: AsyncFirefly) -> None:
         async with async_client.currencies.with_streaming_response.enable(
             code="USD",
         ) as response:
@@ -1112,7 +1112,7 @@ class TestAsyncCurrencies:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_path_params_enable(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_path_params_enable(self, async_client: AsyncFirefly) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `code` but received ''"):
             await async_client.currencies.with_raw_response.enable(
                 code="",
@@ -1120,7 +1120,7 @@ class TestAsyncCurrencies:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_method_list_accounts(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_method_list_accounts(self, async_client: AsyncFirefly) -> None:
         currency = await async_client.currencies.list_accounts(
             code="USD",
         )
@@ -1128,7 +1128,7 @@ class TestAsyncCurrencies:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_method_list_accounts_with_all_params(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_method_list_accounts_with_all_params(self, async_client: AsyncFirefly) -> None:
         currency = await async_client.currencies.list_accounts(
             code="USD",
             date=parse_date("2019-12-27"),
@@ -1141,7 +1141,7 @@ class TestAsyncCurrencies:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_raw_response_list_accounts(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_raw_response_list_accounts(self, async_client: AsyncFirefly) -> None:
         response = await async_client.currencies.with_raw_response.list_accounts(
             code="USD",
         )
@@ -1153,7 +1153,7 @@ class TestAsyncCurrencies:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_streaming_response_list_accounts(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_streaming_response_list_accounts(self, async_client: AsyncFirefly) -> None:
         async with async_client.currencies.with_streaming_response.list_accounts(
             code="USD",
         ) as response:
@@ -1167,7 +1167,7 @@ class TestAsyncCurrencies:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_path_params_list_accounts(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_path_params_list_accounts(self, async_client: AsyncFirefly) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `code` but received ''"):
             await async_client.currencies.with_raw_response.list_accounts(
                 code="",
@@ -1175,7 +1175,7 @@ class TestAsyncCurrencies:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_method_list_available_budgets(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_method_list_available_budgets(self, async_client: AsyncFirefly) -> None:
         currency = await async_client.currencies.list_available_budgets(
             code="EUR",
         )
@@ -1183,7 +1183,7 @@ class TestAsyncCurrencies:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_method_list_available_budgets_with_all_params(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_method_list_available_budgets_with_all_params(self, async_client: AsyncFirefly) -> None:
         currency = await async_client.currencies.list_available_budgets(
             code="EUR",
             limit=10,
@@ -1194,7 +1194,7 @@ class TestAsyncCurrencies:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_raw_response_list_available_budgets(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_raw_response_list_available_budgets(self, async_client: AsyncFirefly) -> None:
         response = await async_client.currencies.with_raw_response.list_available_budgets(
             code="EUR",
         )
@@ -1206,7 +1206,7 @@ class TestAsyncCurrencies:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_streaming_response_list_available_budgets(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_streaming_response_list_available_budgets(self, async_client: AsyncFirefly) -> None:
         async with async_client.currencies.with_streaming_response.list_available_budgets(
             code="EUR",
         ) as response:
@@ -1220,7 +1220,7 @@ class TestAsyncCurrencies:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_path_params_list_available_budgets(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_path_params_list_available_budgets(self, async_client: AsyncFirefly) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `code` but received ''"):
             await async_client.currencies.with_raw_response.list_available_budgets(
                 code="",
@@ -1228,7 +1228,7 @@ class TestAsyncCurrencies:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_method_list_bills(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_method_list_bills(self, async_client: AsyncFirefly) -> None:
         currency = await async_client.currencies.list_bills(
             code="USD",
         )
@@ -1236,7 +1236,7 @@ class TestAsyncCurrencies:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_method_list_bills_with_all_params(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_method_list_bills_with_all_params(self, async_client: AsyncFirefly) -> None:
         currency = await async_client.currencies.list_bills(
             code="USD",
             limit=10,
@@ -1247,7 +1247,7 @@ class TestAsyncCurrencies:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_raw_response_list_bills(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_raw_response_list_bills(self, async_client: AsyncFirefly) -> None:
         response = await async_client.currencies.with_raw_response.list_bills(
             code="USD",
         )
@@ -1259,7 +1259,7 @@ class TestAsyncCurrencies:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_streaming_response_list_bills(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_streaming_response_list_bills(self, async_client: AsyncFirefly) -> None:
         async with async_client.currencies.with_streaming_response.list_bills(
             code="USD",
         ) as response:
@@ -1273,7 +1273,7 @@ class TestAsyncCurrencies:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_path_params_list_bills(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_path_params_list_bills(self, async_client: AsyncFirefly) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `code` but received ''"):
             await async_client.currencies.with_raw_response.list_bills(
                 code="",
@@ -1281,7 +1281,7 @@ class TestAsyncCurrencies:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_method_list_budget_limits(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_method_list_budget_limits(self, async_client: AsyncFirefly) -> None:
         currency = await async_client.currencies.list_budget_limits(
             code="USD",
         )
@@ -1289,7 +1289,7 @@ class TestAsyncCurrencies:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_method_list_budget_limits_with_all_params(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_method_list_budget_limits_with_all_params(self, async_client: AsyncFirefly) -> None:
         currency = await async_client.currencies.list_budget_limits(
             code="USD",
             end=parse_date("2026-04-30"),
@@ -1302,7 +1302,7 @@ class TestAsyncCurrencies:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_raw_response_list_budget_limits(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_raw_response_list_budget_limits(self, async_client: AsyncFirefly) -> None:
         response = await async_client.currencies.with_raw_response.list_budget_limits(
             code="USD",
         )
@@ -1314,7 +1314,7 @@ class TestAsyncCurrencies:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_streaming_response_list_budget_limits(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_streaming_response_list_budget_limits(self, async_client: AsyncFirefly) -> None:
         async with async_client.currencies.with_streaming_response.list_budget_limits(
             code="USD",
         ) as response:
@@ -1328,7 +1328,7 @@ class TestAsyncCurrencies:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_path_params_list_budget_limits(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_path_params_list_budget_limits(self, async_client: AsyncFirefly) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `code` but received ''"):
             await async_client.currencies.with_raw_response.list_budget_limits(
                 code="",
@@ -1336,7 +1336,7 @@ class TestAsyncCurrencies:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_method_list_recurrences(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_method_list_recurrences(self, async_client: AsyncFirefly) -> None:
         currency = await async_client.currencies.list_recurrences(
             code="EUR",
         )
@@ -1344,7 +1344,7 @@ class TestAsyncCurrencies:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_method_list_recurrences_with_all_params(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_method_list_recurrences_with_all_params(self, async_client: AsyncFirefly) -> None:
         currency = await async_client.currencies.list_recurrences(
             code="EUR",
             limit=10,
@@ -1355,7 +1355,7 @@ class TestAsyncCurrencies:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_raw_response_list_recurrences(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_raw_response_list_recurrences(self, async_client: AsyncFirefly) -> None:
         response = await async_client.currencies.with_raw_response.list_recurrences(
             code="EUR",
         )
@@ -1367,7 +1367,7 @@ class TestAsyncCurrencies:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_streaming_response_list_recurrences(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_streaming_response_list_recurrences(self, async_client: AsyncFirefly) -> None:
         async with async_client.currencies.with_streaming_response.list_recurrences(
             code="EUR",
         ) as response:
@@ -1381,7 +1381,7 @@ class TestAsyncCurrencies:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_path_params_list_recurrences(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_path_params_list_recurrences(self, async_client: AsyncFirefly) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `code` but received ''"):
             await async_client.currencies.with_raw_response.list_recurrences(
                 code="",
@@ -1389,7 +1389,7 @@ class TestAsyncCurrencies:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_method_list_rules(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_method_list_rules(self, async_client: AsyncFirefly) -> None:
         currency = await async_client.currencies.list_rules(
             code="USD",
         )
@@ -1397,7 +1397,7 @@ class TestAsyncCurrencies:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_method_list_rules_with_all_params(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_method_list_rules_with_all_params(self, async_client: AsyncFirefly) -> None:
         currency = await async_client.currencies.list_rules(
             code="USD",
             limit=10,
@@ -1408,7 +1408,7 @@ class TestAsyncCurrencies:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_raw_response_list_rules(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_raw_response_list_rules(self, async_client: AsyncFirefly) -> None:
         response = await async_client.currencies.with_raw_response.list_rules(
             code="USD",
         )
@@ -1420,7 +1420,7 @@ class TestAsyncCurrencies:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_streaming_response_list_rules(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_streaming_response_list_rules(self, async_client: AsyncFirefly) -> None:
         async with async_client.currencies.with_streaming_response.list_rules(
             code="USD",
         ) as response:
@@ -1434,7 +1434,7 @@ class TestAsyncCurrencies:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_path_params_list_rules(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_path_params_list_rules(self, async_client: AsyncFirefly) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `code` but received ''"):
             await async_client.currencies.with_raw_response.list_rules(
                 code="",
@@ -1442,7 +1442,7 @@ class TestAsyncCurrencies:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_method_list_transactions(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_method_list_transactions(self, async_client: AsyncFirefly) -> None:
         currency = await async_client.currencies.list_transactions(
             code="USD",
         )
@@ -1450,7 +1450,7 @@ class TestAsyncCurrencies:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_method_list_transactions_with_all_params(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_method_list_transactions_with_all_params(self, async_client: AsyncFirefly) -> None:
         currency = await async_client.currencies.list_transactions(
             code="USD",
             end=parse_date("2026-04-30"),
@@ -1464,7 +1464,7 @@ class TestAsyncCurrencies:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_raw_response_list_transactions(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_raw_response_list_transactions(self, async_client: AsyncFirefly) -> None:
         response = await async_client.currencies.with_raw_response.list_transactions(
             code="USD",
         )
@@ -1476,7 +1476,7 @@ class TestAsyncCurrencies:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_streaming_response_list_transactions(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_streaming_response_list_transactions(self, async_client: AsyncFirefly) -> None:
         async with async_client.currencies.with_streaming_response.list_transactions(
             code="USD",
         ) as response:
@@ -1490,7 +1490,7 @@ class TestAsyncCurrencies:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_path_params_list_transactions(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_path_params_list_transactions(self, async_client: AsyncFirefly) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `code` but received ''"):
             await async_client.currencies.with_raw_response.list_transactions(
                 code="",

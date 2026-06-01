@@ -9,13 +9,13 @@ from ._client import (
     ENVIRONMENTS,
     Client,
     Stream,
+    Firefly,
     Timeout,
     Transport,
     AsyncClient,
     AsyncStream,
+    AsyncFirefly,
     RequestOptions,
-    EmceesProdTesting5,
-    AsyncEmceesProdTesting5,
 )
 from ._models import BaseModel
 from ._version import __title__, __version__
@@ -23,6 +23,7 @@ from ._response import APIResponse as APIResponse, AsyncAPIResponse as AsyncAPIR
 from ._constants import DEFAULT_TIMEOUT, DEFAULT_MAX_RETRIES, DEFAULT_CONNECTION_LIMITS
 from ._exceptions import (
     APIError,
+    FireflyError,
     ConflictError,
     NotFoundError,
     APIStatusError,
@@ -33,7 +34,6 @@ from ._exceptions import (
     AuthenticationError,
     InternalServerError,
     PermissionDeniedError,
-    EmceesProdTesting5Error,
     UnprocessableEntityError,
     APIResponseValidationError,
 )
@@ -52,7 +52,7 @@ __all__ = [
     "not_given",
     "Omit",
     "omit",
-    "EmceesProdTesting5Error",
+    "FireflyError",
     "APIError",
     "APIStatusError",
     "APITimeoutError",
@@ -72,8 +72,8 @@ __all__ = [
     "AsyncClient",
     "Stream",
     "AsyncStream",
-    "EmceesProdTesting5",
-    "AsyncEmceesProdTesting5",
+    "Firefly",
+    "AsyncFirefly",
     "ENVIRONMENTS",
     "file_from_path",
     "BaseModel",
@@ -93,12 +93,12 @@ _setup_logging()
 # Update the __module__ attribute for exported symbols so that
 # error messages point to this module instead of the module
 # it was originally defined in, e.g.
-# emcees_prod_testing_5._exceptions.NotFoundError -> emcees_prod_testing_5.NotFoundError
+# firefly._exceptions.NotFoundError -> firefly.NotFoundError
 __locals = locals()
 for __name in __all__:
     if not __name.startswith("__"):
         try:
-            __locals[__name].__module__ = "emcees_prod_testing_5"
+            __locals[__name].__module__ = "firefly"
         except (TypeError, AttributeError):
             # Some of our exported symbols are builtins which we can't set attributes for.
             pass

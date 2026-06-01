@@ -4,7 +4,7 @@ from urllib.parse import unquote
 
 import pytest
 
-from emcees_prod_testing_5._qs import Querystring, stringify
+from firefly._qs import Querystring, stringify
 
 
 def test_empty() -> None:

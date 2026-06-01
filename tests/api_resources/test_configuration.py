@@ -7,9 +7,9 @@ from typing import Any, cast
 
 import pytest
 
+from firefly import Firefly, AsyncFirefly
 from tests.utils import assert_matches_type
-from emcees_prod_testing_5 import EmceesProdTesting5, AsyncEmceesProdTesting5
-from emcees_prod_testing_5.types import (
+from firefly.types import (
     ConfigurationSingle,
     ConfigurationRetrieveResponse,
 )
@@ -22,13 +22,13 @@ class TestConfiguration:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_method_retrieve(self, client: EmceesProdTesting5) -> None:
+    def test_method_retrieve(self, client: Firefly) -> None:
         configuration = client.configuration.retrieve()
         assert_matches_type(ConfigurationRetrieveResponse, configuration, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_method_retrieve_with_all_params(self, client: EmceesProdTesting5) -> None:
+    def test_method_retrieve_with_all_params(self, client: Firefly) -> None:
         configuration = client.configuration.retrieve(
             x_trace_id="40c71bbb-c676-4f24-83cf-cc725d7d7a00",
         )
@@ -36,7 +36,7 @@ class TestConfiguration:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_raw_response_retrieve(self, client: EmceesProdTesting5) -> None:
+    def test_raw_response_retrieve(self, client: Firefly) -> None:
         response = client.configuration.with_raw_response.retrieve()
 
         assert response.is_closed is True
@@ -46,7 +46,7 @@ class TestConfiguration:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_streaming_response_retrieve(self, client: EmceesProdTesting5) -> None:
+    def test_streaming_response_retrieve(self, client: Firefly) -> None:
         with client.configuration.with_streaming_response.retrieve() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -58,7 +58,7 @@ class TestConfiguration:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_method_retrieve_value(self, client: EmceesProdTesting5) -> None:
+    def test_method_retrieve_value(self, client: Firefly) -> None:
         configuration = client.configuration.retrieve_value(
             name="configuration.is_demo_site",
         )
@@ -66,7 +66,7 @@ class TestConfiguration:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_method_retrieve_value_with_all_params(self, client: EmceesProdTesting5) -> None:
+    def test_method_retrieve_value_with_all_params(self, client: Firefly) -> None:
         configuration = client.configuration.retrieve_value(
             name="configuration.is_demo_site",
             x_trace_id="40c71bbb-c676-4f24-83cf-cc725d7d7a00",
@@ -75,7 +75,7 @@ class TestConfiguration:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_raw_response_retrieve_value(self, client: EmceesProdTesting5) -> None:
+    def test_raw_response_retrieve_value(self, client: Firefly) -> None:
         response = client.configuration.with_raw_response.retrieve_value(
             name="configuration.is_demo_site",
         )
@@ -87,7 +87,7 @@ class TestConfiguration:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_streaming_response_retrieve_value(self, client: EmceesProdTesting5) -> None:
+    def test_streaming_response_retrieve_value(self, client: Firefly) -> None:
         with client.configuration.with_streaming_response.retrieve_value(
             name="configuration.is_demo_site",
         ) as response:
@@ -101,7 +101,7 @@ class TestConfiguration:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_method_update_value(self, client: EmceesProdTesting5) -> None:
+    def test_method_update_value(self, client: Firefly) -> None:
         configuration = client.configuration.update_value(
             name="configuration.is_demo_site",
             value=True,
@@ -110,7 +110,7 @@ class TestConfiguration:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_method_update_value_with_all_params(self, client: EmceesProdTesting5) -> None:
+    def test_method_update_value_with_all_params(self, client: Firefly) -> None:
         configuration = client.configuration.update_value(
             name="configuration.is_demo_site",
             value=True,
@@ -120,7 +120,7 @@ class TestConfiguration:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_raw_response_update_value(self, client: EmceesProdTesting5) -> None:
+    def test_raw_response_update_value(self, client: Firefly) -> None:
         response = client.configuration.with_raw_response.update_value(
             name="configuration.is_demo_site",
             value=True,
@@ -133,7 +133,7 @@ class TestConfiguration:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_streaming_response_update_value(self, client: EmceesProdTesting5) -> None:
+    def test_streaming_response_update_value(self, client: Firefly) -> None:
         with client.configuration.with_streaming_response.update_value(
             name="configuration.is_demo_site",
             value=True,
@@ -154,13 +154,13 @@ class TestAsyncConfiguration:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_method_retrieve(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_method_retrieve(self, async_client: AsyncFirefly) -> None:
         configuration = await async_client.configuration.retrieve()
         assert_matches_type(ConfigurationRetrieveResponse, configuration, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_method_retrieve_with_all_params(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_method_retrieve_with_all_params(self, async_client: AsyncFirefly) -> None:
         configuration = await async_client.configuration.retrieve(
             x_trace_id="40c71bbb-c676-4f24-83cf-cc725d7d7a00",
         )
@@ -168,7 +168,7 @@ class TestAsyncConfiguration:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_raw_response_retrieve(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_raw_response_retrieve(self, async_client: AsyncFirefly) -> None:
         response = await async_client.configuration.with_raw_response.retrieve()
 
         assert response.is_closed is True
@@ -178,7 +178,7 @@ class TestAsyncConfiguration:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_streaming_response_retrieve(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_streaming_response_retrieve(self, async_client: AsyncFirefly) -> None:
         async with async_client.configuration.with_streaming_response.retrieve() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -190,7 +190,7 @@ class TestAsyncConfiguration:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_method_retrieve_value(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_method_retrieve_value(self, async_client: AsyncFirefly) -> None:
         configuration = await async_client.configuration.retrieve_value(
             name="configuration.is_demo_site",
         )
@@ -198,7 +198,7 @@ class TestAsyncConfiguration:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_method_retrieve_value_with_all_params(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_method_retrieve_value_with_all_params(self, async_client: AsyncFirefly) -> None:
         configuration = await async_client.configuration.retrieve_value(
             name="configuration.is_demo_site",
             x_trace_id="40c71bbb-c676-4f24-83cf-cc725d7d7a00",
@@ -207,7 +207,7 @@ class TestAsyncConfiguration:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_raw_response_retrieve_value(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_raw_response_retrieve_value(self, async_client: AsyncFirefly) -> None:
         response = await async_client.configuration.with_raw_response.retrieve_value(
             name="configuration.is_demo_site",
         )
@@ -219,7 +219,7 @@ class TestAsyncConfiguration:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_streaming_response_retrieve_value(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_streaming_response_retrieve_value(self, async_client: AsyncFirefly) -> None:
         async with async_client.configuration.with_streaming_response.retrieve_value(
             name="configuration.is_demo_site",
         ) as response:
@@ -233,7 +233,7 @@ class TestAsyncConfiguration:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_method_update_value(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_method_update_value(self, async_client: AsyncFirefly) -> None:
         configuration = await async_client.configuration.update_value(
             name="configuration.is_demo_site",
             value=True,
@@ -242,7 +242,7 @@ class TestAsyncConfiguration:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_method_update_value_with_all_params(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_method_update_value_with_all_params(self, async_client: AsyncFirefly) -> None:
         configuration = await async_client.configuration.update_value(
             name="configuration.is_demo_site",
             value=True,
@@ -252,7 +252,7 @@ class TestAsyncConfiguration:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_raw_response_update_value(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_raw_response_update_value(self, async_client: AsyncFirefly) -> None:
         response = await async_client.configuration.with_raw_response.update_value(
             name="configuration.is_demo_site",
             value=True,
@@ -265,7 +265,7 @@ class TestAsyncConfiguration:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_streaming_response_update_value(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_streaming_response_update_value(self, async_client: AsyncFirefly) -> None:
         async with async_client.configuration.with_streaming_response.update_value(
             name="configuration.is_demo_site",
             value=True,

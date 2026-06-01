@@ -9,13 +9,13 @@ import httpx
 import pytest
 from respx import MockRouter
 
+from firefly import Firefly, AsyncFirefly
 from tests.utils import assert_matches_type
-from emcees_prod_testing_5 import EmceesProdTesting5, AsyncEmceesProdTesting5
-from emcees_prod_testing_5.types import (
+from firefly.types import (
     AttachmentArray,
     AttachmentSingle,
 )
-from emcees_prod_testing_5._response import (
+from firefly._response import (
     BinaryAPIResponse,
     AsyncBinaryAPIResponse,
     StreamedBinaryAPIResponse,
@@ -30,7 +30,7 @@ class TestAttachments:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_method_create(self, client: EmceesProdTesting5) -> None:
+    def test_method_create(self, client: Firefly) -> None:
         attachment = client.attachments.create(
             attachable_id="134",
             attachable_type="Bill",
@@ -40,7 +40,7 @@ class TestAttachments:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_method_create_with_all_params(self, client: EmceesProdTesting5) -> None:
+    def test_method_create_with_all_params(self, client: Firefly) -> None:
         attachment = client.attachments.create(
             attachable_id="134",
             attachable_type="Bill",
@@ -53,7 +53,7 @@ class TestAttachments:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_raw_response_create(self, client: EmceesProdTesting5) -> None:
+    def test_raw_response_create(self, client: Firefly) -> None:
         response = client.attachments.with_raw_response.create(
             attachable_id="134",
             attachable_type="Bill",
@@ -67,7 +67,7 @@ class TestAttachments:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_streaming_response_create(self, client: EmceesProdTesting5) -> None:
+    def test_streaming_response_create(self, client: Firefly) -> None:
         with client.attachments.with_streaming_response.create(
             attachable_id="134",
             attachable_type="Bill",
@@ -83,7 +83,7 @@ class TestAttachments:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_method_retrieve(self, client: EmceesProdTesting5) -> None:
+    def test_method_retrieve(self, client: Firefly) -> None:
         attachment = client.attachments.retrieve(
             id="123",
         )
@@ -91,7 +91,7 @@ class TestAttachments:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_method_retrieve_with_all_params(self, client: EmceesProdTesting5) -> None:
+    def test_method_retrieve_with_all_params(self, client: Firefly) -> None:
         attachment = client.attachments.retrieve(
             id="123",
             x_trace_id="40c71bbb-c676-4f24-83cf-cc725d7d7a00",
@@ -100,7 +100,7 @@ class TestAttachments:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_raw_response_retrieve(self, client: EmceesProdTesting5) -> None:
+    def test_raw_response_retrieve(self, client: Firefly) -> None:
         response = client.attachments.with_raw_response.retrieve(
             id="123",
         )
@@ -112,7 +112,7 @@ class TestAttachments:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_streaming_response_retrieve(self, client: EmceesProdTesting5) -> None:
+    def test_streaming_response_retrieve(self, client: Firefly) -> None:
         with client.attachments.with_streaming_response.retrieve(
             id="123",
         ) as response:
@@ -126,7 +126,7 @@ class TestAttachments:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_path_params_retrieve(self, client: EmceesProdTesting5) -> None:
+    def test_path_params_retrieve(self, client: Firefly) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             client.attachments.with_raw_response.retrieve(
                 id="",
@@ -134,7 +134,7 @@ class TestAttachments:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_method_update(self, client: EmceesProdTesting5) -> None:
+    def test_method_update(self, client: Firefly) -> None:
         attachment = client.attachments.update(
             id="123",
         )
@@ -142,7 +142,7 @@ class TestAttachments:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_method_update_with_all_params(self, client: EmceesProdTesting5) -> None:
+    def test_method_update_with_all_params(self, client: Firefly) -> None:
         attachment = client.attachments.update(
             id="123",
             filename="file.pdf",
@@ -154,7 +154,7 @@ class TestAttachments:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_raw_response_update(self, client: EmceesProdTesting5) -> None:
+    def test_raw_response_update(self, client: Firefly) -> None:
         response = client.attachments.with_raw_response.update(
             id="123",
         )
@@ -166,7 +166,7 @@ class TestAttachments:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_streaming_response_update(self, client: EmceesProdTesting5) -> None:
+    def test_streaming_response_update(self, client: Firefly) -> None:
         with client.attachments.with_streaming_response.update(
             id="123",
         ) as response:
@@ -180,7 +180,7 @@ class TestAttachments:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_path_params_update(self, client: EmceesProdTesting5) -> None:
+    def test_path_params_update(self, client: Firefly) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             client.attachments.with_raw_response.update(
                 id="",
@@ -188,13 +188,13 @@ class TestAttachments:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_method_list(self, client: EmceesProdTesting5) -> None:
+    def test_method_list(self, client: Firefly) -> None:
         attachment = client.attachments.list()
         assert_matches_type(AttachmentArray, attachment, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_method_list_with_all_params(self, client: EmceesProdTesting5) -> None:
+    def test_method_list_with_all_params(self, client: Firefly) -> None:
         attachment = client.attachments.list(
             limit=10,
             page=1,
@@ -204,7 +204,7 @@ class TestAttachments:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_raw_response_list(self, client: EmceesProdTesting5) -> None:
+    def test_raw_response_list(self, client: Firefly) -> None:
         response = client.attachments.with_raw_response.list()
 
         assert response.is_closed is True
@@ -214,7 +214,7 @@ class TestAttachments:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_streaming_response_list(self, client: EmceesProdTesting5) -> None:
+    def test_streaming_response_list(self, client: Firefly) -> None:
         with client.attachments.with_streaming_response.list() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -226,7 +226,7 @@ class TestAttachments:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_method_delete(self, client: EmceesProdTesting5) -> None:
+    def test_method_delete(self, client: Firefly) -> None:
         attachment = client.attachments.delete(
             id="123",
         )
@@ -234,7 +234,7 @@ class TestAttachments:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_method_delete_with_all_params(self, client: EmceesProdTesting5) -> None:
+    def test_method_delete_with_all_params(self, client: Firefly) -> None:
         attachment = client.attachments.delete(
             id="123",
             x_trace_id="40c71bbb-c676-4f24-83cf-cc725d7d7a00",
@@ -243,7 +243,7 @@ class TestAttachments:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_raw_response_delete(self, client: EmceesProdTesting5) -> None:
+    def test_raw_response_delete(self, client: Firefly) -> None:
         response = client.attachments.with_raw_response.delete(
             id="123",
         )
@@ -255,7 +255,7 @@ class TestAttachments:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_streaming_response_delete(self, client: EmceesProdTesting5) -> None:
+    def test_streaming_response_delete(self, client: Firefly) -> None:
         with client.attachments.with_streaming_response.delete(
             id="123",
         ) as response:
@@ -269,7 +269,7 @@ class TestAttachments:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_path_params_delete(self, client: EmceesProdTesting5) -> None:
+    def test_path_params_delete(self, client: Firefly) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             client.attachments.with_raw_response.delete(
                 id="",
@@ -277,7 +277,7 @@ class TestAttachments:
 
     @parametrize
     @pytest.mark.respx(base_url=base_url)
-    def test_method_download(self, client: EmceesProdTesting5, respx_mock: MockRouter) -> None:
+    def test_method_download(self, client: Firefly, respx_mock: MockRouter) -> None:
         respx_mock.get("/v1/attachments/123/download").mock(return_value=httpx.Response(200, json={"foo": "bar"}))
         attachment = client.attachments.download(
             id="123",
@@ -289,7 +289,7 @@ class TestAttachments:
 
     @parametrize
     @pytest.mark.respx(base_url=base_url)
-    def test_method_download_with_all_params(self, client: EmceesProdTesting5, respx_mock: MockRouter) -> None:
+    def test_method_download_with_all_params(self, client: Firefly, respx_mock: MockRouter) -> None:
         respx_mock.get("/v1/attachments/123/download").mock(return_value=httpx.Response(200, json={"foo": "bar"}))
         attachment = client.attachments.download(
             id="123",
@@ -302,7 +302,7 @@ class TestAttachments:
 
     @parametrize
     @pytest.mark.respx(base_url=base_url)
-    def test_raw_response_download(self, client: EmceesProdTesting5, respx_mock: MockRouter) -> None:
+    def test_raw_response_download(self, client: Firefly, respx_mock: MockRouter) -> None:
         respx_mock.get("/v1/attachments/123/download").mock(return_value=httpx.Response(200, json={"foo": "bar"}))
 
         attachment = client.attachments.with_raw_response.download(
@@ -316,7 +316,7 @@ class TestAttachments:
 
     @parametrize
     @pytest.mark.respx(base_url=base_url)
-    def test_streaming_response_download(self, client: EmceesProdTesting5, respx_mock: MockRouter) -> None:
+    def test_streaming_response_download(self, client: Firefly, respx_mock: MockRouter) -> None:
         respx_mock.get("/v1/attachments/123/download").mock(return_value=httpx.Response(200, json={"foo": "bar"}))
         with client.attachments.with_streaming_response.download(
             id="123",
@@ -332,7 +332,7 @@ class TestAttachments:
 
     @parametrize
     @pytest.mark.respx(base_url=base_url)
-    def test_path_params_download(self, client: EmceesProdTesting5) -> None:
+    def test_path_params_download(self, client: Firefly) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             client.attachments.with_raw_response.download(
                 id="",
@@ -340,7 +340,7 @@ class TestAttachments:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_method_upload(self, client: EmceesProdTesting5) -> None:
+    def test_method_upload(self, client: Firefly) -> None:
         attachment = client.attachments.upload(
             id="123",
             body=b"Example data",
@@ -349,7 +349,7 @@ class TestAttachments:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_method_upload_with_all_params(self, client: EmceesProdTesting5) -> None:
+    def test_method_upload_with_all_params(self, client: Firefly) -> None:
         attachment = client.attachments.upload(
             id="123",
             body=b"Example data",
@@ -359,7 +359,7 @@ class TestAttachments:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_raw_response_upload(self, client: EmceesProdTesting5) -> None:
+    def test_raw_response_upload(self, client: Firefly) -> None:
         response = client.attachments.with_raw_response.upload(
             id="123",
             body=b"Example data",
@@ -372,7 +372,7 @@ class TestAttachments:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_streaming_response_upload(self, client: EmceesProdTesting5) -> None:
+    def test_streaming_response_upload(self, client: Firefly) -> None:
         with client.attachments.with_streaming_response.upload(
             id="123",
             body=b"Example data",
@@ -387,7 +387,7 @@ class TestAttachments:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_path_params_upload(self, client: EmceesProdTesting5) -> None:
+    def test_path_params_upload(self, client: Firefly) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             client.attachments.with_raw_response.upload(
                 id="",
@@ -402,7 +402,7 @@ class TestAsyncAttachments:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_method_create(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_method_create(self, async_client: AsyncFirefly) -> None:
         attachment = await async_client.attachments.create(
             attachable_id="134",
             attachable_type="Bill",
@@ -412,7 +412,7 @@ class TestAsyncAttachments:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_method_create_with_all_params(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_method_create_with_all_params(self, async_client: AsyncFirefly) -> None:
         attachment = await async_client.attachments.create(
             attachable_id="134",
             attachable_type="Bill",
@@ -425,7 +425,7 @@ class TestAsyncAttachments:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_raw_response_create(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_raw_response_create(self, async_client: AsyncFirefly) -> None:
         response = await async_client.attachments.with_raw_response.create(
             attachable_id="134",
             attachable_type="Bill",
@@ -439,7 +439,7 @@ class TestAsyncAttachments:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_streaming_response_create(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_streaming_response_create(self, async_client: AsyncFirefly) -> None:
         async with async_client.attachments.with_streaming_response.create(
             attachable_id="134",
             attachable_type="Bill",
@@ -455,7 +455,7 @@ class TestAsyncAttachments:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_method_retrieve(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_method_retrieve(self, async_client: AsyncFirefly) -> None:
         attachment = await async_client.attachments.retrieve(
             id="123",
         )
@@ -463,7 +463,7 @@ class TestAsyncAttachments:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_method_retrieve_with_all_params(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_method_retrieve_with_all_params(self, async_client: AsyncFirefly) -> None:
         attachment = await async_client.attachments.retrieve(
             id="123",
             x_trace_id="40c71bbb-c676-4f24-83cf-cc725d7d7a00",
@@ -472,7 +472,7 @@ class TestAsyncAttachments:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_raw_response_retrieve(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_raw_response_retrieve(self, async_client: AsyncFirefly) -> None:
         response = await async_client.attachments.with_raw_response.retrieve(
             id="123",
         )
@@ -484,7 +484,7 @@ class TestAsyncAttachments:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_streaming_response_retrieve(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_streaming_response_retrieve(self, async_client: AsyncFirefly) -> None:
         async with async_client.attachments.with_streaming_response.retrieve(
             id="123",
         ) as response:
@@ -498,7 +498,7 @@ class TestAsyncAttachments:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_path_params_retrieve(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_path_params_retrieve(self, async_client: AsyncFirefly) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             await async_client.attachments.with_raw_response.retrieve(
                 id="",
@@ -506,7 +506,7 @@ class TestAsyncAttachments:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_method_update(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_method_update(self, async_client: AsyncFirefly) -> None:
         attachment = await async_client.attachments.update(
             id="123",
         )
@@ -514,7 +514,7 @@ class TestAsyncAttachments:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_method_update_with_all_params(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_method_update_with_all_params(self, async_client: AsyncFirefly) -> None:
         attachment = await async_client.attachments.update(
             id="123",
             filename="file.pdf",
@@ -526,7 +526,7 @@ class TestAsyncAttachments:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_raw_response_update(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_raw_response_update(self, async_client: AsyncFirefly) -> None:
         response = await async_client.attachments.with_raw_response.update(
             id="123",
         )
@@ -538,7 +538,7 @@ class TestAsyncAttachments:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_streaming_response_update(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_streaming_response_update(self, async_client: AsyncFirefly) -> None:
         async with async_client.attachments.with_streaming_response.update(
             id="123",
         ) as response:
@@ -552,7 +552,7 @@ class TestAsyncAttachments:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_path_params_update(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_path_params_update(self, async_client: AsyncFirefly) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             await async_client.attachments.with_raw_response.update(
                 id="",
@@ -560,13 +560,13 @@ class TestAsyncAttachments:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_method_list(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_method_list(self, async_client: AsyncFirefly) -> None:
         attachment = await async_client.attachments.list()
         assert_matches_type(AttachmentArray, attachment, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_method_list_with_all_params(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_method_list_with_all_params(self, async_client: AsyncFirefly) -> None:
         attachment = await async_client.attachments.list(
             limit=10,
             page=1,
@@ -576,7 +576,7 @@ class TestAsyncAttachments:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_raw_response_list(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_raw_response_list(self, async_client: AsyncFirefly) -> None:
         response = await async_client.attachments.with_raw_response.list()
 
         assert response.is_closed is True
@@ -586,7 +586,7 @@ class TestAsyncAttachments:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_streaming_response_list(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_streaming_response_list(self, async_client: AsyncFirefly) -> None:
         async with async_client.attachments.with_streaming_response.list() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -598,7 +598,7 @@ class TestAsyncAttachments:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_method_delete(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_method_delete(self, async_client: AsyncFirefly) -> None:
         attachment = await async_client.attachments.delete(
             id="123",
         )
@@ -606,7 +606,7 @@ class TestAsyncAttachments:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_method_delete_with_all_params(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_method_delete_with_all_params(self, async_client: AsyncFirefly) -> None:
         attachment = await async_client.attachments.delete(
             id="123",
             x_trace_id="40c71bbb-c676-4f24-83cf-cc725d7d7a00",
@@ -615,7 +615,7 @@ class TestAsyncAttachments:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_raw_response_delete(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_raw_response_delete(self, async_client: AsyncFirefly) -> None:
         response = await async_client.attachments.with_raw_response.delete(
             id="123",
         )
@@ -627,7 +627,7 @@ class TestAsyncAttachments:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_streaming_response_delete(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_streaming_response_delete(self, async_client: AsyncFirefly) -> None:
         async with async_client.attachments.with_streaming_response.delete(
             id="123",
         ) as response:
@@ -641,7 +641,7 @@ class TestAsyncAttachments:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_path_params_delete(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_path_params_delete(self, async_client: AsyncFirefly) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             await async_client.attachments.with_raw_response.delete(
                 id="",
@@ -649,7 +649,7 @@ class TestAsyncAttachments:
 
     @parametrize
     @pytest.mark.respx(base_url=base_url)
-    async def test_method_download(self, async_client: AsyncEmceesProdTesting5, respx_mock: MockRouter) -> None:
+    async def test_method_download(self, async_client: AsyncFirefly, respx_mock: MockRouter) -> None:
         respx_mock.get("/v1/attachments/123/download").mock(return_value=httpx.Response(200, json={"foo": "bar"}))
         attachment = await async_client.attachments.download(
             id="123",
@@ -661,9 +661,7 @@ class TestAsyncAttachments:
 
     @parametrize
     @pytest.mark.respx(base_url=base_url)
-    async def test_method_download_with_all_params(
-        self, async_client: AsyncEmceesProdTesting5, respx_mock: MockRouter
-    ) -> None:
+    async def test_method_download_with_all_params(self, async_client: AsyncFirefly, respx_mock: MockRouter) -> None:
         respx_mock.get("/v1/attachments/123/download").mock(return_value=httpx.Response(200, json={"foo": "bar"}))
         attachment = await async_client.attachments.download(
             id="123",
@@ -676,7 +674,7 @@ class TestAsyncAttachments:
 
     @parametrize
     @pytest.mark.respx(base_url=base_url)
-    async def test_raw_response_download(self, async_client: AsyncEmceesProdTesting5, respx_mock: MockRouter) -> None:
+    async def test_raw_response_download(self, async_client: AsyncFirefly, respx_mock: MockRouter) -> None:
         respx_mock.get("/v1/attachments/123/download").mock(return_value=httpx.Response(200, json={"foo": "bar"}))
 
         attachment = await async_client.attachments.with_raw_response.download(
@@ -690,9 +688,7 @@ class TestAsyncAttachments:
 
     @parametrize
     @pytest.mark.respx(base_url=base_url)
-    async def test_streaming_response_download(
-        self, async_client: AsyncEmceesProdTesting5, respx_mock: MockRouter
-    ) -> None:
+    async def test_streaming_response_download(self, async_client: AsyncFirefly, respx_mock: MockRouter) -> None:
         respx_mock.get("/v1/attachments/123/download").mock(return_value=httpx.Response(200, json={"foo": "bar"}))
         async with async_client.attachments.with_streaming_response.download(
             id="123",
@@ -708,7 +704,7 @@ class TestAsyncAttachments:
 
     @parametrize
     @pytest.mark.respx(base_url=base_url)
-    async def test_path_params_download(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_path_params_download(self, async_client: AsyncFirefly) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             await async_client.attachments.with_raw_response.download(
                 id="",
@@ -716,7 +712,7 @@ class TestAsyncAttachments:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_method_upload(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_method_upload(self, async_client: AsyncFirefly) -> None:
         attachment = await async_client.attachments.upload(
             id="123",
             body=b"Example data",
@@ -725,7 +721,7 @@ class TestAsyncAttachments:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_method_upload_with_all_params(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_method_upload_with_all_params(self, async_client: AsyncFirefly) -> None:
         attachment = await async_client.attachments.upload(
             id="123",
             body=b"Example data",
@@ -735,7 +731,7 @@ class TestAsyncAttachments:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_raw_response_upload(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_raw_response_upload(self, async_client: AsyncFirefly) -> None:
         response = await async_client.attachments.with_raw_response.upload(
             id="123",
             body=b"Example data",
@@ -748,7 +744,7 @@ class TestAsyncAttachments:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_streaming_response_upload(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_streaming_response_upload(self, async_client: AsyncFirefly) -> None:
         async with async_client.attachments.with_streaming_response.upload(
             id="123",
             body=b"Example data",
@@ -763,7 +759,7 @@ class TestAsyncAttachments:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_path_params_upload(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_path_params_upload(self, async_client: AsyncFirefly) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             await async_client.attachments.with_raw_response.upload(
                 id="",

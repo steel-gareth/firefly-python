@@ -10,15 +10,15 @@ import httpx
 import pytest
 from pytest_asyncio import is_async_test
 
-from emcees_prod_testing_5 import EmceesProdTesting5, DefaultAioHttpClient, AsyncEmceesProdTesting5
-from emcees_prod_testing_5._utils import is_dict
+from firefly import Firefly, AsyncFirefly, DefaultAioHttpClient
+from firefly._utils import is_dict
 
 if TYPE_CHECKING:
     from _pytest.fixtures import FixtureRequest  # pyright: ignore[reportPrivateImportUsage]
 
 pytest.register_assert_rewrite("tests.utils")
 
-logging.getLogger("emcees_prod_testing_5").setLevel(logging.DEBUG)
+logging.getLogger("firefly").setLevel(logging.DEBUG)
 
 
 # automatically add `pytest.mark.asyncio()` to all of our async tests
@@ -47,17 +47,17 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
 
 @pytest.fixture(scope="session")
-def client(request: FixtureRequest) -> Iterator[EmceesProdTesting5]:
+def client(request: FixtureRequest) -> Iterator[Firefly]:
     strict = getattr(request, "param", True)
     if not isinstance(strict, bool):
         raise TypeError(f"Unexpected fixture parameter type {type(strict)}, expected {bool}")
 
-    with EmceesProdTesting5(base_url=base_url, _strict_response_validation=strict) as client:
+    with Firefly(base_url=base_url, _strict_response_validation=strict) as client:
         yield client
 
 
 @pytest.fixture(scope="session")
-async def async_client(request: FixtureRequest) -> AsyncIterator[AsyncEmceesProdTesting5]:
+async def async_client(request: FixtureRequest) -> AsyncIterator[AsyncFirefly]:
     param = getattr(request, "param", True)
 
     # defaults
@@ -76,7 +76,5 @@ async def async_client(request: FixtureRequest) -> AsyncIterator[AsyncEmceesProd
     else:
         raise TypeError(f"Unexpected fixture parameter type {type(param)}, expected bool or dict")
 
-    async with AsyncEmceesProdTesting5(
-        base_url=base_url, _strict_response_validation=strict, http_client=http_client
-    ) as client:
+    async with AsyncFirefly(base_url=base_url, _strict_response_validation=strict, http_client=http_client) as client:
         yield client

@@ -7,13 +7,13 @@ from typing import Any, cast
 
 import pytest
 
+from firefly import Firefly, AsyncFirefly
 from tests.utils import assert_matches_type
-from emcees_prod_testing_5 import EmceesProdTesting5, AsyncEmceesProdTesting5
-from emcees_prod_testing_5.types import (
+from firefly.types import (
     CurrencyExchangeRateArray,
     CurrencyExchangeRateSingle,
 )
-from emcees_prod_testing_5._utils import parse_date
+from firefly._utils import parse_date
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -23,7 +23,7 @@ class TestExchangeRates:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_method_create(self, client: EmceesProdTesting5) -> None:
+    def test_method_create(self, client: Firefly) -> None:
         exchange_rate = client.exchange_rates.create(
             date=parse_date("2026-04-01"),
             from_="USD",
@@ -34,7 +34,7 @@ class TestExchangeRates:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_method_create_with_all_params(self, client: EmceesProdTesting5) -> None:
+    def test_method_create_with_all_params(self, client: Firefly) -> None:
         exchange_rate = client.exchange_rates.create(
             date=parse_date("2026-04-01"),
             from_="USD",
@@ -47,7 +47,7 @@ class TestExchangeRates:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_raw_response_create(self, client: EmceesProdTesting5) -> None:
+    def test_raw_response_create(self, client: Firefly) -> None:
         response = client.exchange_rates.with_raw_response.create(
             date=parse_date("2026-04-01"),
             from_="USD",
@@ -62,7 +62,7 @@ class TestExchangeRates:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_streaming_response_create(self, client: EmceesProdTesting5) -> None:
+    def test_streaming_response_create(self, client: Firefly) -> None:
         with client.exchange_rates.with_streaming_response.create(
             date=parse_date("2026-04-01"),
             from_="USD",
@@ -79,7 +79,7 @@ class TestExchangeRates:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_method_retrieve(self, client: EmceesProdTesting5) -> None:
+    def test_method_retrieve(self, client: Firefly) -> None:
         exchange_rate = client.exchange_rates.retrieve(
             id="123",
         )
@@ -87,7 +87,7 @@ class TestExchangeRates:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_method_retrieve_with_all_params(self, client: EmceesProdTesting5) -> None:
+    def test_method_retrieve_with_all_params(self, client: Firefly) -> None:
         exchange_rate = client.exchange_rates.retrieve(
             id="123",
             limit=10,
@@ -98,7 +98,7 @@ class TestExchangeRates:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_raw_response_retrieve(self, client: EmceesProdTesting5) -> None:
+    def test_raw_response_retrieve(self, client: Firefly) -> None:
         response = client.exchange_rates.with_raw_response.retrieve(
             id="123",
         )
@@ -110,7 +110,7 @@ class TestExchangeRates:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_streaming_response_retrieve(self, client: EmceesProdTesting5) -> None:
+    def test_streaming_response_retrieve(self, client: Firefly) -> None:
         with client.exchange_rates.with_streaming_response.retrieve(
             id="123",
         ) as response:
@@ -124,7 +124,7 @@ class TestExchangeRates:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_path_params_retrieve(self, client: EmceesProdTesting5) -> None:
+    def test_path_params_retrieve(self, client: Firefly) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             client.exchange_rates.with_raw_response.retrieve(
                 id="",
@@ -132,7 +132,7 @@ class TestExchangeRates:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_method_update(self, client: EmceesProdTesting5) -> None:
+    def test_method_update(self, client: Firefly) -> None:
         exchange_rate = client.exchange_rates.update(
             id="123",
             date=parse_date("2026-04-01"),
@@ -142,7 +142,7 @@ class TestExchangeRates:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_method_update_with_all_params(self, client: EmceesProdTesting5) -> None:
+    def test_method_update_with_all_params(self, client: Firefly) -> None:
         exchange_rate = client.exchange_rates.update(
             id="123",
             date=parse_date("2026-04-01"),
@@ -155,7 +155,7 @@ class TestExchangeRates:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_raw_response_update(self, client: EmceesProdTesting5) -> None:
+    def test_raw_response_update(self, client: Firefly) -> None:
         response = client.exchange_rates.with_raw_response.update(
             id="123",
             date=parse_date("2026-04-01"),
@@ -169,7 +169,7 @@ class TestExchangeRates:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_streaming_response_update(self, client: EmceesProdTesting5) -> None:
+    def test_streaming_response_update(self, client: Firefly) -> None:
         with client.exchange_rates.with_streaming_response.update(
             id="123",
             date=parse_date("2026-04-01"),
@@ -185,7 +185,7 @@ class TestExchangeRates:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_path_params_update(self, client: EmceesProdTesting5) -> None:
+    def test_path_params_update(self, client: Firefly) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             client.exchange_rates.with_raw_response.update(
                 id="",
@@ -195,13 +195,13 @@ class TestExchangeRates:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_method_list(self, client: EmceesProdTesting5) -> None:
+    def test_method_list(self, client: Firefly) -> None:
         exchange_rate = client.exchange_rates.list()
         assert_matches_type(CurrencyExchangeRateArray, exchange_rate, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_method_list_with_all_params(self, client: EmceesProdTesting5) -> None:
+    def test_method_list_with_all_params(self, client: Firefly) -> None:
         exchange_rate = client.exchange_rates.list(
             limit=10,
             page=1,
@@ -211,7 +211,7 @@ class TestExchangeRates:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_raw_response_list(self, client: EmceesProdTesting5) -> None:
+    def test_raw_response_list(self, client: Firefly) -> None:
         response = client.exchange_rates.with_raw_response.list()
 
         assert response.is_closed is True
@@ -221,7 +221,7 @@ class TestExchangeRates:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_streaming_response_list(self, client: EmceesProdTesting5) -> None:
+    def test_streaming_response_list(self, client: Firefly) -> None:
         with client.exchange_rates.with_streaming_response.list() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -233,7 +233,7 @@ class TestExchangeRates:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_method_delete(self, client: EmceesProdTesting5) -> None:
+    def test_method_delete(self, client: Firefly) -> None:
         exchange_rate = client.exchange_rates.delete(
             id="123",
         )
@@ -241,7 +241,7 @@ class TestExchangeRates:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_method_delete_with_all_params(self, client: EmceesProdTesting5) -> None:
+    def test_method_delete_with_all_params(self, client: Firefly) -> None:
         exchange_rate = client.exchange_rates.delete(
             id="123",
             x_trace_id="40c71bbb-c676-4f24-83cf-cc725d7d7a00",
@@ -250,7 +250,7 @@ class TestExchangeRates:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_raw_response_delete(self, client: EmceesProdTesting5) -> None:
+    def test_raw_response_delete(self, client: Firefly) -> None:
         response = client.exchange_rates.with_raw_response.delete(
             id="123",
         )
@@ -262,7 +262,7 @@ class TestExchangeRates:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_streaming_response_delete(self, client: EmceesProdTesting5) -> None:
+    def test_streaming_response_delete(self, client: Firefly) -> None:
         with client.exchange_rates.with_streaming_response.delete(
             id="123",
         ) as response:
@@ -276,7 +276,7 @@ class TestExchangeRates:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_path_params_delete(self, client: EmceesProdTesting5) -> None:
+    def test_path_params_delete(self, client: Firefly) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             client.exchange_rates.with_raw_response.delete(
                 id="",
@@ -284,7 +284,7 @@ class TestExchangeRates:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_method_create_by_currencies(self, client: EmceesProdTesting5) -> None:
+    def test_method_create_by_currencies(self, client: Firefly) -> None:
         exchange_rate = client.exchange_rates.create_by_currencies(
             to="USD",
             from_="EUR",
@@ -297,7 +297,7 @@ class TestExchangeRates:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_method_create_by_currencies_with_all_params(self, client: EmceesProdTesting5) -> None:
+    def test_method_create_by_currencies_with_all_params(self, client: Firefly) -> None:
         exchange_rate = client.exchange_rates.create_by_currencies(
             to="USD",
             from_="EUR",
@@ -311,7 +311,7 @@ class TestExchangeRates:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_raw_response_create_by_currencies(self, client: EmceesProdTesting5) -> None:
+    def test_raw_response_create_by_currencies(self, client: Firefly) -> None:
         response = client.exchange_rates.with_raw_response.create_by_currencies(
             to="USD",
             from_="EUR",
@@ -328,7 +328,7 @@ class TestExchangeRates:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_streaming_response_create_by_currencies(self, client: EmceesProdTesting5) -> None:
+    def test_streaming_response_create_by_currencies(self, client: Firefly) -> None:
         with client.exchange_rates.with_streaming_response.create_by_currencies(
             to="USD",
             from_="EUR",
@@ -347,7 +347,7 @@ class TestExchangeRates:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_path_params_create_by_currencies(self, client: EmceesProdTesting5) -> None:
+    def test_path_params_create_by_currencies(self, client: Firefly) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `from_` but received ''"):
             client.exchange_rates.with_raw_response.create_by_currencies(
                 to="USD",
@@ -370,7 +370,7 @@ class TestExchangeRates:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_method_create_by_date(self, client: EmceesProdTesting5) -> None:
+    def test_method_create_by_date(self, client: Firefly) -> None:
         exchange_rate = client.exchange_rates.create_by_date(
             path_date="2026-04-01",
             body_date={},
@@ -384,7 +384,7 @@ class TestExchangeRates:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_method_create_by_date_with_all_params(self, client: EmceesProdTesting5) -> None:
+    def test_method_create_by_date_with_all_params(self, client: Firefly) -> None:
         exchange_rate = client.exchange_rates.create_by_date(
             path_date="2026-04-01",
             body_date={},
@@ -399,7 +399,7 @@ class TestExchangeRates:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_raw_response_create_by_date(self, client: EmceesProdTesting5) -> None:
+    def test_raw_response_create_by_date(self, client: Firefly) -> None:
         response = client.exchange_rates.with_raw_response.create_by_date(
             path_date="2026-04-01",
             body_date={},
@@ -417,7 +417,7 @@ class TestExchangeRates:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_streaming_response_create_by_date(self, client: EmceesProdTesting5) -> None:
+    def test_streaming_response_create_by_date(self, client: Firefly) -> None:
         with client.exchange_rates.with_streaming_response.create_by_date(
             path_date="2026-04-01",
             body_date={},
@@ -437,7 +437,7 @@ class TestExchangeRates:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_path_params_create_by_date(self, client: EmceesProdTesting5) -> None:
+    def test_path_params_create_by_date(self, client: Firefly) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_date` but received ''"):
             client.exchange_rates.with_raw_response.create_by_date(
                 path_date="",
@@ -451,7 +451,7 @@ class TestExchangeRates:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_method_delete_all_by_currencies(self, client: EmceesProdTesting5) -> None:
+    def test_method_delete_all_by_currencies(self, client: Firefly) -> None:
         exchange_rate = client.exchange_rates.delete_all_by_currencies(
             to="USD",
             from_="EUR",
@@ -460,7 +460,7 @@ class TestExchangeRates:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_method_delete_all_by_currencies_with_all_params(self, client: EmceesProdTesting5) -> None:
+    def test_method_delete_all_by_currencies_with_all_params(self, client: Firefly) -> None:
         exchange_rate = client.exchange_rates.delete_all_by_currencies(
             to="USD",
             from_="EUR",
@@ -470,7 +470,7 @@ class TestExchangeRates:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_raw_response_delete_all_by_currencies(self, client: EmceesProdTesting5) -> None:
+    def test_raw_response_delete_all_by_currencies(self, client: Firefly) -> None:
         response = client.exchange_rates.with_raw_response.delete_all_by_currencies(
             to="USD",
             from_="EUR",
@@ -483,7 +483,7 @@ class TestExchangeRates:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_streaming_response_delete_all_by_currencies(self, client: EmceesProdTesting5) -> None:
+    def test_streaming_response_delete_all_by_currencies(self, client: Firefly) -> None:
         with client.exchange_rates.with_streaming_response.delete_all_by_currencies(
             to="USD",
             from_="EUR",
@@ -498,7 +498,7 @@ class TestExchangeRates:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_path_params_delete_all_by_currencies(self, client: EmceesProdTesting5) -> None:
+    def test_path_params_delete_all_by_currencies(self, client: Firefly) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `from_` but received ''"):
             client.exchange_rates.with_raw_response.delete_all_by_currencies(
                 to="USD",
@@ -513,7 +513,7 @@ class TestExchangeRates:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_method_delete_by_date(self, client: EmceesProdTesting5) -> None:
+    def test_method_delete_by_date(self, client: Firefly) -> None:
         exchange_rate = client.exchange_rates.delete_by_date(
             date="2026-04-01",
             from_="EUR",
@@ -523,7 +523,7 @@ class TestExchangeRates:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_method_delete_by_date_with_all_params(self, client: EmceesProdTesting5) -> None:
+    def test_method_delete_by_date_with_all_params(self, client: Firefly) -> None:
         exchange_rate = client.exchange_rates.delete_by_date(
             date="2026-04-01",
             from_="EUR",
@@ -534,7 +534,7 @@ class TestExchangeRates:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_raw_response_delete_by_date(self, client: EmceesProdTesting5) -> None:
+    def test_raw_response_delete_by_date(self, client: Firefly) -> None:
         response = client.exchange_rates.with_raw_response.delete_by_date(
             date="2026-04-01",
             from_="EUR",
@@ -548,7 +548,7 @@ class TestExchangeRates:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_streaming_response_delete_by_date(self, client: EmceesProdTesting5) -> None:
+    def test_streaming_response_delete_by_date(self, client: Firefly) -> None:
         with client.exchange_rates.with_streaming_response.delete_by_date(
             date="2026-04-01",
             from_="EUR",
@@ -564,7 +564,7 @@ class TestExchangeRates:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_path_params_delete_by_date(self, client: EmceesProdTesting5) -> None:
+    def test_path_params_delete_by_date(self, client: Firefly) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `from_` but received ''"):
             client.exchange_rates.with_raw_response.delete_by_date(
                 date="2026-04-01",
@@ -588,7 +588,7 @@ class TestExchangeRates:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_method_list_by_currencies(self, client: EmceesProdTesting5) -> None:
+    def test_method_list_by_currencies(self, client: Firefly) -> None:
         exchange_rate = client.exchange_rates.list_by_currencies(
             to="USD",
             from_="EUR",
@@ -597,7 +597,7 @@ class TestExchangeRates:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_method_list_by_currencies_with_all_params(self, client: EmceesProdTesting5) -> None:
+    def test_method_list_by_currencies_with_all_params(self, client: Firefly) -> None:
         exchange_rate = client.exchange_rates.list_by_currencies(
             to="USD",
             from_="EUR",
@@ -609,7 +609,7 @@ class TestExchangeRates:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_raw_response_list_by_currencies(self, client: EmceesProdTesting5) -> None:
+    def test_raw_response_list_by_currencies(self, client: Firefly) -> None:
         response = client.exchange_rates.with_raw_response.list_by_currencies(
             to="USD",
             from_="EUR",
@@ -622,7 +622,7 @@ class TestExchangeRates:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_streaming_response_list_by_currencies(self, client: EmceesProdTesting5) -> None:
+    def test_streaming_response_list_by_currencies(self, client: Firefly) -> None:
         with client.exchange_rates.with_streaming_response.list_by_currencies(
             to="USD",
             from_="EUR",
@@ -637,7 +637,7 @@ class TestExchangeRates:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_path_params_list_by_currencies(self, client: EmceesProdTesting5) -> None:
+    def test_path_params_list_by_currencies(self, client: Firefly) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `from_` but received ''"):
             client.exchange_rates.with_raw_response.list_by_currencies(
                 to="USD",
@@ -652,7 +652,7 @@ class TestExchangeRates:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_method_retrieve_by_date(self, client: EmceesProdTesting5) -> None:
+    def test_method_retrieve_by_date(self, client: Firefly) -> None:
         exchange_rate = client.exchange_rates.retrieve_by_date(
             date="2026-04-01",
             from_="EUR",
@@ -662,7 +662,7 @@ class TestExchangeRates:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_method_retrieve_by_date_with_all_params(self, client: EmceesProdTesting5) -> None:
+    def test_method_retrieve_by_date_with_all_params(self, client: Firefly) -> None:
         exchange_rate = client.exchange_rates.retrieve_by_date(
             date="2026-04-01",
             from_="EUR",
@@ -675,7 +675,7 @@ class TestExchangeRates:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_raw_response_retrieve_by_date(self, client: EmceesProdTesting5) -> None:
+    def test_raw_response_retrieve_by_date(self, client: Firefly) -> None:
         response = client.exchange_rates.with_raw_response.retrieve_by_date(
             date="2026-04-01",
             from_="EUR",
@@ -689,7 +689,7 @@ class TestExchangeRates:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_streaming_response_retrieve_by_date(self, client: EmceesProdTesting5) -> None:
+    def test_streaming_response_retrieve_by_date(self, client: Firefly) -> None:
         with client.exchange_rates.with_streaming_response.retrieve_by_date(
             date="2026-04-01",
             from_="EUR",
@@ -705,7 +705,7 @@ class TestExchangeRates:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_path_params_retrieve_by_date(self, client: EmceesProdTesting5) -> None:
+    def test_path_params_retrieve_by_date(self, client: Firefly) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `from_` but received ''"):
             client.exchange_rates.with_raw_response.retrieve_by_date(
                 date="2026-04-01",
@@ -729,7 +729,7 @@ class TestExchangeRates:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_method_update_by_date(self, client: EmceesProdTesting5) -> None:
+    def test_method_update_by_date(self, client: Firefly) -> None:
         exchange_rate = client.exchange_rates.update_by_date(
             date="2026-04-01",
             from_="EUR",
@@ -740,7 +740,7 @@ class TestExchangeRates:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_method_update_by_date_with_all_params(self, client: EmceesProdTesting5) -> None:
+    def test_method_update_by_date_with_all_params(self, client: Firefly) -> None:
         exchange_rate = client.exchange_rates.update_by_date(
             date="2026-04-01",
             from_="EUR",
@@ -752,7 +752,7 @@ class TestExchangeRates:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_raw_response_update_by_date(self, client: EmceesProdTesting5) -> None:
+    def test_raw_response_update_by_date(self, client: Firefly) -> None:
         response = client.exchange_rates.with_raw_response.update_by_date(
             date="2026-04-01",
             from_="EUR",
@@ -767,7 +767,7 @@ class TestExchangeRates:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_streaming_response_update_by_date(self, client: EmceesProdTesting5) -> None:
+    def test_streaming_response_update_by_date(self, client: Firefly) -> None:
         with client.exchange_rates.with_streaming_response.update_by_date(
             date="2026-04-01",
             from_="EUR",
@@ -784,7 +784,7 @@ class TestExchangeRates:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_path_params_update_by_date(self, client: EmceesProdTesting5) -> None:
+    def test_path_params_update_by_date(self, client: Firefly) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `from_` but received ''"):
             client.exchange_rates.with_raw_response.update_by_date(
                 date="2026-04-01",
@@ -817,7 +817,7 @@ class TestAsyncExchangeRates:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_method_create(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_method_create(self, async_client: AsyncFirefly) -> None:
         exchange_rate = await async_client.exchange_rates.create(
             date=parse_date("2026-04-01"),
             from_="USD",
@@ -828,7 +828,7 @@ class TestAsyncExchangeRates:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_method_create_with_all_params(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_method_create_with_all_params(self, async_client: AsyncFirefly) -> None:
         exchange_rate = await async_client.exchange_rates.create(
             date=parse_date("2026-04-01"),
             from_="USD",
@@ -841,7 +841,7 @@ class TestAsyncExchangeRates:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_raw_response_create(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_raw_response_create(self, async_client: AsyncFirefly) -> None:
         response = await async_client.exchange_rates.with_raw_response.create(
             date=parse_date("2026-04-01"),
             from_="USD",
@@ -856,7 +856,7 @@ class TestAsyncExchangeRates:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_streaming_response_create(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_streaming_response_create(self, async_client: AsyncFirefly) -> None:
         async with async_client.exchange_rates.with_streaming_response.create(
             date=parse_date("2026-04-01"),
             from_="USD",
@@ -873,7 +873,7 @@ class TestAsyncExchangeRates:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_method_retrieve(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_method_retrieve(self, async_client: AsyncFirefly) -> None:
         exchange_rate = await async_client.exchange_rates.retrieve(
             id="123",
         )
@@ -881,7 +881,7 @@ class TestAsyncExchangeRates:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_method_retrieve_with_all_params(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_method_retrieve_with_all_params(self, async_client: AsyncFirefly) -> None:
         exchange_rate = await async_client.exchange_rates.retrieve(
             id="123",
             limit=10,
@@ -892,7 +892,7 @@ class TestAsyncExchangeRates:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_raw_response_retrieve(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_raw_response_retrieve(self, async_client: AsyncFirefly) -> None:
         response = await async_client.exchange_rates.with_raw_response.retrieve(
             id="123",
         )
@@ -904,7 +904,7 @@ class TestAsyncExchangeRates:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_streaming_response_retrieve(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_streaming_response_retrieve(self, async_client: AsyncFirefly) -> None:
         async with async_client.exchange_rates.with_streaming_response.retrieve(
             id="123",
         ) as response:
@@ -918,7 +918,7 @@ class TestAsyncExchangeRates:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_path_params_retrieve(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_path_params_retrieve(self, async_client: AsyncFirefly) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             await async_client.exchange_rates.with_raw_response.retrieve(
                 id="",
@@ -926,7 +926,7 @@ class TestAsyncExchangeRates:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_method_update(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_method_update(self, async_client: AsyncFirefly) -> None:
         exchange_rate = await async_client.exchange_rates.update(
             id="123",
             date=parse_date("2026-04-01"),
@@ -936,7 +936,7 @@ class TestAsyncExchangeRates:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_method_update_with_all_params(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_method_update_with_all_params(self, async_client: AsyncFirefly) -> None:
         exchange_rate = await async_client.exchange_rates.update(
             id="123",
             date=parse_date("2026-04-01"),
@@ -949,7 +949,7 @@ class TestAsyncExchangeRates:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_raw_response_update(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_raw_response_update(self, async_client: AsyncFirefly) -> None:
         response = await async_client.exchange_rates.with_raw_response.update(
             id="123",
             date=parse_date("2026-04-01"),
@@ -963,7 +963,7 @@ class TestAsyncExchangeRates:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_streaming_response_update(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_streaming_response_update(self, async_client: AsyncFirefly) -> None:
         async with async_client.exchange_rates.with_streaming_response.update(
             id="123",
             date=parse_date("2026-04-01"),
@@ -979,7 +979,7 @@ class TestAsyncExchangeRates:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_path_params_update(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_path_params_update(self, async_client: AsyncFirefly) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             await async_client.exchange_rates.with_raw_response.update(
                 id="",
@@ -989,13 +989,13 @@ class TestAsyncExchangeRates:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_method_list(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_method_list(self, async_client: AsyncFirefly) -> None:
         exchange_rate = await async_client.exchange_rates.list()
         assert_matches_type(CurrencyExchangeRateArray, exchange_rate, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_method_list_with_all_params(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_method_list_with_all_params(self, async_client: AsyncFirefly) -> None:
         exchange_rate = await async_client.exchange_rates.list(
             limit=10,
             page=1,
@@ -1005,7 +1005,7 @@ class TestAsyncExchangeRates:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_raw_response_list(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_raw_response_list(self, async_client: AsyncFirefly) -> None:
         response = await async_client.exchange_rates.with_raw_response.list()
 
         assert response.is_closed is True
@@ -1015,7 +1015,7 @@ class TestAsyncExchangeRates:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_streaming_response_list(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_streaming_response_list(self, async_client: AsyncFirefly) -> None:
         async with async_client.exchange_rates.with_streaming_response.list() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -1027,7 +1027,7 @@ class TestAsyncExchangeRates:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_method_delete(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_method_delete(self, async_client: AsyncFirefly) -> None:
         exchange_rate = await async_client.exchange_rates.delete(
             id="123",
         )
@@ -1035,7 +1035,7 @@ class TestAsyncExchangeRates:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_method_delete_with_all_params(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_method_delete_with_all_params(self, async_client: AsyncFirefly) -> None:
         exchange_rate = await async_client.exchange_rates.delete(
             id="123",
             x_trace_id="40c71bbb-c676-4f24-83cf-cc725d7d7a00",
@@ -1044,7 +1044,7 @@ class TestAsyncExchangeRates:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_raw_response_delete(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_raw_response_delete(self, async_client: AsyncFirefly) -> None:
         response = await async_client.exchange_rates.with_raw_response.delete(
             id="123",
         )
@@ -1056,7 +1056,7 @@ class TestAsyncExchangeRates:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_streaming_response_delete(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_streaming_response_delete(self, async_client: AsyncFirefly) -> None:
         async with async_client.exchange_rates.with_streaming_response.delete(
             id="123",
         ) as response:
@@ -1070,7 +1070,7 @@ class TestAsyncExchangeRates:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_path_params_delete(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_path_params_delete(self, async_client: AsyncFirefly) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             await async_client.exchange_rates.with_raw_response.delete(
                 id="",
@@ -1078,7 +1078,7 @@ class TestAsyncExchangeRates:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_method_create_by_currencies(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_method_create_by_currencies(self, async_client: AsyncFirefly) -> None:
         exchange_rate = await async_client.exchange_rates.create_by_currencies(
             to="USD",
             from_="EUR",
@@ -1091,7 +1091,7 @@ class TestAsyncExchangeRates:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_method_create_by_currencies_with_all_params(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_method_create_by_currencies_with_all_params(self, async_client: AsyncFirefly) -> None:
         exchange_rate = await async_client.exchange_rates.create_by_currencies(
             to="USD",
             from_="EUR",
@@ -1105,7 +1105,7 @@ class TestAsyncExchangeRates:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_raw_response_create_by_currencies(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_raw_response_create_by_currencies(self, async_client: AsyncFirefly) -> None:
         response = await async_client.exchange_rates.with_raw_response.create_by_currencies(
             to="USD",
             from_="EUR",
@@ -1122,7 +1122,7 @@ class TestAsyncExchangeRates:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_streaming_response_create_by_currencies(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_streaming_response_create_by_currencies(self, async_client: AsyncFirefly) -> None:
         async with async_client.exchange_rates.with_streaming_response.create_by_currencies(
             to="USD",
             from_="EUR",
@@ -1141,7 +1141,7 @@ class TestAsyncExchangeRates:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_path_params_create_by_currencies(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_path_params_create_by_currencies(self, async_client: AsyncFirefly) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `from_` but received ''"):
             await async_client.exchange_rates.with_raw_response.create_by_currencies(
                 to="USD",
@@ -1164,7 +1164,7 @@ class TestAsyncExchangeRates:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_method_create_by_date(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_method_create_by_date(self, async_client: AsyncFirefly) -> None:
         exchange_rate = await async_client.exchange_rates.create_by_date(
             path_date="2026-04-01",
             body_date={},
@@ -1178,7 +1178,7 @@ class TestAsyncExchangeRates:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_method_create_by_date_with_all_params(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_method_create_by_date_with_all_params(self, async_client: AsyncFirefly) -> None:
         exchange_rate = await async_client.exchange_rates.create_by_date(
             path_date="2026-04-01",
             body_date={},
@@ -1193,7 +1193,7 @@ class TestAsyncExchangeRates:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_raw_response_create_by_date(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_raw_response_create_by_date(self, async_client: AsyncFirefly) -> None:
         response = await async_client.exchange_rates.with_raw_response.create_by_date(
             path_date="2026-04-01",
             body_date={},
@@ -1211,7 +1211,7 @@ class TestAsyncExchangeRates:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_streaming_response_create_by_date(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_streaming_response_create_by_date(self, async_client: AsyncFirefly) -> None:
         async with async_client.exchange_rates.with_streaming_response.create_by_date(
             path_date="2026-04-01",
             body_date={},
@@ -1231,7 +1231,7 @@ class TestAsyncExchangeRates:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_path_params_create_by_date(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_path_params_create_by_date(self, async_client: AsyncFirefly) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `path_date` but received ''"):
             await async_client.exchange_rates.with_raw_response.create_by_date(
                 path_date="",
@@ -1245,7 +1245,7 @@ class TestAsyncExchangeRates:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_method_delete_all_by_currencies(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_method_delete_all_by_currencies(self, async_client: AsyncFirefly) -> None:
         exchange_rate = await async_client.exchange_rates.delete_all_by_currencies(
             to="USD",
             from_="EUR",
@@ -1254,7 +1254,7 @@ class TestAsyncExchangeRates:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_method_delete_all_by_currencies_with_all_params(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_method_delete_all_by_currencies_with_all_params(self, async_client: AsyncFirefly) -> None:
         exchange_rate = await async_client.exchange_rates.delete_all_by_currencies(
             to="USD",
             from_="EUR",
@@ -1264,7 +1264,7 @@ class TestAsyncExchangeRates:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_raw_response_delete_all_by_currencies(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_raw_response_delete_all_by_currencies(self, async_client: AsyncFirefly) -> None:
         response = await async_client.exchange_rates.with_raw_response.delete_all_by_currencies(
             to="USD",
             from_="EUR",
@@ -1277,7 +1277,7 @@ class TestAsyncExchangeRates:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_streaming_response_delete_all_by_currencies(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_streaming_response_delete_all_by_currencies(self, async_client: AsyncFirefly) -> None:
         async with async_client.exchange_rates.with_streaming_response.delete_all_by_currencies(
             to="USD",
             from_="EUR",
@@ -1292,7 +1292,7 @@ class TestAsyncExchangeRates:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_path_params_delete_all_by_currencies(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_path_params_delete_all_by_currencies(self, async_client: AsyncFirefly) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `from_` but received ''"):
             await async_client.exchange_rates.with_raw_response.delete_all_by_currencies(
                 to="USD",
@@ -1307,7 +1307,7 @@ class TestAsyncExchangeRates:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_method_delete_by_date(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_method_delete_by_date(self, async_client: AsyncFirefly) -> None:
         exchange_rate = await async_client.exchange_rates.delete_by_date(
             date="2026-04-01",
             from_="EUR",
@@ -1317,7 +1317,7 @@ class TestAsyncExchangeRates:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_method_delete_by_date_with_all_params(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_method_delete_by_date_with_all_params(self, async_client: AsyncFirefly) -> None:
         exchange_rate = await async_client.exchange_rates.delete_by_date(
             date="2026-04-01",
             from_="EUR",
@@ -1328,7 +1328,7 @@ class TestAsyncExchangeRates:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_raw_response_delete_by_date(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_raw_response_delete_by_date(self, async_client: AsyncFirefly) -> None:
         response = await async_client.exchange_rates.with_raw_response.delete_by_date(
             date="2026-04-01",
             from_="EUR",
@@ -1342,7 +1342,7 @@ class TestAsyncExchangeRates:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_streaming_response_delete_by_date(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_streaming_response_delete_by_date(self, async_client: AsyncFirefly) -> None:
         async with async_client.exchange_rates.with_streaming_response.delete_by_date(
             date="2026-04-01",
             from_="EUR",
@@ -1358,7 +1358,7 @@ class TestAsyncExchangeRates:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_path_params_delete_by_date(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_path_params_delete_by_date(self, async_client: AsyncFirefly) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `from_` but received ''"):
             await async_client.exchange_rates.with_raw_response.delete_by_date(
                 date="2026-04-01",
@@ -1382,7 +1382,7 @@ class TestAsyncExchangeRates:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_method_list_by_currencies(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_method_list_by_currencies(self, async_client: AsyncFirefly) -> None:
         exchange_rate = await async_client.exchange_rates.list_by_currencies(
             to="USD",
             from_="EUR",
@@ -1391,7 +1391,7 @@ class TestAsyncExchangeRates:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_method_list_by_currencies_with_all_params(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_method_list_by_currencies_with_all_params(self, async_client: AsyncFirefly) -> None:
         exchange_rate = await async_client.exchange_rates.list_by_currencies(
             to="USD",
             from_="EUR",
@@ -1403,7 +1403,7 @@ class TestAsyncExchangeRates:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_raw_response_list_by_currencies(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_raw_response_list_by_currencies(self, async_client: AsyncFirefly) -> None:
         response = await async_client.exchange_rates.with_raw_response.list_by_currencies(
             to="USD",
             from_="EUR",
@@ -1416,7 +1416,7 @@ class TestAsyncExchangeRates:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_streaming_response_list_by_currencies(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_streaming_response_list_by_currencies(self, async_client: AsyncFirefly) -> None:
         async with async_client.exchange_rates.with_streaming_response.list_by_currencies(
             to="USD",
             from_="EUR",
@@ -1431,7 +1431,7 @@ class TestAsyncExchangeRates:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_path_params_list_by_currencies(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_path_params_list_by_currencies(self, async_client: AsyncFirefly) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `from_` but received ''"):
             await async_client.exchange_rates.with_raw_response.list_by_currencies(
                 to="USD",
@@ -1446,7 +1446,7 @@ class TestAsyncExchangeRates:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_method_retrieve_by_date(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_method_retrieve_by_date(self, async_client: AsyncFirefly) -> None:
         exchange_rate = await async_client.exchange_rates.retrieve_by_date(
             date="2026-04-01",
             from_="EUR",
@@ -1456,7 +1456,7 @@ class TestAsyncExchangeRates:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_method_retrieve_by_date_with_all_params(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_method_retrieve_by_date_with_all_params(self, async_client: AsyncFirefly) -> None:
         exchange_rate = await async_client.exchange_rates.retrieve_by_date(
             date="2026-04-01",
             from_="EUR",
@@ -1469,7 +1469,7 @@ class TestAsyncExchangeRates:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_raw_response_retrieve_by_date(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_raw_response_retrieve_by_date(self, async_client: AsyncFirefly) -> None:
         response = await async_client.exchange_rates.with_raw_response.retrieve_by_date(
             date="2026-04-01",
             from_="EUR",
@@ -1483,7 +1483,7 @@ class TestAsyncExchangeRates:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_streaming_response_retrieve_by_date(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_streaming_response_retrieve_by_date(self, async_client: AsyncFirefly) -> None:
         async with async_client.exchange_rates.with_streaming_response.retrieve_by_date(
             date="2026-04-01",
             from_="EUR",
@@ -1499,7 +1499,7 @@ class TestAsyncExchangeRates:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_path_params_retrieve_by_date(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_path_params_retrieve_by_date(self, async_client: AsyncFirefly) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `from_` but received ''"):
             await async_client.exchange_rates.with_raw_response.retrieve_by_date(
                 date="2026-04-01",
@@ -1523,7 +1523,7 @@ class TestAsyncExchangeRates:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_method_update_by_date(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_method_update_by_date(self, async_client: AsyncFirefly) -> None:
         exchange_rate = await async_client.exchange_rates.update_by_date(
             date="2026-04-01",
             from_="EUR",
@@ -1534,7 +1534,7 @@ class TestAsyncExchangeRates:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_method_update_by_date_with_all_params(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_method_update_by_date_with_all_params(self, async_client: AsyncFirefly) -> None:
         exchange_rate = await async_client.exchange_rates.update_by_date(
             date="2026-04-01",
             from_="EUR",
@@ -1546,7 +1546,7 @@ class TestAsyncExchangeRates:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_raw_response_update_by_date(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_raw_response_update_by_date(self, async_client: AsyncFirefly) -> None:
         response = await async_client.exchange_rates.with_raw_response.update_by_date(
             date="2026-04-01",
             from_="EUR",
@@ -1561,7 +1561,7 @@ class TestAsyncExchangeRates:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_streaming_response_update_by_date(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_streaming_response_update_by_date(self, async_client: AsyncFirefly) -> None:
         async with async_client.exchange_rates.with_streaming_response.update_by_date(
             date="2026-04-01",
             from_="EUR",
@@ -1578,7 +1578,7 @@ class TestAsyncExchangeRates:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_path_params_update_by_date(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_path_params_update_by_date(self, async_client: AsyncFirefly) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `from_` but received ''"):
             await async_client.exchange_rates.with_raw_response.update_by_date(
                 date="2026-04-01",

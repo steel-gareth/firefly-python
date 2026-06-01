@@ -7,10 +7,10 @@ from typing import Any, cast
 
 import pytest
 
+from firefly import Firefly, AsyncFirefly
 from tests.utils import assert_matches_type
-from emcees_prod_testing_5 import EmceesProdTesting5, AsyncEmceesProdTesting5
-from emcees_prod_testing_5._utils import parse_date
-from emcees_prod_testing_5.types.insight import (
+from firefly._utils import parse_date
+from firefly.types.insight import (
     TransferGetTotalResponse,
     TransferListByTagResponse,
     TransferListByCategoryResponse,
@@ -27,7 +27,7 @@ class TestTransfer:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_method_get_total(self, client: EmceesProdTesting5) -> None:
+    def test_method_get_total(self, client: Firefly) -> None:
         transfer = client.insight.transfer.get_total(
             end=parse_date("2019-12-27"),
             start=parse_date("2019-12-27"),
@@ -36,7 +36,7 @@ class TestTransfer:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_method_get_total_with_all_params(self, client: EmceesProdTesting5) -> None:
+    def test_method_get_total_with_all_params(self, client: Firefly) -> None:
         transfer = client.insight.transfer.get_total(
             end=parse_date("2019-12-27"),
             start=parse_date("2019-12-27"),
@@ -47,7 +47,7 @@ class TestTransfer:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_raw_response_get_total(self, client: EmceesProdTesting5) -> None:
+    def test_raw_response_get_total(self, client: Firefly) -> None:
         response = client.insight.transfer.with_raw_response.get_total(
             end=parse_date("2019-12-27"),
             start=parse_date("2019-12-27"),
@@ -60,7 +60,7 @@ class TestTransfer:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_streaming_response_get_total(self, client: EmceesProdTesting5) -> None:
+    def test_streaming_response_get_total(self, client: Firefly) -> None:
         with client.insight.transfer.with_streaming_response.get_total(
             end=parse_date("2019-12-27"),
             start=parse_date("2019-12-27"),
@@ -75,7 +75,7 @@ class TestTransfer:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_method_list_by_asset_account(self, client: EmceesProdTesting5) -> None:
+    def test_method_list_by_asset_account(self, client: Firefly) -> None:
         transfer = client.insight.transfer.list_by_asset_account(
             end=parse_date("2019-12-27"),
             start=parse_date("2019-12-27"),
@@ -84,7 +84,7 @@ class TestTransfer:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_method_list_by_asset_account_with_all_params(self, client: EmceesProdTesting5) -> None:
+    def test_method_list_by_asset_account_with_all_params(self, client: Firefly) -> None:
         transfer = client.insight.transfer.list_by_asset_account(
             end=parse_date("2019-12-27"),
             start=parse_date("2019-12-27"),
@@ -95,7 +95,7 @@ class TestTransfer:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_raw_response_list_by_asset_account(self, client: EmceesProdTesting5) -> None:
+    def test_raw_response_list_by_asset_account(self, client: Firefly) -> None:
         response = client.insight.transfer.with_raw_response.list_by_asset_account(
             end=parse_date("2019-12-27"),
             start=parse_date("2019-12-27"),
@@ -108,7 +108,7 @@ class TestTransfer:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_streaming_response_list_by_asset_account(self, client: EmceesProdTesting5) -> None:
+    def test_streaming_response_list_by_asset_account(self, client: Firefly) -> None:
         with client.insight.transfer.with_streaming_response.list_by_asset_account(
             end=parse_date("2019-12-27"),
             start=parse_date("2019-12-27"),
@@ -123,7 +123,7 @@ class TestTransfer:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_method_list_by_category(self, client: EmceesProdTesting5) -> None:
+    def test_method_list_by_category(self, client: Firefly) -> None:
         transfer = client.insight.transfer.list_by_category(
             end=parse_date("2019-12-27"),
             start=parse_date("2019-12-27"),
@@ -132,7 +132,7 @@ class TestTransfer:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_method_list_by_category_with_all_params(self, client: EmceesProdTesting5) -> None:
+    def test_method_list_by_category_with_all_params(self, client: Firefly) -> None:
         transfer = client.insight.transfer.list_by_category(
             end=parse_date("2019-12-27"),
             start=parse_date("2019-12-27"),
@@ -144,7 +144,7 @@ class TestTransfer:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_raw_response_list_by_category(self, client: EmceesProdTesting5) -> None:
+    def test_raw_response_list_by_category(self, client: Firefly) -> None:
         response = client.insight.transfer.with_raw_response.list_by_category(
             end=parse_date("2019-12-27"),
             start=parse_date("2019-12-27"),
@@ -157,7 +157,7 @@ class TestTransfer:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_streaming_response_list_by_category(self, client: EmceesProdTesting5) -> None:
+    def test_streaming_response_list_by_category(self, client: Firefly) -> None:
         with client.insight.transfer.with_streaming_response.list_by_category(
             end=parse_date("2019-12-27"),
             start=parse_date("2019-12-27"),
@@ -172,7 +172,7 @@ class TestTransfer:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_method_list_by_tag(self, client: EmceesProdTesting5) -> None:
+    def test_method_list_by_tag(self, client: Firefly) -> None:
         transfer = client.insight.transfer.list_by_tag(
             end=parse_date("2019-12-27"),
             start=parse_date("2019-12-27"),
@@ -181,7 +181,7 @@ class TestTransfer:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_method_list_by_tag_with_all_params(self, client: EmceesProdTesting5) -> None:
+    def test_method_list_by_tag_with_all_params(self, client: Firefly) -> None:
         transfer = client.insight.transfer.list_by_tag(
             end=parse_date("2019-12-27"),
             start=parse_date("2019-12-27"),
@@ -193,7 +193,7 @@ class TestTransfer:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_raw_response_list_by_tag(self, client: EmceesProdTesting5) -> None:
+    def test_raw_response_list_by_tag(self, client: Firefly) -> None:
         response = client.insight.transfer.with_raw_response.list_by_tag(
             end=parse_date("2019-12-27"),
             start=parse_date("2019-12-27"),
@@ -206,7 +206,7 @@ class TestTransfer:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_streaming_response_list_by_tag(self, client: EmceesProdTesting5) -> None:
+    def test_streaming_response_list_by_tag(self, client: Firefly) -> None:
         with client.insight.transfer.with_streaming_response.list_by_tag(
             end=parse_date("2019-12-27"),
             start=parse_date("2019-12-27"),
@@ -221,7 +221,7 @@ class TestTransfer:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_method_list_without_category(self, client: EmceesProdTesting5) -> None:
+    def test_method_list_without_category(self, client: Firefly) -> None:
         transfer = client.insight.transfer.list_without_category(
             end=parse_date("2019-12-27"),
             start=parse_date("2019-12-27"),
@@ -230,7 +230,7 @@ class TestTransfer:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_method_list_without_category_with_all_params(self, client: EmceesProdTesting5) -> None:
+    def test_method_list_without_category_with_all_params(self, client: Firefly) -> None:
         transfer = client.insight.transfer.list_without_category(
             end=parse_date("2019-12-27"),
             start=parse_date("2019-12-27"),
@@ -241,7 +241,7 @@ class TestTransfer:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_raw_response_list_without_category(self, client: EmceesProdTesting5) -> None:
+    def test_raw_response_list_without_category(self, client: Firefly) -> None:
         response = client.insight.transfer.with_raw_response.list_without_category(
             end=parse_date("2019-12-27"),
             start=parse_date("2019-12-27"),
@@ -254,7 +254,7 @@ class TestTransfer:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_streaming_response_list_without_category(self, client: EmceesProdTesting5) -> None:
+    def test_streaming_response_list_without_category(self, client: Firefly) -> None:
         with client.insight.transfer.with_streaming_response.list_without_category(
             end=parse_date("2019-12-27"),
             start=parse_date("2019-12-27"),
@@ -269,7 +269,7 @@ class TestTransfer:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_method_list_without_tag(self, client: EmceesProdTesting5) -> None:
+    def test_method_list_without_tag(self, client: Firefly) -> None:
         transfer = client.insight.transfer.list_without_tag(
             end=parse_date("2019-12-27"),
             start=parse_date("2019-12-27"),
@@ -278,7 +278,7 @@ class TestTransfer:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_method_list_without_tag_with_all_params(self, client: EmceesProdTesting5) -> None:
+    def test_method_list_without_tag_with_all_params(self, client: Firefly) -> None:
         transfer = client.insight.transfer.list_without_tag(
             end=parse_date("2019-12-27"),
             start=parse_date("2019-12-27"),
@@ -289,7 +289,7 @@ class TestTransfer:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_raw_response_list_without_tag(self, client: EmceesProdTesting5) -> None:
+    def test_raw_response_list_without_tag(self, client: Firefly) -> None:
         response = client.insight.transfer.with_raw_response.list_without_tag(
             end=parse_date("2019-12-27"),
             start=parse_date("2019-12-27"),
@@ -302,7 +302,7 @@ class TestTransfer:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_streaming_response_list_without_tag(self, client: EmceesProdTesting5) -> None:
+    def test_streaming_response_list_without_tag(self, client: Firefly) -> None:
         with client.insight.transfer.with_streaming_response.list_without_tag(
             end=parse_date("2019-12-27"),
             start=parse_date("2019-12-27"),
@@ -323,7 +323,7 @@ class TestAsyncTransfer:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_method_get_total(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_method_get_total(self, async_client: AsyncFirefly) -> None:
         transfer = await async_client.insight.transfer.get_total(
             end=parse_date("2019-12-27"),
             start=parse_date("2019-12-27"),
@@ -332,7 +332,7 @@ class TestAsyncTransfer:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_method_get_total_with_all_params(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_method_get_total_with_all_params(self, async_client: AsyncFirefly) -> None:
         transfer = await async_client.insight.transfer.get_total(
             end=parse_date("2019-12-27"),
             start=parse_date("2019-12-27"),
@@ -343,7 +343,7 @@ class TestAsyncTransfer:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_raw_response_get_total(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_raw_response_get_total(self, async_client: AsyncFirefly) -> None:
         response = await async_client.insight.transfer.with_raw_response.get_total(
             end=parse_date("2019-12-27"),
             start=parse_date("2019-12-27"),
@@ -356,7 +356,7 @@ class TestAsyncTransfer:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_streaming_response_get_total(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_streaming_response_get_total(self, async_client: AsyncFirefly) -> None:
         async with async_client.insight.transfer.with_streaming_response.get_total(
             end=parse_date("2019-12-27"),
             start=parse_date("2019-12-27"),
@@ -371,7 +371,7 @@ class TestAsyncTransfer:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_method_list_by_asset_account(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_method_list_by_asset_account(self, async_client: AsyncFirefly) -> None:
         transfer = await async_client.insight.transfer.list_by_asset_account(
             end=parse_date("2019-12-27"),
             start=parse_date("2019-12-27"),
@@ -380,7 +380,7 @@ class TestAsyncTransfer:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_method_list_by_asset_account_with_all_params(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_method_list_by_asset_account_with_all_params(self, async_client: AsyncFirefly) -> None:
         transfer = await async_client.insight.transfer.list_by_asset_account(
             end=parse_date("2019-12-27"),
             start=parse_date("2019-12-27"),
@@ -391,7 +391,7 @@ class TestAsyncTransfer:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_raw_response_list_by_asset_account(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_raw_response_list_by_asset_account(self, async_client: AsyncFirefly) -> None:
         response = await async_client.insight.transfer.with_raw_response.list_by_asset_account(
             end=parse_date("2019-12-27"),
             start=parse_date("2019-12-27"),
@@ -404,7 +404,7 @@ class TestAsyncTransfer:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_streaming_response_list_by_asset_account(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_streaming_response_list_by_asset_account(self, async_client: AsyncFirefly) -> None:
         async with async_client.insight.transfer.with_streaming_response.list_by_asset_account(
             end=parse_date("2019-12-27"),
             start=parse_date("2019-12-27"),
@@ -419,7 +419,7 @@ class TestAsyncTransfer:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_method_list_by_category(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_method_list_by_category(self, async_client: AsyncFirefly) -> None:
         transfer = await async_client.insight.transfer.list_by_category(
             end=parse_date("2019-12-27"),
             start=parse_date("2019-12-27"),
@@ -428,7 +428,7 @@ class TestAsyncTransfer:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_method_list_by_category_with_all_params(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_method_list_by_category_with_all_params(self, async_client: AsyncFirefly) -> None:
         transfer = await async_client.insight.transfer.list_by_category(
             end=parse_date("2019-12-27"),
             start=parse_date("2019-12-27"),
@@ -440,7 +440,7 @@ class TestAsyncTransfer:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_raw_response_list_by_category(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_raw_response_list_by_category(self, async_client: AsyncFirefly) -> None:
         response = await async_client.insight.transfer.with_raw_response.list_by_category(
             end=parse_date("2019-12-27"),
             start=parse_date("2019-12-27"),
@@ -453,7 +453,7 @@ class TestAsyncTransfer:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_streaming_response_list_by_category(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_streaming_response_list_by_category(self, async_client: AsyncFirefly) -> None:
         async with async_client.insight.transfer.with_streaming_response.list_by_category(
             end=parse_date("2019-12-27"),
             start=parse_date("2019-12-27"),
@@ -468,7 +468,7 @@ class TestAsyncTransfer:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_method_list_by_tag(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_method_list_by_tag(self, async_client: AsyncFirefly) -> None:
         transfer = await async_client.insight.transfer.list_by_tag(
             end=parse_date("2019-12-27"),
             start=parse_date("2019-12-27"),
@@ -477,7 +477,7 @@ class TestAsyncTransfer:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_method_list_by_tag_with_all_params(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_method_list_by_tag_with_all_params(self, async_client: AsyncFirefly) -> None:
         transfer = await async_client.insight.transfer.list_by_tag(
             end=parse_date("2019-12-27"),
             start=parse_date("2019-12-27"),
@@ -489,7 +489,7 @@ class TestAsyncTransfer:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_raw_response_list_by_tag(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_raw_response_list_by_tag(self, async_client: AsyncFirefly) -> None:
         response = await async_client.insight.transfer.with_raw_response.list_by_tag(
             end=parse_date("2019-12-27"),
             start=parse_date("2019-12-27"),
@@ -502,7 +502,7 @@ class TestAsyncTransfer:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_streaming_response_list_by_tag(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_streaming_response_list_by_tag(self, async_client: AsyncFirefly) -> None:
         async with async_client.insight.transfer.with_streaming_response.list_by_tag(
             end=parse_date("2019-12-27"),
             start=parse_date("2019-12-27"),
@@ -517,7 +517,7 @@ class TestAsyncTransfer:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_method_list_without_category(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_method_list_without_category(self, async_client: AsyncFirefly) -> None:
         transfer = await async_client.insight.transfer.list_without_category(
             end=parse_date("2019-12-27"),
             start=parse_date("2019-12-27"),
@@ -526,7 +526,7 @@ class TestAsyncTransfer:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_method_list_without_category_with_all_params(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_method_list_without_category_with_all_params(self, async_client: AsyncFirefly) -> None:
         transfer = await async_client.insight.transfer.list_without_category(
             end=parse_date("2019-12-27"),
             start=parse_date("2019-12-27"),
@@ -537,7 +537,7 @@ class TestAsyncTransfer:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_raw_response_list_without_category(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_raw_response_list_without_category(self, async_client: AsyncFirefly) -> None:
         response = await async_client.insight.transfer.with_raw_response.list_without_category(
             end=parse_date("2019-12-27"),
             start=parse_date("2019-12-27"),
@@ -550,7 +550,7 @@ class TestAsyncTransfer:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_streaming_response_list_without_category(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_streaming_response_list_without_category(self, async_client: AsyncFirefly) -> None:
         async with async_client.insight.transfer.with_streaming_response.list_without_category(
             end=parse_date("2019-12-27"),
             start=parse_date("2019-12-27"),
@@ -565,7 +565,7 @@ class TestAsyncTransfer:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_method_list_without_tag(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_method_list_without_tag(self, async_client: AsyncFirefly) -> None:
         transfer = await async_client.insight.transfer.list_without_tag(
             end=parse_date("2019-12-27"),
             start=parse_date("2019-12-27"),
@@ -574,7 +574,7 @@ class TestAsyncTransfer:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_method_list_without_tag_with_all_params(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_method_list_without_tag_with_all_params(self, async_client: AsyncFirefly) -> None:
         transfer = await async_client.insight.transfer.list_without_tag(
             end=parse_date("2019-12-27"),
             start=parse_date("2019-12-27"),
@@ -585,7 +585,7 @@ class TestAsyncTransfer:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_raw_response_list_without_tag(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_raw_response_list_without_tag(self, async_client: AsyncFirefly) -> None:
         response = await async_client.insight.transfer.with_raw_response.list_without_tag(
             end=parse_date("2019-12-27"),
             start=parse_date("2019-12-27"),
@@ -598,7 +598,7 @@ class TestAsyncTransfer:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_streaming_response_list_without_tag(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_streaming_response_list_without_tag(self, async_client: AsyncFirefly) -> None:
         async with async_client.insight.transfer.with_streaming_response.list_without_tag(
             end=parse_date("2019-12-27"),
             start=parse_date("2019-12-27"),

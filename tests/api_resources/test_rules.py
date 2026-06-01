@@ -7,14 +7,14 @@ from typing import Any, cast
 
 import pytest
 
+from firefly import Firefly, AsyncFirefly
 from tests.utils import assert_matches_type
-from emcees_prod_testing_5 import EmceesProdTesting5, AsyncEmceesProdTesting5
-from emcees_prod_testing_5.types import (
+from firefly.types import (
     RuleArray,
     RuleSingle,
     TransactionArray,
 )
-from emcees_prod_testing_5._utils import parse_date
+from firefly._utils import parse_date
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -24,7 +24,7 @@ class TestRules:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_method_create(self, client: EmceesProdTesting5) -> None:
+    def test_method_create(self, client: Firefly) -> None:
         rule = client.rules.create(
             actions=[
                 {
@@ -46,7 +46,7 @@ class TestRules:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_method_create_with_all_params(self, client: EmceesProdTesting5) -> None:
+    def test_method_create_with_all_params(self, client: Firefly) -> None:
         rule = client.rules.create(
             actions=[
                 {
@@ -82,7 +82,7 @@ class TestRules:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_raw_response_create(self, client: EmceesProdTesting5) -> None:
+    def test_raw_response_create(self, client: Firefly) -> None:
         response = client.rules.with_raw_response.create(
             actions=[
                 {
@@ -108,7 +108,7 @@ class TestRules:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_streaming_response_create(self, client: EmceesProdTesting5) -> None:
+    def test_streaming_response_create(self, client: Firefly) -> None:
         with client.rules.with_streaming_response.create(
             actions=[
                 {
@@ -136,7 +136,7 @@ class TestRules:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_method_retrieve(self, client: EmceesProdTesting5) -> None:
+    def test_method_retrieve(self, client: Firefly) -> None:
         rule = client.rules.retrieve(
             id="123",
         )
@@ -144,7 +144,7 @@ class TestRules:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_method_retrieve_with_all_params(self, client: EmceesProdTesting5) -> None:
+    def test_method_retrieve_with_all_params(self, client: Firefly) -> None:
         rule = client.rules.retrieve(
             id="123",
             x_trace_id="40c71bbb-c676-4f24-83cf-cc725d7d7a00",
@@ -153,7 +153,7 @@ class TestRules:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_raw_response_retrieve(self, client: EmceesProdTesting5) -> None:
+    def test_raw_response_retrieve(self, client: Firefly) -> None:
         response = client.rules.with_raw_response.retrieve(
             id="123",
         )
@@ -165,7 +165,7 @@ class TestRules:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_streaming_response_retrieve(self, client: EmceesProdTesting5) -> None:
+    def test_streaming_response_retrieve(self, client: Firefly) -> None:
         with client.rules.with_streaming_response.retrieve(
             id="123",
         ) as response:
@@ -179,7 +179,7 @@ class TestRules:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_path_params_retrieve(self, client: EmceesProdTesting5) -> None:
+    def test_path_params_retrieve(self, client: Firefly) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             client.rules.with_raw_response.retrieve(
                 id="",
@@ -187,7 +187,7 @@ class TestRules:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_method_update(self, client: EmceesProdTesting5) -> None:
+    def test_method_update(self, client: Firefly) -> None:
         rule = client.rules.update(
             id="123",
         )
@@ -195,7 +195,7 @@ class TestRules:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_method_update_with_all_params(self, client: EmceesProdTesting5) -> None:
+    def test_method_update_with_all_params(self, client: Firefly) -> None:
         rule = client.rules.update(
             id="123",
             actions=[
@@ -230,7 +230,7 @@ class TestRules:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_raw_response_update(self, client: EmceesProdTesting5) -> None:
+    def test_raw_response_update(self, client: Firefly) -> None:
         response = client.rules.with_raw_response.update(
             id="123",
         )
@@ -242,7 +242,7 @@ class TestRules:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_streaming_response_update(self, client: EmceesProdTesting5) -> None:
+    def test_streaming_response_update(self, client: Firefly) -> None:
         with client.rules.with_streaming_response.update(
             id="123",
         ) as response:
@@ -256,7 +256,7 @@ class TestRules:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_path_params_update(self, client: EmceesProdTesting5) -> None:
+    def test_path_params_update(self, client: Firefly) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             client.rules.with_raw_response.update(
                 id="",
@@ -264,13 +264,13 @@ class TestRules:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_method_list(self, client: EmceesProdTesting5) -> None:
+    def test_method_list(self, client: Firefly) -> None:
         rule = client.rules.list()
         assert_matches_type(RuleArray, rule, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_method_list_with_all_params(self, client: EmceesProdTesting5) -> None:
+    def test_method_list_with_all_params(self, client: Firefly) -> None:
         rule = client.rules.list(
             limit=10,
             page=1,
@@ -280,7 +280,7 @@ class TestRules:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_raw_response_list(self, client: EmceesProdTesting5) -> None:
+    def test_raw_response_list(self, client: Firefly) -> None:
         response = client.rules.with_raw_response.list()
 
         assert response.is_closed is True
@@ -290,7 +290,7 @@ class TestRules:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_streaming_response_list(self, client: EmceesProdTesting5) -> None:
+    def test_streaming_response_list(self, client: Firefly) -> None:
         with client.rules.with_streaming_response.list() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -302,7 +302,7 @@ class TestRules:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_method_delete(self, client: EmceesProdTesting5) -> None:
+    def test_method_delete(self, client: Firefly) -> None:
         rule = client.rules.delete(
             id="123",
         )
@@ -310,7 +310,7 @@ class TestRules:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_method_delete_with_all_params(self, client: EmceesProdTesting5) -> None:
+    def test_method_delete_with_all_params(self, client: Firefly) -> None:
         rule = client.rules.delete(
             id="123",
             x_trace_id="40c71bbb-c676-4f24-83cf-cc725d7d7a00",
@@ -319,7 +319,7 @@ class TestRules:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_raw_response_delete(self, client: EmceesProdTesting5) -> None:
+    def test_raw_response_delete(self, client: Firefly) -> None:
         response = client.rules.with_raw_response.delete(
             id="123",
         )
@@ -331,7 +331,7 @@ class TestRules:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_streaming_response_delete(self, client: EmceesProdTesting5) -> None:
+    def test_streaming_response_delete(self, client: Firefly) -> None:
         with client.rules.with_streaming_response.delete(
             id="123",
         ) as response:
@@ -345,7 +345,7 @@ class TestRules:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_path_params_delete(self, client: EmceesProdTesting5) -> None:
+    def test_path_params_delete(self, client: Firefly) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             client.rules.with_raw_response.delete(
                 id="",
@@ -353,7 +353,7 @@ class TestRules:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_method_test(self, client: EmceesProdTesting5) -> None:
+    def test_method_test(self, client: Firefly) -> None:
         rule = client.rules.test(
             id="123",
         )
@@ -361,7 +361,7 @@ class TestRules:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_method_test_with_all_params(self, client: EmceesProdTesting5) -> None:
+    def test_method_test_with_all_params(self, client: Firefly) -> None:
         rule = client.rules.test(
             id="123",
             accounts=[1, 2, 3],
@@ -373,7 +373,7 @@ class TestRules:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_raw_response_test(self, client: EmceesProdTesting5) -> None:
+    def test_raw_response_test(self, client: Firefly) -> None:
         response = client.rules.with_raw_response.test(
             id="123",
         )
@@ -385,7 +385,7 @@ class TestRules:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_streaming_response_test(self, client: EmceesProdTesting5) -> None:
+    def test_streaming_response_test(self, client: Firefly) -> None:
         with client.rules.with_streaming_response.test(
             id="123",
         ) as response:
@@ -399,7 +399,7 @@ class TestRules:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_path_params_test(self, client: EmceesProdTesting5) -> None:
+    def test_path_params_test(self, client: Firefly) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             client.rules.with_raw_response.test(
                 id="",
@@ -407,7 +407,7 @@ class TestRules:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_method_trigger(self, client: EmceesProdTesting5) -> None:
+    def test_method_trigger(self, client: Firefly) -> None:
         rule = client.rules.trigger(
             id="123",
         )
@@ -415,7 +415,7 @@ class TestRules:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_method_trigger_with_all_params(self, client: EmceesProdTesting5) -> None:
+    def test_method_trigger_with_all_params(self, client: Firefly) -> None:
         rule = client.rules.trigger(
             id="123",
             accounts=[1, 2, 3],
@@ -427,7 +427,7 @@ class TestRules:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_raw_response_trigger(self, client: EmceesProdTesting5) -> None:
+    def test_raw_response_trigger(self, client: Firefly) -> None:
         response = client.rules.with_raw_response.trigger(
             id="123",
         )
@@ -439,7 +439,7 @@ class TestRules:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_streaming_response_trigger(self, client: EmceesProdTesting5) -> None:
+    def test_streaming_response_trigger(self, client: Firefly) -> None:
         with client.rules.with_streaming_response.trigger(
             id="123",
         ) as response:
@@ -453,7 +453,7 @@ class TestRules:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_path_params_trigger(self, client: EmceesProdTesting5) -> None:
+    def test_path_params_trigger(self, client: Firefly) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             client.rules.with_raw_response.trigger(
                 id="",
@@ -467,7 +467,7 @@ class TestAsyncRules:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_method_create(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_method_create(self, async_client: AsyncFirefly) -> None:
         rule = await async_client.rules.create(
             actions=[
                 {
@@ -489,7 +489,7 @@ class TestAsyncRules:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_method_create_with_all_params(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_method_create_with_all_params(self, async_client: AsyncFirefly) -> None:
         rule = await async_client.rules.create(
             actions=[
                 {
@@ -525,7 +525,7 @@ class TestAsyncRules:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_raw_response_create(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_raw_response_create(self, async_client: AsyncFirefly) -> None:
         response = await async_client.rules.with_raw_response.create(
             actions=[
                 {
@@ -551,7 +551,7 @@ class TestAsyncRules:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_streaming_response_create(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_streaming_response_create(self, async_client: AsyncFirefly) -> None:
         async with async_client.rules.with_streaming_response.create(
             actions=[
                 {
@@ -579,7 +579,7 @@ class TestAsyncRules:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_method_retrieve(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_method_retrieve(self, async_client: AsyncFirefly) -> None:
         rule = await async_client.rules.retrieve(
             id="123",
         )
@@ -587,7 +587,7 @@ class TestAsyncRules:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_method_retrieve_with_all_params(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_method_retrieve_with_all_params(self, async_client: AsyncFirefly) -> None:
         rule = await async_client.rules.retrieve(
             id="123",
             x_trace_id="40c71bbb-c676-4f24-83cf-cc725d7d7a00",
@@ -596,7 +596,7 @@ class TestAsyncRules:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_raw_response_retrieve(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_raw_response_retrieve(self, async_client: AsyncFirefly) -> None:
         response = await async_client.rules.with_raw_response.retrieve(
             id="123",
         )
@@ -608,7 +608,7 @@ class TestAsyncRules:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_streaming_response_retrieve(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_streaming_response_retrieve(self, async_client: AsyncFirefly) -> None:
         async with async_client.rules.with_streaming_response.retrieve(
             id="123",
         ) as response:
@@ -622,7 +622,7 @@ class TestAsyncRules:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_path_params_retrieve(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_path_params_retrieve(self, async_client: AsyncFirefly) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             await async_client.rules.with_raw_response.retrieve(
                 id="",
@@ -630,7 +630,7 @@ class TestAsyncRules:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_method_update(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_method_update(self, async_client: AsyncFirefly) -> None:
         rule = await async_client.rules.update(
             id="123",
         )
@@ -638,7 +638,7 @@ class TestAsyncRules:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_method_update_with_all_params(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_method_update_with_all_params(self, async_client: AsyncFirefly) -> None:
         rule = await async_client.rules.update(
             id="123",
             actions=[
@@ -673,7 +673,7 @@ class TestAsyncRules:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_raw_response_update(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_raw_response_update(self, async_client: AsyncFirefly) -> None:
         response = await async_client.rules.with_raw_response.update(
             id="123",
         )
@@ -685,7 +685,7 @@ class TestAsyncRules:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_streaming_response_update(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_streaming_response_update(self, async_client: AsyncFirefly) -> None:
         async with async_client.rules.with_streaming_response.update(
             id="123",
         ) as response:
@@ -699,7 +699,7 @@ class TestAsyncRules:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_path_params_update(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_path_params_update(self, async_client: AsyncFirefly) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             await async_client.rules.with_raw_response.update(
                 id="",
@@ -707,13 +707,13 @@ class TestAsyncRules:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_method_list(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_method_list(self, async_client: AsyncFirefly) -> None:
         rule = await async_client.rules.list()
         assert_matches_type(RuleArray, rule, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_method_list_with_all_params(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_method_list_with_all_params(self, async_client: AsyncFirefly) -> None:
         rule = await async_client.rules.list(
             limit=10,
             page=1,
@@ -723,7 +723,7 @@ class TestAsyncRules:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_raw_response_list(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_raw_response_list(self, async_client: AsyncFirefly) -> None:
         response = await async_client.rules.with_raw_response.list()
 
         assert response.is_closed is True
@@ -733,7 +733,7 @@ class TestAsyncRules:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_streaming_response_list(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_streaming_response_list(self, async_client: AsyncFirefly) -> None:
         async with async_client.rules.with_streaming_response.list() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -745,7 +745,7 @@ class TestAsyncRules:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_method_delete(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_method_delete(self, async_client: AsyncFirefly) -> None:
         rule = await async_client.rules.delete(
             id="123",
         )
@@ -753,7 +753,7 @@ class TestAsyncRules:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_method_delete_with_all_params(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_method_delete_with_all_params(self, async_client: AsyncFirefly) -> None:
         rule = await async_client.rules.delete(
             id="123",
             x_trace_id="40c71bbb-c676-4f24-83cf-cc725d7d7a00",
@@ -762,7 +762,7 @@ class TestAsyncRules:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_raw_response_delete(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_raw_response_delete(self, async_client: AsyncFirefly) -> None:
         response = await async_client.rules.with_raw_response.delete(
             id="123",
         )
@@ -774,7 +774,7 @@ class TestAsyncRules:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_streaming_response_delete(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_streaming_response_delete(self, async_client: AsyncFirefly) -> None:
         async with async_client.rules.with_streaming_response.delete(
             id="123",
         ) as response:
@@ -788,7 +788,7 @@ class TestAsyncRules:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_path_params_delete(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_path_params_delete(self, async_client: AsyncFirefly) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             await async_client.rules.with_raw_response.delete(
                 id="",
@@ -796,7 +796,7 @@ class TestAsyncRules:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_method_test(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_method_test(self, async_client: AsyncFirefly) -> None:
         rule = await async_client.rules.test(
             id="123",
         )
@@ -804,7 +804,7 @@ class TestAsyncRules:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_method_test_with_all_params(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_method_test_with_all_params(self, async_client: AsyncFirefly) -> None:
         rule = await async_client.rules.test(
             id="123",
             accounts=[1, 2, 3],
@@ -816,7 +816,7 @@ class TestAsyncRules:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_raw_response_test(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_raw_response_test(self, async_client: AsyncFirefly) -> None:
         response = await async_client.rules.with_raw_response.test(
             id="123",
         )
@@ -828,7 +828,7 @@ class TestAsyncRules:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_streaming_response_test(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_streaming_response_test(self, async_client: AsyncFirefly) -> None:
         async with async_client.rules.with_streaming_response.test(
             id="123",
         ) as response:
@@ -842,7 +842,7 @@ class TestAsyncRules:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_path_params_test(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_path_params_test(self, async_client: AsyncFirefly) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             await async_client.rules.with_raw_response.test(
                 id="",
@@ -850,7 +850,7 @@ class TestAsyncRules:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_method_trigger(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_method_trigger(self, async_client: AsyncFirefly) -> None:
         rule = await async_client.rules.trigger(
             id="123",
         )
@@ -858,7 +858,7 @@ class TestAsyncRules:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_method_trigger_with_all_params(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_method_trigger_with_all_params(self, async_client: AsyncFirefly) -> None:
         rule = await async_client.rules.trigger(
             id="123",
             accounts=[1, 2, 3],
@@ -870,7 +870,7 @@ class TestAsyncRules:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_raw_response_trigger(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_raw_response_trigger(self, async_client: AsyncFirefly) -> None:
         response = await async_client.rules.with_raw_response.trigger(
             id="123",
         )
@@ -882,7 +882,7 @@ class TestAsyncRules:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_streaming_response_trigger(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_streaming_response_trigger(self, async_client: AsyncFirefly) -> None:
         async with async_client.rules.with_streaming_response.trigger(
             id="123",
         ) as response:
@@ -896,7 +896,7 @@ class TestAsyncRules:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_path_params_trigger(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_path_params_trigger(self, async_client: AsyncFirefly) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             await async_client.rules.with_raw_response.trigger(
                 id="",

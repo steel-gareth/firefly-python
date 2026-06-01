@@ -4,7 +4,7 @@ from typing import Any
 
 import pytest
 
-from emcees_prod_testing_5._utils._path import path_template
+from firefly._utils._path import path_template
 
 
 @pytest.mark.parametrize(

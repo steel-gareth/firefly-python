@@ -1,11 +1,11 @@
 [project]
-name = "emcees_prod_testing_5"
+name = "firefly"
 version = "0.0.1"
-description = "The official Python library for the emcees-prod-testing-5 API"
+description = "The official Python library for the firefly API"
 dynamic = ["readme"]
 license = "Apache-2.0"
 authors = [
-{ name = "Emcees Prod Testing 5", email = "james@firefly-iii.org" },
+{ name = "Firefly", email = "james@firefly-iii.org" },
 ]
 
 dependencies = [
@@ -86,7 +86,7 @@ include = [
 ]
 
 [tool.hatch.build.targets.wheel]
-packages = ["src/emcees_prod_testing_5"]
+packages = ["src/firefly"]
 
 [tool.hatch.build.targets.sdist]
 # Basically everything except hidden files/directories (such as .github, .devcontainers, .python-version, etc)
@@ -154,7 +154,7 @@ show_error_codes = true
 #
 # We also exclude our `tests` as mypy doesn't always infer
 # types correctly and Pyright will still catch any type errors.
-exclude = ["src/emcees_prod_testing_5/_files.py", "_dev/.*.py", "tests/.*"]
+exclude = ["src/firefly/_files.py", "_dev/.*.py", "tests/.*"]
 
 strict_equality = true
 implicit_reexport = true
@@ -246,7 +246,7 @@ length-sort = true
 length-sort-straight = true
 combine-as-imports = true
 extra-standard-library = ["typing_extensions"]
-known-first-party = ["emcees_prod_testing_5", "tests"]
+known-first-party = ["firefly", "tests"]
 
 [tool.ruff.lint.per-file-ignores]
 "bin/**.py" = ["T201", "T203"]

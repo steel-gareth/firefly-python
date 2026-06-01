@@ -7,12 +7,9 @@ from typing import Any, cast
 
 import pytest
 
+from firefly import Firefly, AsyncFirefly
 from tests.utils import assert_matches_type
-from emcees_prod_testing_5 import EmceesProdTesting5, AsyncEmceesProdTesting5
-from emcees_prod_testing_5.types.webhooks.messages import (
-    AttemptListResponse,
-    AttemptRetrieveResponse,
-)
+from firefly.types.webhooks.messages import AttemptListResponse, AttemptRetrieveResponse
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -22,7 +19,7 @@ class TestAttempts:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_method_retrieve(self, client: EmceesProdTesting5) -> None:
+    def test_method_retrieve(self, client: Firefly) -> None:
         attempt = client.webhooks.messages.attempts.retrieve(
             attempt_id=1,
             id="123",
@@ -32,7 +29,7 @@ class TestAttempts:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_method_retrieve_with_all_params(self, client: EmceesProdTesting5) -> None:
+    def test_method_retrieve_with_all_params(self, client: Firefly) -> None:
         attempt = client.webhooks.messages.attempts.retrieve(
             attempt_id=1,
             id="123",
@@ -43,7 +40,7 @@ class TestAttempts:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_raw_response_retrieve(self, client: EmceesProdTesting5) -> None:
+    def test_raw_response_retrieve(self, client: Firefly) -> None:
         response = client.webhooks.messages.attempts.with_raw_response.retrieve(
             attempt_id=1,
             id="123",
@@ -57,7 +54,7 @@ class TestAttempts:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_streaming_response_retrieve(self, client: EmceesProdTesting5) -> None:
+    def test_streaming_response_retrieve(self, client: Firefly) -> None:
         with client.webhooks.messages.attempts.with_streaming_response.retrieve(
             attempt_id=1,
             id="123",
@@ -73,7 +70,7 @@ class TestAttempts:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_path_params_retrieve(self, client: EmceesProdTesting5) -> None:
+    def test_path_params_retrieve(self, client: Firefly) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             client.webhooks.messages.attempts.with_raw_response.retrieve(
                 attempt_id=1,
@@ -83,7 +80,7 @@ class TestAttempts:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_method_list(self, client: EmceesProdTesting5) -> None:
+    def test_method_list(self, client: Firefly) -> None:
         attempt = client.webhooks.messages.attempts.list(
             message_id=1,
             id="123",
@@ -92,7 +89,7 @@ class TestAttempts:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_method_list_with_all_params(self, client: EmceesProdTesting5) -> None:
+    def test_method_list_with_all_params(self, client: Firefly) -> None:
         attempt = client.webhooks.messages.attempts.list(
             message_id=1,
             id="123",
@@ -104,7 +101,7 @@ class TestAttempts:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_raw_response_list(self, client: EmceesProdTesting5) -> None:
+    def test_raw_response_list(self, client: Firefly) -> None:
         response = client.webhooks.messages.attempts.with_raw_response.list(
             message_id=1,
             id="123",
@@ -117,7 +114,7 @@ class TestAttempts:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_streaming_response_list(self, client: EmceesProdTesting5) -> None:
+    def test_streaming_response_list(self, client: Firefly) -> None:
         with client.webhooks.messages.attempts.with_streaming_response.list(
             message_id=1,
             id="123",
@@ -132,7 +129,7 @@ class TestAttempts:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_path_params_list(self, client: EmceesProdTesting5) -> None:
+    def test_path_params_list(self, client: Firefly) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             client.webhooks.messages.attempts.with_raw_response.list(
                 message_id=1,
@@ -141,7 +138,7 @@ class TestAttempts:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_method_delete(self, client: EmceesProdTesting5) -> None:
+    def test_method_delete(self, client: Firefly) -> None:
         attempt = client.webhooks.messages.attempts.delete(
             attempt_id=1,
             id="123",
@@ -151,7 +148,7 @@ class TestAttempts:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_method_delete_with_all_params(self, client: EmceesProdTesting5) -> None:
+    def test_method_delete_with_all_params(self, client: Firefly) -> None:
         attempt = client.webhooks.messages.attempts.delete(
             attempt_id=1,
             id="123",
@@ -162,7 +159,7 @@ class TestAttempts:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_raw_response_delete(self, client: EmceesProdTesting5) -> None:
+    def test_raw_response_delete(self, client: Firefly) -> None:
         response = client.webhooks.messages.attempts.with_raw_response.delete(
             attempt_id=1,
             id="123",
@@ -176,7 +173,7 @@ class TestAttempts:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_streaming_response_delete(self, client: EmceesProdTesting5) -> None:
+    def test_streaming_response_delete(self, client: Firefly) -> None:
         with client.webhooks.messages.attempts.with_streaming_response.delete(
             attempt_id=1,
             id="123",
@@ -192,7 +189,7 @@ class TestAttempts:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_path_params_delete(self, client: EmceesProdTesting5) -> None:
+    def test_path_params_delete(self, client: Firefly) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             client.webhooks.messages.attempts.with_raw_response.delete(
                 attempt_id=1,
@@ -208,7 +205,7 @@ class TestAsyncAttempts:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_method_retrieve(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_method_retrieve(self, async_client: AsyncFirefly) -> None:
         attempt = await async_client.webhooks.messages.attempts.retrieve(
             attempt_id=1,
             id="123",
@@ -218,7 +215,7 @@ class TestAsyncAttempts:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_method_retrieve_with_all_params(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_method_retrieve_with_all_params(self, async_client: AsyncFirefly) -> None:
         attempt = await async_client.webhooks.messages.attempts.retrieve(
             attempt_id=1,
             id="123",
@@ -229,7 +226,7 @@ class TestAsyncAttempts:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_raw_response_retrieve(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_raw_response_retrieve(self, async_client: AsyncFirefly) -> None:
         response = await async_client.webhooks.messages.attempts.with_raw_response.retrieve(
             attempt_id=1,
             id="123",
@@ -243,7 +240,7 @@ class TestAsyncAttempts:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_streaming_response_retrieve(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_streaming_response_retrieve(self, async_client: AsyncFirefly) -> None:
         async with async_client.webhooks.messages.attempts.with_streaming_response.retrieve(
             attempt_id=1,
             id="123",
@@ -259,7 +256,7 @@ class TestAsyncAttempts:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_path_params_retrieve(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_path_params_retrieve(self, async_client: AsyncFirefly) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             await async_client.webhooks.messages.attempts.with_raw_response.retrieve(
                 attempt_id=1,
@@ -269,7 +266,7 @@ class TestAsyncAttempts:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_method_list(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_method_list(self, async_client: AsyncFirefly) -> None:
         attempt = await async_client.webhooks.messages.attempts.list(
             message_id=1,
             id="123",
@@ -278,7 +275,7 @@ class TestAsyncAttempts:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_method_list_with_all_params(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_method_list_with_all_params(self, async_client: AsyncFirefly) -> None:
         attempt = await async_client.webhooks.messages.attempts.list(
             message_id=1,
             id="123",
@@ -290,7 +287,7 @@ class TestAsyncAttempts:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_raw_response_list(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_raw_response_list(self, async_client: AsyncFirefly) -> None:
         response = await async_client.webhooks.messages.attempts.with_raw_response.list(
             message_id=1,
             id="123",
@@ -303,7 +300,7 @@ class TestAsyncAttempts:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_streaming_response_list(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_streaming_response_list(self, async_client: AsyncFirefly) -> None:
         async with async_client.webhooks.messages.attempts.with_streaming_response.list(
             message_id=1,
             id="123",
@@ -318,7 +315,7 @@ class TestAsyncAttempts:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_path_params_list(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_path_params_list(self, async_client: AsyncFirefly) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             await async_client.webhooks.messages.attempts.with_raw_response.list(
                 message_id=1,
@@ -327,7 +324,7 @@ class TestAsyncAttempts:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_method_delete(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_method_delete(self, async_client: AsyncFirefly) -> None:
         attempt = await async_client.webhooks.messages.attempts.delete(
             attempt_id=1,
             id="123",
@@ -337,7 +334,7 @@ class TestAsyncAttempts:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_method_delete_with_all_params(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_method_delete_with_all_params(self, async_client: AsyncFirefly) -> None:
         attempt = await async_client.webhooks.messages.attempts.delete(
             attempt_id=1,
             id="123",
@@ -348,7 +345,7 @@ class TestAsyncAttempts:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_raw_response_delete(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_raw_response_delete(self, async_client: AsyncFirefly) -> None:
         response = await async_client.webhooks.messages.attempts.with_raw_response.delete(
             attempt_id=1,
             id="123",
@@ -362,7 +359,7 @@ class TestAsyncAttempts:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_streaming_response_delete(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_streaming_response_delete(self, async_client: AsyncFirefly) -> None:
         async with async_client.webhooks.messages.attempts.with_streaming_response.delete(
             attempt_id=1,
             id="123",
@@ -378,7 +375,7 @@ class TestAsyncAttempts:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_path_params_delete(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_path_params_delete(self, async_client: AsyncFirefly) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
             await async_client.webhooks.messages.attempts.with_raw_response.delete(
                 attempt_id=1,

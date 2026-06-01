@@ -7,7 +7,7 @@ from typing import Any, cast
 
 import pytest
 
-from emcees_prod_testing_5 import EmceesProdTesting5, AsyncEmceesProdTesting5
+from firefly import Firefly, AsyncFirefly
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -17,7 +17,7 @@ class TestBulk:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_method_update_transactions(self, client: EmceesProdTesting5) -> None:
+    def test_method_update_transactions(self, client: Firefly) -> None:
         bulk = client.data.bulk.update_transactions(
             query="query",
         )
@@ -25,7 +25,7 @@ class TestBulk:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_method_update_transactions_with_all_params(self, client: EmceesProdTesting5) -> None:
+    def test_method_update_transactions_with_all_params(self, client: Firefly) -> None:
         bulk = client.data.bulk.update_transactions(
             query="query",
             x_trace_id="40c71bbb-c676-4f24-83cf-cc725d7d7a00",
@@ -34,7 +34,7 @@ class TestBulk:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_raw_response_update_transactions(self, client: EmceesProdTesting5) -> None:
+    def test_raw_response_update_transactions(self, client: Firefly) -> None:
         response = client.data.bulk.with_raw_response.update_transactions(
             query="query",
         )
@@ -46,7 +46,7 @@ class TestBulk:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_streaming_response_update_transactions(self, client: EmceesProdTesting5) -> None:
+    def test_streaming_response_update_transactions(self, client: Firefly) -> None:
         with client.data.bulk.with_streaming_response.update_transactions(
             query="query",
         ) as response:
@@ -66,7 +66,7 @@ class TestAsyncBulk:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_method_update_transactions(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_method_update_transactions(self, async_client: AsyncFirefly) -> None:
         bulk = await async_client.data.bulk.update_transactions(
             query="query",
         )
@@ -74,7 +74,7 @@ class TestAsyncBulk:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_method_update_transactions_with_all_params(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_method_update_transactions_with_all_params(self, async_client: AsyncFirefly) -> None:
         bulk = await async_client.data.bulk.update_transactions(
             query="query",
             x_trace_id="40c71bbb-c676-4f24-83cf-cc725d7d7a00",
@@ -83,7 +83,7 @@ class TestAsyncBulk:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_raw_response_update_transactions(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_raw_response_update_transactions(self, async_client: AsyncFirefly) -> None:
         response = await async_client.data.bulk.with_raw_response.update_transactions(
             query="query",
         )
@@ -95,7 +95,7 @@ class TestAsyncBulk:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_streaming_response_update_transactions(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_streaming_response_update_transactions(self, async_client: AsyncFirefly) -> None:
         async with async_client.data.bulk.with_streaming_response.update_transactions(
             query="query",
         ) as response:

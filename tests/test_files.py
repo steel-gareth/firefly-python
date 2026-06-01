@@ -4,8 +4,8 @@ import anyio
 import pytest
 from dirty_equals import IsDict, IsList, IsBytes, IsTuple
 
-from emcees_prod_testing_5._files import to_httpx_files, deepcopy_with_paths, async_to_httpx_files
-from emcees_prod_testing_5._utils import extract_files
+from firefly._files import to_httpx_files, deepcopy_with_paths, async_to_httpx_files
+from firefly._utils import extract_files
 
 readme_path = Path(__file__).parent.parent.joinpath("README.md")
 

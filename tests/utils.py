@@ -8,8 +8,8 @@ from typing import Any, TypeVar, Iterator, Sequence, cast
 from datetime import date, datetime
 from typing_extensions import Literal, get_args, get_origin, assert_type
 
-from emcees_prod_testing_5._types import Omit, NoneType
-from emcees_prod_testing_5._utils import (
+from firefly._types import Omit, NoneType
+from firefly._utils import (
     is_dict,
     is_list,
     is_list_type,
@@ -19,8 +19,8 @@ from emcees_prod_testing_5._utils import (
     is_annotated_type,
     is_type_alias_type,
 )
-from emcees_prod_testing_5._compat import PYDANTIC_V1, field_outer_type, get_model_fields
-from emcees_prod_testing_5._models import BaseModel
+from firefly._compat import PYDANTIC_V1, field_outer_type, get_model_fields
+from firefly._models import BaseModel
 
 BaseModelT = TypeVar("BaseModelT", bound=BaseModel)
 

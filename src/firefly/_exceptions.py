@@ -18,11 +18,11 @@ __all__ = [
 ]
 
 
-class EmceesProdTesting5Error(Exception):
+class FireflyError(Exception):
     pass
 
 
-class APIError(EmceesProdTesting5Error):
+class APIError(FireflyError):
     message: str
     request: httpx.Request
 

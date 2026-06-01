@@ -8,15 +8,15 @@ from typing_extensions import Required, Annotated, TypedDict
 
 import pytest
 
-from emcees_prod_testing_5._types import Base64FileInput, omit, not_given
-from emcees_prod_testing_5._utils import (
+from firefly._types import Base64FileInput, omit, not_given
+from firefly._utils import (
     PropertyInfo,
     transform as _transform,
     parse_datetime,
     async_transform as _async_transform,
 )
-from emcees_prod_testing_5._compat import PYDANTIC_V1
-from emcees_prod_testing_5._models import BaseModel
+from firefly._compat import PYDANTIC_V1
+from firefly._models import BaseModel
 
 _T = TypeVar("_T")
 

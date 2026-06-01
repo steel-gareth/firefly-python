@@ -110,8 +110,8 @@ __all__ = [
     "Transport",
     "ProxiesTypes",
     "RequestOptions",
-    "EmceesProdTesting5",
-    "AsyncEmceesProdTesting5",
+    "Firefly",
+    "AsyncFirefly",
     "Client",
     "AsyncClient",
 ]
@@ -122,7 +122,7 @@ ENVIRONMENTS: Dict[str, str] = {
 }
 
 
-class EmceesProdTesting5(SyncAPIClient):
+class Firefly(SyncAPIClient):
     # client options
     bearer_token: str | None
 
@@ -152,24 +152,24 @@ class EmceesProdTesting5(SyncAPIClient):
         # part of our public interface in the future.
         _strict_response_validation: bool = False,
     ) -> None:
-        """Construct a new synchronous EmceesProdTesting5 client instance.
+        """Construct a new synchronous Firefly client instance.
 
-        This automatically infers the `bearer_token` argument from the `EMCEES_PROD_TESTING_5_BEARER_TOKEN` environment variable if it is not provided.
+        This automatically infers the `bearer_token` argument from the `FIREFLY_BEARER_TOKEN` environment variable if it is not provided.
         """
         if bearer_token is None:
-            bearer_token = os.environ.get("EMCEES_PROD_TESTING_5_BEARER_TOKEN")
+            bearer_token = os.environ.get("FIREFLY_BEARER_TOKEN")
         self.bearer_token = bearer_token
 
         self._environment = environment
 
-        base_url_env = os.environ.get("EMCEES_PROD_TESTING_5_BASE_URL")
+        base_url_env = os.environ.get("FIREFLY_BASE_URL")
         if is_given(base_url) and base_url is not None:
             # cast required because mypy doesn't understand the type narrowing
             base_url = cast("str | httpx.URL", base_url)  # pyright: ignore[reportUnnecessaryCast]
         elif is_given(environment):
             if base_url_env and base_url is not None:
                 raise ValueError(
-                    "Ambiguous URL; The `EMCEES_PROD_TESTING_5_BASE_URL` env var and the `environment` argument are given. If you want to use the environment, you must pass base_url=None",
+                    "Ambiguous URL; The `FIREFLY_BASE_URL` env var and the `environment` argument are given. If you want to use the environment, you must pass base_url=None",
                 )
 
             try:
@@ -186,7 +186,7 @@ class EmceesProdTesting5(SyncAPIClient):
             except KeyError as exc:
                 raise ValueError(f"Unknown environment: {environment}") from exc
 
-        custom_headers_env = os.environ.get("EMCEES_PROD_TESTING_5_CUSTOM_HEADERS")
+        custom_headers_env = os.environ.get("FIREFLY_CUSTOM_HEADERS")
         if custom_headers_env is not None:
             parsed: dict[str, str] = {}
             for line in custom_headers_env.split("\n"):
@@ -489,12 +489,12 @@ class EmceesProdTesting5(SyncAPIClient):
         return WebhooksResource(self)
 
     @cached_property
-    def with_raw_response(self) -> EmceesProdTesting5WithRawResponse:
-        return EmceesProdTesting5WithRawResponse(self)
+    def with_raw_response(self) -> FireflyWithRawResponse:
+        return FireflyWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> EmceesProdTesting5WithStreamedResponse:
-        return EmceesProdTesting5WithStreamedResponse(self)
+    def with_streaming_response(self) -> FireflyWithStreamedResponse:
+        return FireflyWithStreamedResponse(self)
 
     @property
     @override
@@ -619,7 +619,7 @@ class EmceesProdTesting5(SyncAPIClient):
         return APIStatusError(err_msg, response=response, body=body)
 
 
-class AsyncEmceesProdTesting5(AsyncAPIClient):
+class AsyncFirefly(AsyncAPIClient):
     # client options
     bearer_token: str | None
 
@@ -649,24 +649,24 @@ class AsyncEmceesProdTesting5(AsyncAPIClient):
         # part of our public interface in the future.
         _strict_response_validation: bool = False,
     ) -> None:
-        """Construct a new async AsyncEmceesProdTesting5 client instance.
+        """Construct a new async AsyncFirefly client instance.
 
-        This automatically infers the `bearer_token` argument from the `EMCEES_PROD_TESTING_5_BEARER_TOKEN` environment variable if it is not provided.
+        This automatically infers the `bearer_token` argument from the `FIREFLY_BEARER_TOKEN` environment variable if it is not provided.
         """
         if bearer_token is None:
-            bearer_token = os.environ.get("EMCEES_PROD_TESTING_5_BEARER_TOKEN")
+            bearer_token = os.environ.get("FIREFLY_BEARER_TOKEN")
         self.bearer_token = bearer_token
 
         self._environment = environment
 
-        base_url_env = os.environ.get("EMCEES_PROD_TESTING_5_BASE_URL")
+        base_url_env = os.environ.get("FIREFLY_BASE_URL")
         if is_given(base_url) and base_url is not None:
             # cast required because mypy doesn't understand the type narrowing
             base_url = cast("str | httpx.URL", base_url)  # pyright: ignore[reportUnnecessaryCast]
         elif is_given(environment):
             if base_url_env and base_url is not None:
                 raise ValueError(
-                    "Ambiguous URL; The `EMCEES_PROD_TESTING_5_BASE_URL` env var and the `environment` argument are given. If you want to use the environment, you must pass base_url=None",
+                    "Ambiguous URL; The `FIREFLY_BASE_URL` env var and the `environment` argument are given. If you want to use the environment, you must pass base_url=None",
                 )
 
             try:
@@ -683,7 +683,7 @@ class AsyncEmceesProdTesting5(AsyncAPIClient):
             except KeyError as exc:
                 raise ValueError(f"Unknown environment: {environment}") from exc
 
-        custom_headers_env = os.environ.get("EMCEES_PROD_TESTING_5_CUSTOM_HEADERS")
+        custom_headers_env = os.environ.get("FIREFLY_CUSTOM_HEADERS")
         if custom_headers_env is not None:
             parsed: dict[str, str] = {}
             for line in custom_headers_env.split("\n"):
@@ -986,12 +986,12 @@ class AsyncEmceesProdTesting5(AsyncAPIClient):
         return AsyncWebhooksResource(self)
 
     @cached_property
-    def with_raw_response(self) -> AsyncEmceesProdTesting5WithRawResponse:
-        return AsyncEmceesProdTesting5WithRawResponse(self)
+    def with_raw_response(self) -> AsyncFireflyWithRawResponse:
+        return AsyncFireflyWithRawResponse(self)
 
     @cached_property
-    def with_streaming_response(self) -> AsyncEmceesProdTesting5WithStreamedResponse:
-        return AsyncEmceesProdTesting5WithStreamedResponse(self)
+    def with_streaming_response(self) -> AsyncFireflyWithStreamedResponse:
+        return AsyncFireflyWithStreamedResponse(self)
 
     @property
     @override
@@ -1116,10 +1116,10 @@ class AsyncEmceesProdTesting5(AsyncAPIClient):
         return APIStatusError(err_msg, response=response, body=body)
 
 
-class EmceesProdTesting5WithRawResponse:
-    _client: EmceesProdTesting5
+class FireflyWithRawResponse:
+    _client: Firefly
 
-    def __init__(self, client: EmceesProdTesting5) -> None:
+    def __init__(self, client: Firefly) -> None:
         self._client = client
 
     @cached_property
@@ -1405,10 +1405,10 @@ class EmceesProdTesting5WithRawResponse:
         return WebhooksResourceWithRawResponse(self._client.webhooks)
 
 
-class AsyncEmceesProdTesting5WithRawResponse:
-    _client: AsyncEmceesProdTesting5
+class AsyncFireflyWithRawResponse:
+    _client: AsyncFirefly
 
-    def __init__(self, client: AsyncEmceesProdTesting5) -> None:
+    def __init__(self, client: AsyncFirefly) -> None:
         self._client = client
 
     @cached_property
@@ -1694,10 +1694,10 @@ class AsyncEmceesProdTesting5WithRawResponse:
         return AsyncWebhooksResourceWithRawResponse(self._client.webhooks)
 
 
-class EmceesProdTesting5WithStreamedResponse:
-    _client: EmceesProdTesting5
+class FireflyWithStreamedResponse:
+    _client: Firefly
 
-    def __init__(self, client: EmceesProdTesting5) -> None:
+    def __init__(self, client: Firefly) -> None:
         self._client = client
 
     @cached_property
@@ -1983,10 +1983,10 @@ class EmceesProdTesting5WithStreamedResponse:
         return WebhooksResourceWithStreamingResponse(self._client.webhooks)
 
 
-class AsyncEmceesProdTesting5WithStreamedResponse:
-    _client: AsyncEmceesProdTesting5
+class AsyncFireflyWithStreamedResponse:
+    _client: AsyncFirefly
 
-    def __init__(self, client: AsyncEmceesProdTesting5) -> None:
+    def __init__(self, client: AsyncFirefly) -> None:
         self._client = client
 
     @cached_property
@@ -2272,6 +2272,6 @@ class AsyncEmceesProdTesting5WithStreamedResponse:
         return AsyncWebhooksResourceWithStreamingResponse(self._client.webhooks)
 
 
-Client = EmceesProdTesting5
+Client = Firefly
 
-AsyncClient = AsyncEmceesProdTesting5
+AsyncClient = AsyncFirefly

@@ -7,9 +7,9 @@ from typing import Any, cast
 
 import pytest
 
+from firefly import Firefly, AsyncFirefly
 from tests.utils import assert_matches_type
-from emcees_prod_testing_5 import EmceesProdTesting5, AsyncEmceesProdTesting5
-from emcees_prod_testing_5.types import (
+from firefly.types import (
     AccountArray,
     TransactionArray,
 )
@@ -22,7 +22,7 @@ class TestSearch:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_method_accounts(self, client: EmceesProdTesting5) -> None:
+    def test_method_accounts(self, client: Firefly) -> None:
         search = client.search.accounts(
             field="all",
             query="checking",
@@ -31,7 +31,7 @@ class TestSearch:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_method_accounts_with_all_params(self, client: EmceesProdTesting5) -> None:
+    def test_method_accounts_with_all_params(self, client: Firefly) -> None:
         search = client.search.accounts(
             field="all",
             query="checking",
@@ -44,7 +44,7 @@ class TestSearch:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_raw_response_accounts(self, client: EmceesProdTesting5) -> None:
+    def test_raw_response_accounts(self, client: Firefly) -> None:
         response = client.search.with_raw_response.accounts(
             field="all",
             query="checking",
@@ -57,7 +57,7 @@ class TestSearch:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_streaming_response_accounts(self, client: EmceesProdTesting5) -> None:
+    def test_streaming_response_accounts(self, client: Firefly) -> None:
         with client.search.with_streaming_response.accounts(
             field="all",
             query="checking",
@@ -72,7 +72,7 @@ class TestSearch:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_method_transactions(self, client: EmceesProdTesting5) -> None:
+    def test_method_transactions(self, client: Firefly) -> None:
         search = client.search.transactions(
             query="groceries",
         )
@@ -80,7 +80,7 @@ class TestSearch:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_method_transactions_with_all_params(self, client: EmceesProdTesting5) -> None:
+    def test_method_transactions_with_all_params(self, client: Firefly) -> None:
         search = client.search.transactions(
             query="groceries",
             limit=10,
@@ -91,7 +91,7 @@ class TestSearch:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_raw_response_transactions(self, client: EmceesProdTesting5) -> None:
+    def test_raw_response_transactions(self, client: Firefly) -> None:
         response = client.search.with_raw_response.transactions(
             query="groceries",
         )
@@ -103,7 +103,7 @@ class TestSearch:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_streaming_response_transactions(self, client: EmceesProdTesting5) -> None:
+    def test_streaming_response_transactions(self, client: Firefly) -> None:
         with client.search.with_streaming_response.transactions(
             query="groceries",
         ) as response:
@@ -123,7 +123,7 @@ class TestAsyncSearch:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_method_accounts(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_method_accounts(self, async_client: AsyncFirefly) -> None:
         search = await async_client.search.accounts(
             field="all",
             query="checking",
@@ -132,7 +132,7 @@ class TestAsyncSearch:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_method_accounts_with_all_params(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_method_accounts_with_all_params(self, async_client: AsyncFirefly) -> None:
         search = await async_client.search.accounts(
             field="all",
             query="checking",
@@ -145,7 +145,7 @@ class TestAsyncSearch:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_raw_response_accounts(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_raw_response_accounts(self, async_client: AsyncFirefly) -> None:
         response = await async_client.search.with_raw_response.accounts(
             field="all",
             query="checking",
@@ -158,7 +158,7 @@ class TestAsyncSearch:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_streaming_response_accounts(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_streaming_response_accounts(self, async_client: AsyncFirefly) -> None:
         async with async_client.search.with_streaming_response.accounts(
             field="all",
             query="checking",
@@ -173,7 +173,7 @@ class TestAsyncSearch:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_method_transactions(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_method_transactions(self, async_client: AsyncFirefly) -> None:
         search = await async_client.search.transactions(
             query="groceries",
         )
@@ -181,7 +181,7 @@ class TestAsyncSearch:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_method_transactions_with_all_params(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_method_transactions_with_all_params(self, async_client: AsyncFirefly) -> None:
         search = await async_client.search.transactions(
             query="groceries",
             limit=10,
@@ -192,7 +192,7 @@ class TestAsyncSearch:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_raw_response_transactions(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_raw_response_transactions(self, async_client: AsyncFirefly) -> None:
         response = await async_client.search.with_raw_response.transactions(
             query="groceries",
         )
@@ -204,7 +204,7 @@ class TestAsyncSearch:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_streaming_response_transactions(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_streaming_response_transactions(self, async_client: AsyncFirefly) -> None:
         async with async_client.search.with_streaming_response.transactions(
             query="groceries",
         ) as response:

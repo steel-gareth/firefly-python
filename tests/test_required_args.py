@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import pytest
 
-from emcees_prod_testing_5._utils import required_args
+from firefly._utils import required_args
 
 
 def test_too_many_positional_params() -> None:

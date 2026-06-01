@@ -7,10 +7,10 @@ from typing import Any, cast
 
 import pytest
 
+from firefly import Firefly, AsyncFirefly
 from tests.utils import assert_matches_type
-from emcees_prod_testing_5 import EmceesProdTesting5, AsyncEmceesProdTesting5
-from emcees_prod_testing_5.types import CronRunResponse
-from emcees_prod_testing_5._utils import parse_date
+from firefly.types import CronRunResponse
+from firefly._utils import parse_date
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 
@@ -20,7 +20,7 @@ class TestCron:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_method_run(self, client: EmceesProdTesting5) -> None:
+    def test_method_run(self, client: Firefly) -> None:
         cron = client.cron.run(
             cli_token="d5ea6b5fb774618dd6ad6ba6e0a7f55c",
         )
@@ -28,7 +28,7 @@ class TestCron:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_method_run_with_all_params(self, client: EmceesProdTesting5) -> None:
+    def test_method_run_with_all_params(self, client: Firefly) -> None:
         cron = client.cron.run(
             cli_token="d5ea6b5fb774618dd6ad6ba6e0a7f55c",
             date=parse_date("2026-04-01"),
@@ -39,7 +39,7 @@ class TestCron:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_raw_response_run(self, client: EmceesProdTesting5) -> None:
+    def test_raw_response_run(self, client: Firefly) -> None:
         response = client.cron.with_raw_response.run(
             cli_token="d5ea6b5fb774618dd6ad6ba6e0a7f55c",
         )
@@ -51,7 +51,7 @@ class TestCron:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_streaming_response_run(self, client: EmceesProdTesting5) -> None:
+    def test_streaming_response_run(self, client: Firefly) -> None:
         with client.cron.with_streaming_response.run(
             cli_token="d5ea6b5fb774618dd6ad6ba6e0a7f55c",
         ) as response:
@@ -65,7 +65,7 @@ class TestCron:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    def test_path_params_run(self, client: EmceesProdTesting5) -> None:
+    def test_path_params_run(self, client: Firefly) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `cli_token` but received ''"):
             client.cron.with_raw_response.run(
                 cli_token="",
@@ -79,7 +79,7 @@ class TestAsyncCron:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_method_run(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_method_run(self, async_client: AsyncFirefly) -> None:
         cron = await async_client.cron.run(
             cli_token="d5ea6b5fb774618dd6ad6ba6e0a7f55c",
         )
@@ -87,7 +87,7 @@ class TestAsyncCron:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_method_run_with_all_params(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_method_run_with_all_params(self, async_client: AsyncFirefly) -> None:
         cron = await async_client.cron.run(
             cli_token="d5ea6b5fb774618dd6ad6ba6e0a7f55c",
             date=parse_date("2026-04-01"),
@@ -98,7 +98,7 @@ class TestAsyncCron:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_raw_response_run(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_raw_response_run(self, async_client: AsyncFirefly) -> None:
         response = await async_client.cron.with_raw_response.run(
             cli_token="d5ea6b5fb774618dd6ad6ba6e0a7f55c",
         )
@@ -110,7 +110,7 @@ class TestAsyncCron:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_streaming_response_run(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_streaming_response_run(self, async_client: AsyncFirefly) -> None:
         async with async_client.cron.with_streaming_response.run(
             cli_token="d5ea6b5fb774618dd6ad6ba6e0a7f55c",
         ) as response:
@@ -124,7 +124,7 @@ class TestAsyncCron:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
-    async def test_path_params_run(self, async_client: AsyncEmceesProdTesting5) -> None:
+    async def test_path_params_run(self, async_client: AsyncFirefly) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `cli_token` but received ''"):
             await async_client.cron.with_raw_response.run(
                 cli_token="",

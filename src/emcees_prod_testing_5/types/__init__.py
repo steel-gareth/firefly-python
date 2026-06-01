@@ -2,26 +2,306 @@
 
 from __future__ import annotations
 
-from .pet import Pet as Pet
-from .tag import Tag as Tag
+from .meta import Meta as Meta
 from .user import User as User
-from .shared import Order as Order
-from .category import Category as Category
-from .tag_param import TagParam as TagParam
-from .user_param import UserParam as UserParam
-from .category_param import CategoryParam as CategoryParam
-from .pet_create_params import PetCreateParams as PetCreateParams
-from .pet_update_params import PetUpdateParams as PetUpdateParams
-from .user_login_params import UserLoginParams as UserLoginParams
+from .webhook import Webhook as Webhook
+from .tag_read import TagRead as TagRead
+from .bill_read import BillRead as BillRead
+from .link_type import LinkType as LinkType
+from .page_link import PageLink as PageLink
+from .rule_read import RuleRead as RuleRead
+from .user_read import UserRead as UserRead
+from .bill_array import BillArray as BillArray
+from .preference import Preference as Preference
+from .rule_array import RuleArray as RuleArray
+from .tag_single import TagSingle as TagSingle
+from .bill_single import BillSingle as BillSingle
+from .budget_read import BudgetRead as BudgetRead
+from .object_link import ObjectLink as ObjectLink
+from .rule_single import RuleSingle as RuleSingle
+from .user_single import UserSingle as UserSingle
+from .account_read import AccountRead as AccountRead
+from .account_array import AccountArray as AccountArray
+from .budget_single import BudgetSingle as BudgetSingle
+from .category_read import CategoryRead as CategoryRead
+from .configuration import Configuration as Configuration
+from .currency_read import CurrencyRead as CurrencyRead
+from .account_single import AccountSingle as AccountSingle
+from .link_type_read import LinkTypeRead as LinkTypeRead
+from .webhook_single import WebhookSingle as WebhookSingle
+from .attachable_type import AttachableType as AttachableType
+from .attachment_read import AttachmentRead as AttachmentRead
+from .category_single import CategorySingle as CategorySingle
+from .cron_result_row import CronResultRow as CronResultRow
+from .cron_run_params import CronRunParams as CronRunParams
+from .currency_single import CurrencySingle as CurrencySingle
+from .piggy_bank_read import PiggyBankRead as PiggyBankRead
+from .preference_read import PreferenceRead as PreferenceRead
+from .recurrence_read import RecurrenceRead as RecurrenceRead
+from .rule_group_read import RuleGroupRead as RuleGroupRead
+from .tag_list_params import TagListParams as TagListParams
+from .user_group_read import UserGroupRead as UserGroupRead
+from .webhook_trigger import WebhookTrigger as WebhookTrigger
+from .attachment_array import AttachmentArray as AttachmentArray
+from .auto_budget_type import AutoBudgetType as AutoBudgetType
+from .bill_list_params import BillListParams as BillListParams
+from .link_type_single import LinkTypeSingle as LinkTypeSingle
+from .piggy_bank_array import PiggyBankArray as PiggyBankArray
+from .recurrence_array import RecurrenceArray as RecurrenceArray
+from .rule_list_params import RuleListParams as RuleListParams
+from .rule_test_params import RuleTestParams as RuleTestParams
+from .transaction_read import TransactionRead as TransactionRead
+from .user_list_params import UserListParams as UserListParams
+from .webhook_delivery import WebhookDelivery as WebhookDelivery
+from .webhook_response import WebhookResponse as WebhookResponse
+from .attachment_single import AttachmentSingle as AttachmentSingle
+from .autocomplete_bill import AutocompleteBill as AutocompleteBill
+from .cron_run_response import CronRunResponse as CronRunResponse
+from .object_group_read import ObjectGroupRead as ObjectGroupRead
+from .piggy_bank_single import PiggyBankSingle as PiggyBankSingle
+from .preference_single import PreferenceSingle as PreferenceSingle
+from .recurrence_single import RecurrenceSingle as RecurrenceSingle
+from .rule_group_single import RuleGroupSingle as RuleGroupSingle
+from .rule_trigger_type import RuleTriggerType as RuleTriggerType
+from .tag_create_params import TagCreateParams as TagCreateParams
+from .tag_list_response import TagListResponse as TagListResponse
+from .tag_update_params import TagUpdateParams as TagUpdateParams
+from .transaction_array import TransactionArray as TransactionArray
+from .user_group_single import UserGroupSingle as UserGroupSingle
+from .auto_budget_period import AutoBudgetPeriod as AutoBudgetPeriod
+from .bill_create_params import BillCreateParams as BillCreateParams
+from .bill_update_params import BillUpdateParams as BillUpdateParams
+from .budget_list_params import BudgetListParams as BudgetListParams
+from .rule_create_params import RuleCreateParams as RuleCreateParams
+from .rule_update_params import RuleUpdateParams as RuleUpdateParams
+from .transaction_single import TransactionSingle as TransactionSingle
 from .user_create_params import UserCreateParams as UserCreateParams
+from .user_list_response import UserListResponse as UserListResponse
 from .user_update_params import UserUpdateParams as UserUpdateParams
-from .user_login_response import UserLoginResponse as UserLoginResponse
-from .pet_find_by_tags_params import PetFindByTagsParams as PetFindByTagsParams
-from .pet_update_by_id_params import PetUpdateByIDParams as PetUpdateByIDParams
-from .pet_upload_image_params import PetUploadImageParams as PetUploadImageParams
-from .pet_find_by_status_params import PetFindByStatusParams as PetFindByStatusParams
-from .pet_find_by_tags_response import PetFindByTagsResponse as PetFindByTagsResponse
-from .pet_upload_image_response import PetUploadImageResponse as PetUploadImageResponse
-from .pet_find_by_status_response import PetFindByStatusResponse as PetFindByStatusResponse
-from .user_create_with_list_params import UserCreateWithListParams as UserCreateWithListParams
-from .store_list_inventory_response import StoreListInventoryResponse as StoreListInventoryResponse
+from .account_list_params import AccountListParams as AccountListParams
+from .account_type_filter import AccountTypeFilter as AccountTypeFilter
+from .config_value_filter import ConfigValueFilter as ConfigValueFilter
+from .data_destroy_params import DataDestroyParams as DataDestroyParams
+from .object_group_single import ObjectGroupSingle as ObjectGroupSingle
+from .rule_action_keyword import RuleActionKeyword as RuleActionKeyword
+from .rule_trigger_params import RuleTriggerParams as RuleTriggerParams
+from .tag_retrieve_params import TagRetrieveParams as TagRetrieveParams
+from .webhook_list_params import WebhookListParams as WebhookListParams
+from .bill_retrieve_params import BillRetrieveParams as BillRetrieveParams
+from .budget_create_params import BudgetCreateParams as BudgetCreateParams
+from .budget_list_response import BudgetListResponse as BudgetListResponse
+from .budget_update_params import BudgetUpdateParams as BudgetUpdateParams
+from .category_list_params import CategoryListParams as CategoryListParams
+from .configuration_single import ConfigurationSingle as ConfigurationSingle
+from .currency_list_params import CurrencyListParams as CurrencyListParams
+from .polymorphic_property import PolymorphicProperty as PolymorphicProperty
+from .rule_trigger_keyword import RuleTriggerKeyword as RuleTriggerKeyword
+from .account_create_params import AccountCreateParams as AccountCreateParams
+from .account_role_property import AccountRoleProperty as AccountRoleProperty
+from .account_type_property import AccountTypeProperty as AccountTypeProperty
+from .account_update_params import AccountUpdateParams as AccountUpdateParams
+from .available_budget_read import AvailableBudgetRead as AvailableBudgetRead
+from .bill_repeat_frequency import BillRepeatFrequency as BillRepeatFrequency
+from .link_type_list_params import LinkTypeListParams as LinkTypeListParams
+from .transaction_link_read import TransactionLinkRead as TransactionLinkRead
+from .webhook_create_params import WebhookCreateParams as WebhookCreateParams
+from .webhook_list_response import WebhookListResponse as WebhookListResponse
+from .webhook_update_params import WebhookUpdateParams as WebhookUpdateParams
+from .attachment_list_params import AttachmentListParams as AttachmentListParams
+from .available_budget_array import AvailableBudgetArray as AvailableBudgetArray
+from .budget_retrieve_params import BudgetRetrieveParams as BudgetRetrieveParams
+from .category_create_params import CategoryCreateParams as CategoryCreateParams
+from .category_list_response import CategoryListResponse as CategoryListResponse
+from .category_update_params import CategoryUpdateParams as CategoryUpdateParams
+from .currency_create_params import CurrencyCreateParams as CurrencyCreateParams
+from .currency_list_response import CurrencyListResponse as CurrencyListResponse
+from .currency_update_params import CurrencyUpdateParams as CurrencyUpdateParams
+from .piggy_bank_event_array import PiggyBankEventArray as PiggyBankEventArray
+from .piggy_bank_list_params import PiggyBankListParams as PiggyBankListParams
+from .preference_list_params import PreferenceListParams as PreferenceListParams
+from .recurrence_list_params import RecurrenceListParams as RecurrenceListParams
+from .search_accounts_params import SearchAccountsParams as SearchAccountsParams
+from .transaction_link_array import TransactionLinkArray as TransactionLinkArray
+from .user_group_list_params import UserGroupListParams as UserGroupListParams
+from .account_retrieve_params import AccountRetrieveParams as AccountRetrieveParams
+from .liability_type_property import LiabilityTypeProperty as LiabilityTypeProperty
+from .link_type_create_params import LinkTypeCreateParams as LinkTypeCreateParams
+from .link_type_list_response import LinkTypeListResponse as LinkTypeListResponse
+from .link_type_update_params import LinkTypeUpdateParams as LinkTypeUpdateParams
+from .transaction_link_single import TransactionLinkSingle as TransactionLinkSingle
+from .transaction_list_params import TransactionListParams as TransactionListParams
+from .transaction_type_filter import TransactionTypeFilter as TransactionTypeFilter
+from .attachment_create_params import AttachmentCreateParams as AttachmentCreateParams
+from .attachment_update_params import AttachmentUpdateParams as AttachmentUpdateParams
+from .attachment_upload_params import AttachmentUploadParams as AttachmentUploadParams
+from .category_retrieve_params import CategoryRetrieveParams as CategoryRetrieveParams
+from .interest_period_property import InterestPeriodProperty as InterestPeriodProperty
+from .object_group_list_params import ObjectGroupListParams as ObjectGroupListParams
+from .piggy_bank_create_params import PiggyBankCreateParams as PiggyBankCreateParams
+from .piggy_bank_update_params import PiggyBankUpdateParams as PiggyBankUpdateParams
+from .preference_create_params import PreferenceCreateParams as PreferenceCreateParams
+from .preference_list_response import PreferenceListResponse as PreferenceListResponse
+from .preference_update_params import PreferenceUpdateParams as PreferenceUpdateParams
+from .recurrence_create_params import RecurrenceCreateParams as RecurrenceCreateParams
+from .recurrence_update_params import RecurrenceUpdateParams as RecurrenceUpdateParams
+from .rule_group_create_params import RuleGroupCreateParams as RuleGroupCreateParams
+from .rule_group_update_params import RuleGroupUpdateParams as RuleGroupUpdateParams
+from .user_group_list_response import UserGroupListResponse as UserGroupListResponse
+from .user_group_update_params import UserGroupUpdateParams as UserGroupUpdateParams
+from .credit_card_type_property import CreditCardTypeProperty as CreditCardTypeProperty
+from .exchange_rate_list_params import ExchangeRateListParams as ExchangeRateListParams
+from .transaction_create_params import TransactionCreateParams as TransactionCreateParams
+from .transaction_type_property import TransactionTypeProperty as TransactionTypeProperty
+from .transaction_update_params import TransactionUpdateParams as TransactionUpdateParams
+from .currency_list_bills_params import CurrencyListBillsParams as CurrencyListBillsParams
+from .currency_list_rules_params import CurrencyListRulesParams as CurrencyListRulesParams
+from .object_group_list_response import ObjectGroupListResponse as ObjectGroupListResponse
+from .object_group_update_params import ObjectGroupUpdateParams as ObjectGroupUpdateParams
+from .polymorphic_property_param import PolymorphicPropertyParam as PolymorphicPropertyParam
+from .recurrence_repetition_type import RecurrenceRepetitionType as RecurrenceRepetitionType
+from .rule_group_list_all_params import RuleGroupListAllParams as RuleGroupListAllParams
+from .search_transactions_params import SearchTransactionsParams as SearchTransactionsParams
+from .currency_exchange_rate_read import CurrencyExchangeRateRead as CurrencyExchangeRateRead
+from .exchange_rate_create_params import ExchangeRateCreateParams as ExchangeRateCreateParams
+from .exchange_rate_update_params import ExchangeRateUpdateParams as ExchangeRateUpdateParams
+from .recurrence_transaction_type import RecurrenceTransactionType as RecurrenceTransactionType
+from .short_account_type_property import ShortAccountTypeProperty as ShortAccountTypeProperty
+from .tag_list_attachments_params import TagListAttachmentsParams as TagListAttachmentsParams
+from .about_retrieve_info_response import AboutRetrieveInfoResponse as AboutRetrieveInfoResponse
+from .available_budget_list_params import AvailableBudgetListParams as AvailableBudgetListParams
+from .bill_list_attachments_params import BillListAttachmentsParams as BillListAttachmentsParams
+from .currency_exchange_rate_array import CurrencyExchangeRateArray as CurrencyExchangeRateArray
+from .liability_direction_property import LiabilityDirectionProperty as LiabilityDirectionProperty
+from .rule_group_list_all_response import RuleGroupListAllResponse as RuleGroupListAllResponse
+from .rule_group_list_rules_params import RuleGroupListRulesParams as RuleGroupListRulesParams
+from .tag_list_transactions_params import TagListTransactionsParams as TagListTransactionsParams
+from .transaction_link_list_params import TransactionLinkListParams as TransactionLinkListParams
+from .autocomplete_list_tags_params import AutocompleteListTagsParams as AutocompleteListTagsParams
+from .bill_list_transactions_params import BillListTransactionsParams as BillListTransactionsParams
+from .currency_exchange_rate_single import CurrencyExchangeRateSingle as CurrencyExchangeRateSingle
+from .currency_list_accounts_params import CurrencyListAccountsParams as CurrencyListAccountsParams
+from .exchange_rate_retrieve_params import ExchangeRateRetrieveParams as ExchangeRateRetrieveParams
+from .piggy_bank_list_events_params import PiggyBankListEventsParams as PiggyBankListEventsParams
+from .summary_retrieve_basic_params import SummaryRetrieveBasicParams as SummaryRetrieveBasicParams
+from .autocomplete_list_bills_params import AutocompleteListBillsParams as AutocompleteListBillsParams
+from .autocomplete_list_rules_params import AutocompleteListRulesParams as AutocompleteListRulesParams
+from .budget_list_attachments_params import BudgetListAttachmentsParams as BudgetListAttachmentsParams
+from .object_group_list_bills_params import ObjectGroupListBillsParams as ObjectGroupListBillsParams
+from .transaction_link_create_params import TransactionLinkCreateParams as TransactionLinkCreateParams
+from .transaction_link_update_params import TransactionLinkUpdateParams as TransactionLinkUpdateParams
+from .account_list_attachments_params import AccountListAttachmentsParams as AccountListAttachmentsParams
+from .account_list_piggy_banks_params import AccountListPiggyBanksParams as AccountListPiggyBanksParams
+from .autocomplete_list_tags_response import AutocompleteListTagsResponse as AutocompleteListTagsResponse
+from .budget_list_transactions_params import BudgetListTransactionsParams as BudgetListTransactionsParams
+from .configuration_retrieve_response import ConfigurationRetrieveResponse as ConfigurationRetrieveResponse
+from .rule_group_trigger_rules_params import RuleGroupTriggerRulesParams as RuleGroupTriggerRulesParams
+from .summary_retrieve_basic_response import SummaryRetrieveBasicResponse as SummaryRetrieveBasicResponse
+from .account_list_transactions_params import AccountListTransactionsParams as AccountListTransactionsParams
+from .autocomplete_list_bills_response import AutocompleteListBillsResponse as AutocompleteListBillsResponse
+from .autocomplete_list_budgets_params import AutocompleteListBudgetsParams as AutocompleteListBudgetsParams
+from .autocomplete_list_rules_response import AutocompleteListRulesResponse as AutocompleteListRulesResponse
+from .category_list_attachments_params import CategoryListAttachmentsParams as CategoryListAttachmentsParams
+from .currency_list_recurrences_params import CurrencyListRecurrencesParams as CurrencyListRecurrencesParams
+from .array_entry_with_currency_and_sum import ArrayEntryWithCurrencyAndSum as ArrayEntryWithCurrencyAndSum
+from .autocomplete_list_accounts_params import AutocompleteListAccountsParams as AutocompleteListAccountsParams
+from .category_list_transactions_params import CategoryListTransactionsParams as CategoryListTransactionsParams
+from .configuration_update_value_params import ConfigurationUpdateValueParams as ConfigurationUpdateValueParams
+from .currency_list_transactions_params import CurrencyListTransactionsParams as CurrencyListTransactionsParams
+from .autocomplete_list_budgets_response import AutocompleteListBudgetsResponse as AutocompleteListBudgetsResponse
+from .available_budget_retrieve_response import AvailableBudgetRetrieveResponse as AvailableBudgetRetrieveResponse
+from .currency_list_budget_limits_params import CurrencyListBudgetLimitsParams as CurrencyListBudgetLimitsParams
+from .link_type_list_transactions_params import LinkTypeListTransactionsParams as LinkTypeListTransactionsParams
+from .piggy_bank_list_attachments_params import PiggyBankListAttachmentsParams as PiggyBankListAttachmentsParams
+from .autocomplete_list_accounts_response import AutocompleteListAccountsResponse as AutocompleteListAccountsResponse
+from .autocomplete_list_categories_params import AutocompleteListCategoriesParams as AutocompleteListCategoriesParams
+from .autocomplete_list_currencies_params import AutocompleteListCurrenciesParams as AutocompleteListCurrenciesParams
+from .exchange_rate_create_by_date_params import ExchangeRateCreateByDateParams as ExchangeRateCreateByDateParams
+from .exchange_rate_update_by_date_params import ExchangeRateUpdateByDateParams as ExchangeRateUpdateByDateParams
+from .recurrence_list_transactions_params import RecurrenceListTransactionsParams as RecurrenceListTransactionsParams
+from .rule_group_test_transactions_params import RuleGroupTestTransactionsParams as RuleGroupTestTransactionsParams
+from .transaction_list_attachments_params import TransactionListAttachmentsParams as TransactionListAttachmentsParams
+from .autocomplete_list_piggy_banks_params import AutocompleteListPiggyBanksParams as AutocompleteListPiggyBanksParams
+from .autocomplete_list_rule_groups_params import AutocompleteListRuleGroupsParams as AutocompleteListRuleGroupsParams
+from .object_group_list_piggy_banks_params import ObjectGroupListPiggyBanksParams as ObjectGroupListPiggyBanksParams
+from .autocomplete_list_categories_response import (
+    AutocompleteListCategoriesResponse as AutocompleteListCategoriesResponse,
+)
+from .autocomplete_list_currencies_response import (
+    AutocompleteListCurrenciesResponse as AutocompleteListCurrenciesResponse,
+)
+from .autocomplete_list_transactions_params import (
+    AutocompleteListTransactionsParams as AutocompleteListTransactionsParams,
+)
+from .exchange_rate_retrieve_by_date_params import ExchangeRateRetrieveByDateParams as ExchangeRateRetrieveByDateParams
+from .recurrence_trigger_transaction_params import (
+    RecurrenceTriggerTransactionParams as RecurrenceTriggerTransactionParams,
+)
+from .transaction_journal_list_links_params import (
+    TransactionJournalListLinksParams as TransactionJournalListLinksParams,
+)
+from .autocomplete_list_object_groups_params import (
+    AutocompleteListObjectGroupsParams as AutocompleteListObjectGroupsParams,
+)
+from .autocomplete_list_piggy_banks_response import (
+    AutocompleteListPiggyBanksResponse as AutocompleteListPiggyBanksResponse,
+)
+from .autocomplete_list_rule_groups_response import (
+    AutocompleteListRuleGroupsResponse as AutocompleteListRuleGroupsResponse,
+)
+from .autocomplete_list_subscriptions_params import (
+    AutocompleteListSubscriptionsParams as AutocompleteListSubscriptionsParams,
+)
+from .currency_list_available_budgets_params import (
+    CurrencyListAvailableBudgetsParams as CurrencyListAvailableBudgetsParams,
+)
+from .autocomplete_list_transactions_response import (
+    AutocompleteListTransactionsResponse as AutocompleteListTransactionsResponse,
+)
+from .exchange_rate_list_by_currencies_params import (
+    ExchangeRateListByCurrenciesParams as ExchangeRateListByCurrenciesParams,
+)
+from .autocomplete_list_object_groups_response import (
+    AutocompleteListObjectGroupsResponse as AutocompleteListObjectGroupsResponse,
+)
+from .autocomplete_list_subscriptions_response import (
+    AutocompleteListSubscriptionsResponse as AutocompleteListSubscriptionsResponse,
+)
+from .exchange_rate_create_by_currencies_params import (
+    ExchangeRateCreateByCurrenciesParams as ExchangeRateCreateByCurrenciesParams,
+)
+from .transaction_list_piggy_bank_events_params import (
+    TransactionListPiggyBankEventsParams as TransactionListPiggyBankEventsParams,
+)
+from .autocomplete_list_transaction_types_params import (
+    AutocompleteListTransactionTypesParams as AutocompleteListTransactionTypesParams,
+)
+from .autocomplete_list_transaction_types_response import (
+    AutocompleteListTransactionTypesResponse as AutocompleteListTransactionTypesResponse,
+)
+from .autocomplete_list_currencies_with_code_params import (
+    AutocompleteListCurrenciesWithCodeParams as AutocompleteListCurrenciesWithCodeParams,
+)
+from .autocomplete_list_transactions_with_id_params import (
+    AutocompleteListTransactionsWithIDParams as AutocompleteListTransactionsWithIDParams,
+)
+from .budget_list_transactions_without_budget_params import (
+    BudgetListTransactionsWithoutBudgetParams as BudgetListTransactionsWithoutBudgetParams,
+)
+from .autocomplete_list_currencies_with_code_response import (
+    AutocompleteListCurrenciesWithCodeResponse as AutocompleteListCurrenciesWithCodeResponse,
+)
+from .autocomplete_list_recurring_transactions_params import (
+    AutocompleteListRecurringTransactionsParams as AutocompleteListRecurringTransactionsParams,
+)
+from .autocomplete_list_transactions_with_id_response import (
+    AutocompleteListTransactionsWithIDResponse as AutocompleteListTransactionsWithIDResponse,
+)
+from .autocomplete_list_piggy_banks_with_balance_params import (
+    AutocompleteListPiggyBanksWithBalanceParams as AutocompleteListPiggyBanksWithBalanceParams,
+)
+from .autocomplete_list_recurring_transactions_response import (
+    AutocompleteListRecurringTransactionsResponse as AutocompleteListRecurringTransactionsResponse,
+)
+from .autocomplete_list_piggy_banks_with_balance_response import (
+    AutocompleteListPiggyBanksWithBalanceResponse as AutocompleteListPiggyBanksWithBalanceResponse,
+)

@@ -2,7 +2,8 @@
 
 from __future__ import annotations
 
-from typing_extensions import Annotated, TypedDict
+from typing import Optional
+from typing_extensions import Literal, Required, Annotated, TypedDict
 
 from .._utils import PropertyInfo
 
@@ -10,19 +11,16 @@ __all__ = ["UserCreateParams"]
 
 
 class UserCreateParams(TypedDict, total=False):
-    id: int
+    email: Required[str]
+    """The new users email address."""
 
-    email: str
+    blocked: bool
+    """Boolean to indicate if the user is blocked."""
 
-    first_name: Annotated[str, PropertyInfo(alias="firstName")]
+    blocked_code: Optional[Literal["email_changed"]]
+    """If you say the user must be blocked, this will be the reason code."""
 
-    last_name: Annotated[str, PropertyInfo(alias="lastName")]
+    role: Optional[Literal["owner", "demo"]]
+    """Role for the user. Can be empty or omitted."""
 
-    password: str
-
-    phone: str
-
-    username: str
-
-    user_status: Annotated[int, PropertyInfo(alias="userStatus")]
-    """User Status"""
+    x_trace_id: Annotated[str, PropertyInfo(alias="X-Trace-Id")]

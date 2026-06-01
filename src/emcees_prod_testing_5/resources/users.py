@@ -2,13 +2,14 @@
 
 from __future__ import annotations
 
-from typing import Iterable
+from typing import Optional
+from typing_extensions import Literal
 
 import httpx
 
-from ..types import user_login_params, user_create_params, user_update_params
+from ..types import user_list_params, user_create_params, user_update_params
 from .._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
-from .._utils import path_template, maybe_transform, async_maybe_transform
+from .._utils import path_template, maybe_transform, strip_not_given, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import (
@@ -17,15 +18,18 @@ from .._response import (
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..types.user import User
 from .._base_client import make_request_options
-from ..types.user_param import UserParam
+from ..types.user_single import UserSingle
+from ..types.user_list_response import UserListResponse
 
 __all__ = ["UsersResource", "AsyncUsersResource"]
 
 
 class UsersResource(SyncAPIResource):
-    """Operations about user"""
+    """Use these endpoints to manage the users registered within Firefly III.
+
+    You need to have the &quot;owner&quot; role to access these endpoints.
+    """
 
     @cached_property
     def with_raw_response(self) -> UsersResourceWithRawResponse:
@@ -49,26 +53,32 @@ class UsersResource(SyncAPIResource):
     def create(
         self,
         *,
-        id: int | Omit = omit,
-        email: str | Omit = omit,
-        first_name: str | Omit = omit,
-        last_name: str | Omit = omit,
-        password: str | Omit = omit,
-        phone: str | Omit = omit,
-        username: str | Omit = omit,
-        user_status: int | Omit = omit,
+        email: str,
+        blocked: bool | Omit = omit,
+        blocked_code: Optional[Literal["email_changed"]] | Omit = omit,
+        role: Optional[Literal["owner", "demo"]] | Omit = omit,
+        x_trace_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> User:
-        """
-        This can only be done by the logged in user.
+    ) -> UserSingle:
+        """Creates a new user.
+
+        The data required can be submitted as a JSON body or as a
+        list of parameters. The user will be given a random password, which they can
+        reset using the "forgot password" function.
 
         Args:
-          user_status: User Status
+          email: The new users email address.
+
+          blocked: Boolean to indicate if the user is blocked.
+
+          blocked_code: If you say the user must be blocked, this will be the reason code.
+
+          role: Role for the user. Can be empty or omitted.
 
           extra_headers: Send extra headers
 
@@ -78,40 +88,39 @@ class UsersResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        extra_headers = {"Accept": "application/vnd.api+json", **(extra_headers or {})}
+        extra_headers = {**strip_not_given({"X-Trace-Id": x_trace_id}), **(extra_headers or {})}
         return self._post(
-            "/user",
+            "/v1/users",
             body=maybe_transform(
                 {
-                    "id": id,
                     "email": email,
-                    "first_name": first_name,
-                    "last_name": last_name,
-                    "password": password,
-                    "phone": phone,
-                    "username": username,
-                    "user_status": user_status,
+                    "blocked": blocked,
+                    "blocked_code": blocked_code,
+                    "role": role,
                 },
                 user_create_params.UserCreateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=User,
+            cast_to=UserSingle,
         )
 
     def retrieve(
         self,
-        username: str,
+        id: str,
         *,
+        x_trace_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> User:
+    ) -> UserSingle:
         """
-        Get user by user name
+        Gets all info of a single user.
 
         Args:
           extra_headers: Send extra headers
@@ -122,40 +131,45 @@ class UsersResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not username:
-            raise ValueError(f"Expected a non-empty value for `username` but received {username!r}")
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        extra_headers = {"Accept": "application/vnd.api+json", **(extra_headers or {})}
+        extra_headers = {**strip_not_given({"X-Trace-Id": x_trace_id}), **(extra_headers or {})}
         return self._get(
-            path_template("/user/{username}", username=username),
+            path_template("/v1/users/{id}", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=User,
+            cast_to=UserSingle,
         )
 
     def update(
         self,
-        existing_username: str,
+        id: str,
         *,
-        id: int | Omit = omit,
-        email: str | Omit = omit,
-        first_name: str | Omit = omit,
-        last_name: str | Omit = omit,
-        password: str | Omit = omit,
-        phone: str | Omit = omit,
-        username: str | Omit = omit,
-        user_status: int | Omit = omit,
+        email: str,
+        blocked: bool | Omit = omit,
+        blocked_code: Optional[Literal["email_changed"]] | Omit = omit,
+        role: Optional[Literal["owner", "demo"]] | Omit = omit,
+        x_trace_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> None:
+    ) -> UserSingle:
         """
-        This can only be done by the logged in user.
+        Update existing user.
 
         Args:
-          user_status: User Status
+          email: The new users email address.
+
+          blocked: Boolean to indicate if the user is blocked.
+
+          blocked_code: If you say the user must be blocked, this will be the reason code.
+
+          role: Role for the user. Can be empty or omitted.
 
           extra_headers: Send extra headers
 
@@ -165,115 +179,47 @@ class UsersResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not existing_username:
-            raise ValueError(f"Expected a non-empty value for `existing_username` but received {existing_username!r}")
-        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        extra_headers = {"Accept": "application/vnd.api+json", **(extra_headers or {})}
+        extra_headers = {**strip_not_given({"X-Trace-Id": x_trace_id}), **(extra_headers or {})}
         return self._put(
-            path_template("/user/{existing_username}", existing_username=existing_username),
+            path_template("/v1/users/{id}", id=id),
             body=maybe_transform(
                 {
-                    "id": id,
                     "email": email,
-                    "first_name": first_name,
-                    "last_name": last_name,
-                    "password": password,
-                    "phone": phone,
-                    "username": username,
-                    "user_status": user_status,
+                    "blocked": blocked,
+                    "blocked_code": blocked_code,
+                    "role": role,
                 },
                 user_update_params.UserUpdateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=NoneType,
+            cast_to=UserSingle,
         )
 
-    def delete(
+    def list(
         self,
-        username: str,
         *,
+        limit: int | Omit = omit,
+        page: int | Omit = omit,
+        x_trace_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> None:
+    ) -> UserListResponse:
         """
-        This can only be done by the logged in user.
+        List all the users in this instance of Firefly III.
 
         Args:
-          extra_headers: Send extra headers
+          limit: Number of items per page. The default pagination is per 50 items.
 
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not username:
-            raise ValueError(f"Expected a non-empty value for `username` but received {username!r}")
-        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
-        return self._delete(
-            path_template("/user/{username}", username=username),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=NoneType,
-        )
-
-    def create_with_list(
-        self,
-        *,
-        items: Iterable[UserParam] | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> User:
-        """
-        Creates list of users with given input array
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        return self._post(
-            "/user/createWithList",
-            body=maybe_transform(items, Iterable[UserParam]),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=User,
-        )
-
-    def login(
-        self,
-        *,
-        password: str | Omit = omit,
-        username: str | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> str:
-        """
-        Logs user into the system
-
-        Args:
-          password: The password for login in clear text
-
-          username: The user name for login
+          page: Page number. The default pagination is per 50 items.
 
           extra_headers: Send extra headers
 
@@ -283,8 +229,10 @@ class UsersResource(SyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        extra_headers = {"Accept": "application/vnd.api+json", **(extra_headers or {})}
+        extra_headers = {**strip_not_given({"X-Trace-Id": x_trace_id}), **(extra_headers or {})}
         return self._get(
-            "/user/login",
+            "/v1/users",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -292,18 +240,20 @@ class UsersResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
-                        "password": password,
-                        "username": username,
+                        "limit": limit,
+                        "page": page,
                     },
-                    user_login_params.UserLoginParams,
+                    user_list_params.UserListParams,
                 ),
             ),
-            cast_to=str,
+            cast_to=UserListResponse,
         )
 
-    def logout(
+    def delete(
         self,
+        id: str,
         *,
+        x_trace_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -311,10 +261,26 @@ class UsersResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
-        """Logs out current logged in user session"""
+        """Delete a user.
+
+        You cannot delete the user you're authenticated with. This cannot
+        be undone. Be careful.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
-        return self._get(
-            "/user/logout",
+        extra_headers = {**strip_not_given({"X-Trace-Id": x_trace_id}), **(extra_headers or {})}
+        return self._delete(
+            path_template("/v1/users/{id}", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -323,7 +289,10 @@ class UsersResource(SyncAPIResource):
 
 
 class AsyncUsersResource(AsyncAPIResource):
-    """Operations about user"""
+    """Use these endpoints to manage the users registered within Firefly III.
+
+    You need to have the &quot;owner&quot; role to access these endpoints.
+    """
 
     @cached_property
     def with_raw_response(self) -> AsyncUsersResourceWithRawResponse:
@@ -347,26 +316,32 @@ class AsyncUsersResource(AsyncAPIResource):
     async def create(
         self,
         *,
-        id: int | Omit = omit,
-        email: str | Omit = omit,
-        first_name: str | Omit = omit,
-        last_name: str | Omit = omit,
-        password: str | Omit = omit,
-        phone: str | Omit = omit,
-        username: str | Omit = omit,
-        user_status: int | Omit = omit,
+        email: str,
+        blocked: bool | Omit = omit,
+        blocked_code: Optional[Literal["email_changed"]] | Omit = omit,
+        role: Optional[Literal["owner", "demo"]] | Omit = omit,
+        x_trace_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> User:
-        """
-        This can only be done by the logged in user.
+    ) -> UserSingle:
+        """Creates a new user.
+
+        The data required can be submitted as a JSON body or as a
+        list of parameters. The user will be given a random password, which they can
+        reset using the "forgot password" function.
 
         Args:
-          user_status: User Status
+          email: The new users email address.
+
+          blocked: Boolean to indicate if the user is blocked.
+
+          blocked_code: If you say the user must be blocked, this will be the reason code.
+
+          role: Role for the user. Can be empty or omitted.
 
           extra_headers: Send extra headers
 
@@ -376,40 +351,39 @@ class AsyncUsersResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        extra_headers = {"Accept": "application/vnd.api+json", **(extra_headers or {})}
+        extra_headers = {**strip_not_given({"X-Trace-Id": x_trace_id}), **(extra_headers or {})}
         return await self._post(
-            "/user",
+            "/v1/users",
             body=await async_maybe_transform(
                 {
-                    "id": id,
                     "email": email,
-                    "first_name": first_name,
-                    "last_name": last_name,
-                    "password": password,
-                    "phone": phone,
-                    "username": username,
-                    "user_status": user_status,
+                    "blocked": blocked,
+                    "blocked_code": blocked_code,
+                    "role": role,
                 },
                 user_create_params.UserCreateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=User,
+            cast_to=UserSingle,
         )
 
     async def retrieve(
         self,
-        username: str,
+        id: str,
         *,
+        x_trace_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> User:
+    ) -> UserSingle:
         """
-        Get user by user name
+        Gets all info of a single user.
 
         Args:
           extra_headers: Send extra headers
@@ -420,40 +394,45 @@ class AsyncUsersResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not username:
-            raise ValueError(f"Expected a non-empty value for `username` but received {username!r}")
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        extra_headers = {"Accept": "application/vnd.api+json", **(extra_headers or {})}
+        extra_headers = {**strip_not_given({"X-Trace-Id": x_trace_id}), **(extra_headers or {})}
         return await self._get(
-            path_template("/user/{username}", username=username),
+            path_template("/v1/users/{id}", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=User,
+            cast_to=UserSingle,
         )
 
     async def update(
         self,
-        existing_username: str,
+        id: str,
         *,
-        id: int | Omit = omit,
-        email: str | Omit = omit,
-        first_name: str | Omit = omit,
-        last_name: str | Omit = omit,
-        password: str | Omit = omit,
-        phone: str | Omit = omit,
-        username: str | Omit = omit,
-        user_status: int | Omit = omit,
+        email: str,
+        blocked: bool | Omit = omit,
+        blocked_code: Optional[Literal["email_changed"]] | Omit = omit,
+        role: Optional[Literal["owner", "demo"]] | Omit = omit,
+        x_trace_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> None:
+    ) -> UserSingle:
         """
-        This can only be done by the logged in user.
+        Update existing user.
 
         Args:
-          user_status: User Status
+          email: The new users email address.
+
+          blocked: Boolean to indicate if the user is blocked.
+
+          blocked_code: If you say the user must be blocked, this will be the reason code.
+
+          role: Role for the user. Can be empty or omitted.
 
           extra_headers: Send extra headers
 
@@ -463,115 +442,47 @@ class AsyncUsersResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
-        if not existing_username:
-            raise ValueError(f"Expected a non-empty value for `existing_username` but received {existing_username!r}")
-        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
+        extra_headers = {"Accept": "application/vnd.api+json", **(extra_headers or {})}
+        extra_headers = {**strip_not_given({"X-Trace-Id": x_trace_id}), **(extra_headers or {})}
         return await self._put(
-            path_template("/user/{existing_username}", existing_username=existing_username),
+            path_template("/v1/users/{id}", id=id),
             body=await async_maybe_transform(
                 {
-                    "id": id,
                     "email": email,
-                    "first_name": first_name,
-                    "last_name": last_name,
-                    "password": password,
-                    "phone": phone,
-                    "username": username,
-                    "user_status": user_status,
+                    "blocked": blocked,
+                    "blocked_code": blocked_code,
+                    "role": role,
                 },
                 user_update_params.UserUpdateParams,
             ),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
-            cast_to=NoneType,
+            cast_to=UserSingle,
         )
 
-    async def delete(
+    async def list(
         self,
-        username: str,
         *,
+        limit: int | Omit = omit,
+        page: int | Omit = omit,
+        x_trace_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> None:
+    ) -> UserListResponse:
         """
-        This can only be done by the logged in user.
+        List all the users in this instance of Firefly III.
 
         Args:
-          extra_headers: Send extra headers
+          limit: Number of items per page. The default pagination is per 50 items.
 
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not username:
-            raise ValueError(f"Expected a non-empty value for `username` but received {username!r}")
-        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
-        return await self._delete(
-            path_template("/user/{username}", username=username),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=NoneType,
-        )
-
-    async def create_with_list(
-        self,
-        *,
-        items: Iterable[UserParam] | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> User:
-        """
-        Creates list of users with given input array
-
-        Args:
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        return await self._post(
-            "/user/createWithList",
-            body=await async_maybe_transform(items, Iterable[UserParam]),
-            options=make_request_options(
-                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
-            ),
-            cast_to=User,
-        )
-
-    async def login(
-        self,
-        *,
-        password: str | Omit = omit,
-        username: str | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> str:
-        """
-        Logs user into the system
-
-        Args:
-          password: The password for login in clear text
-
-          username: The user name for login
+          page: Page number. The default pagination is per 50 items.
 
           extra_headers: Send extra headers
 
@@ -581,8 +492,10 @@ class AsyncUsersResource(AsyncAPIResource):
 
           timeout: Override the client-level default timeout for this request, in seconds
         """
+        extra_headers = {"Accept": "application/vnd.api+json", **(extra_headers or {})}
+        extra_headers = {**strip_not_given({"X-Trace-Id": x_trace_id}), **(extra_headers or {})}
         return await self._get(
-            "/user/login",
+            "/v1/users",
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -590,18 +503,20 @@ class AsyncUsersResource(AsyncAPIResource):
                 timeout=timeout,
                 query=await async_maybe_transform(
                     {
-                        "password": password,
-                        "username": username,
+                        "limit": limit,
+                        "page": page,
                     },
-                    user_login_params.UserLoginParams,
+                    user_list_params.UserListParams,
                 ),
             ),
-            cast_to=str,
+            cast_to=UserListResponse,
         )
 
-    async def logout(
+    async def delete(
         self,
+        id: str,
         *,
+        x_trace_id: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -609,10 +524,26 @@ class AsyncUsersResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> None:
-        """Logs out current logged in user session"""
+        """Delete a user.
+
+        You cannot delete the user you're authenticated with. This cannot
+        be undone. Be careful.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not id:
+            raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         extra_headers = {"Accept": "*/*", **(extra_headers or {})}
-        return await self._get(
-            "/user/logout",
+        extra_headers = {**strip_not_given({"X-Trace-Id": x_trace_id}), **(extra_headers or {})}
+        return await self._delete(
+            path_template("/v1/users/{id}", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -633,17 +564,11 @@ class UsersResourceWithRawResponse:
         self.update = to_raw_response_wrapper(
             users.update,
         )
+        self.list = to_raw_response_wrapper(
+            users.list,
+        )
         self.delete = to_raw_response_wrapper(
             users.delete,
-        )
-        self.create_with_list = to_raw_response_wrapper(
-            users.create_with_list,
-        )
-        self.login = to_raw_response_wrapper(
-            users.login,
-        )
-        self.logout = to_raw_response_wrapper(
-            users.logout,
         )
 
 
@@ -660,17 +585,11 @@ class AsyncUsersResourceWithRawResponse:
         self.update = async_to_raw_response_wrapper(
             users.update,
         )
+        self.list = async_to_raw_response_wrapper(
+            users.list,
+        )
         self.delete = async_to_raw_response_wrapper(
             users.delete,
-        )
-        self.create_with_list = async_to_raw_response_wrapper(
-            users.create_with_list,
-        )
-        self.login = async_to_raw_response_wrapper(
-            users.login,
-        )
-        self.logout = async_to_raw_response_wrapper(
-            users.logout,
         )
 
 
@@ -687,17 +606,11 @@ class UsersResourceWithStreamingResponse:
         self.update = to_streamed_response_wrapper(
             users.update,
         )
+        self.list = to_streamed_response_wrapper(
+            users.list,
+        )
         self.delete = to_streamed_response_wrapper(
             users.delete,
-        )
-        self.create_with_list = to_streamed_response_wrapper(
-            users.create_with_list,
-        )
-        self.login = to_streamed_response_wrapper(
-            users.login,
-        )
-        self.logout = to_streamed_response_wrapper(
-            users.logout,
         )
 
 
@@ -714,15 +627,9 @@ class AsyncUsersResourceWithStreamingResponse:
         self.update = async_to_streamed_response_wrapper(
             users.update,
         )
+        self.list = async_to_streamed_response_wrapper(
+            users.list,
+        )
         self.delete = async_to_streamed_response_wrapper(
             users.delete,
-        )
-        self.create_with_list = async_to_streamed_response_wrapper(
-            users.create_with_list,
-        )
-        self.login = async_to_streamed_response_wrapper(
-            users.login,
-        )
-        self.logout = async_to_streamed_response_wrapper(
-            users.logout,
         )

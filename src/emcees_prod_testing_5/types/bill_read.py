@@ -1,0 +1,203 @@
+# File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
+
+from typing import List, Optional
+from datetime import datetime
+
+from .._models import BaseModel
+from .bill_repeat_frequency import BillRepeatFrequency
+
+__all__ = ["BillRead", "Attributes", "AttributesPaidDate"]
+
+
+class AttributesPaidDate(BaseModel):
+    amount: Optional[str] = None
+    """The amount that was paid for this subscription in the subscription's currency."""
+
+    currency_code: Optional[str] = None
+    """The currency code of the currency associated with this object."""
+
+    currency_decimal_places: Optional[int] = None
+
+    currency_id: Optional[str] = None
+    """The currency ID of the currency associated with this object."""
+
+    currency_name: Optional[str] = None
+    """The currency name of the currency associated with this object."""
+
+    currency_symbol: Optional[str] = None
+
+    date: Optional[datetime] = None
+    """Date the bill was paid."""
+
+    foreign_amount: Optional[str] = None
+    """
+    The foreign amount that was paid for this subscription in the subscription's
+    currency.
+    """
+
+    pc_amount: Optional[str] = None
+    """
+    The amount that was paid for this subscription in the administration's primary
+    currency.
+    """
+
+    pc_foreign_amount: Optional[str] = None
+    """
+    The foreign amount that was paid for this subscription in the administration's
+    primary currency.
+    """
+
+    primary_currency_code: Optional[str] = None
+    """The currency code of the administration's primary currency."""
+
+    primary_currency_decimal_places: Optional[int] = None
+    """The currency decimal places of the administration's primary currency."""
+
+    primary_currency_id: Optional[str] = None
+    """The currency ID of the administration's primary currency."""
+
+    primary_currency_name: Optional[str] = None
+    """The currency name of the administration's primary currency."""
+
+    primary_currency_symbol: Optional[str] = None
+    """The currency symbol of the administration's primary currency."""
+
+    subscription_id: Optional[str] = None
+    """ID of this subscription."""
+
+    transaction_group_id: Optional[str] = None
+    """Transaction group ID of the transaction linked to this subscription."""
+
+    transaction_journal_id: Optional[str] = None
+    """Transaction journal ID of the transaction linked to this subscription."""
+
+
+class Attributes(BaseModel):
+    active: Optional[bool] = None
+    """If the subscription is active."""
+
+    amount_avg: Optional[str] = None
+    """
+    The average amount that is expected for this subscription in the subscription's
+    currency.
+    """
+
+    amount_max: Optional[str] = None
+    """
+    The maximum amount that is expected for this subscription in the subscription's
+    currency.
+    """
+
+    amount_min: Optional[str] = None
+    """
+    The minimum amount that is expected for this subscription in the subscription's
+    currency.
+    """
+
+    created_at: Optional[datetime] = None
+
+    currency_code: Optional[str] = None
+    """The currency code of the currency associated with this object."""
+
+    currency_decimal_places: Optional[int] = None
+
+    currency_id: Optional[str] = None
+    """The currency ID of the currency associated with this object."""
+
+    currency_name: Optional[str] = None
+    """The currency name of the currency associated with this object."""
+
+    currency_symbol: Optional[str] = None
+
+    date: Optional[datetime] = None
+
+    end_date: Optional[datetime] = None
+    """The date after which this subscription is no longer valid or applicable"""
+
+    extension_date: Optional[datetime] = None
+    """The date before which the subscription must be renewed (or cancelled)"""
+
+    name: Optional[str] = None
+    """The name of the subscription."""
+
+    next_expected_match: Optional[datetime] = None
+    """When the subscription is expected to be due."""
+
+    next_expected_match_diff: Optional[str] = None
+    """Formatted (locally) when the subscription is due."""
+
+    notes: Optional[str] = None
+
+    object_group_id: Optional[str] = None
+    """The group ID of the group this object is part of. NULL if no group."""
+
+    object_group_order: Optional[int] = None
+    """The order of the group. At least 1, for the highest sorting."""
+
+    object_group_title: Optional[str] = None
+    """The name of the group. NULL if no group."""
+
+    object_has_currency_setting: Optional[bool] = None
+    """Indicates whether the object has a currency setting.
+
+    If false, the object uses the administration's primary currency.
+    """
+
+    order: Optional[int] = None
+    """Order of the subscription."""
+
+    paid_dates: Optional[List[AttributesPaidDate]] = None
+    """Array of past transactions when the subscription was paid."""
+
+    pay_dates: Optional[List[datetime]] = None
+    """Array of future dates when the bill is expected to be paid. Autogenerated."""
+
+    pc_amount_avg: Optional[str] = None
+    """
+    The average amount that is expected for this subscription in the
+    administration's primary currency.
+    """
+
+    pc_amount_max: Optional[str] = None
+    """
+    The maximum amount that is expected for this subscription in the
+    administration's primary currency.
+    """
+
+    pc_amount_min: Optional[str] = None
+    """
+    The minimum amount that is expected for this subscription in the
+    administration's primary currency.
+    """
+
+    primary_currency_code: Optional[str] = None
+    """The currency code of the administration's primary currency."""
+
+    primary_currency_decimal_places: Optional[int] = None
+    """The currency decimal places of the administration's primary currency."""
+
+    primary_currency_id: Optional[str] = None
+    """The currency ID of the administration's primary currency."""
+
+    primary_currency_name: Optional[str] = None
+    """The currency name of the administration's primary currency."""
+
+    primary_currency_symbol: Optional[str] = None
+    """The currency symbol of the administration's primary currency."""
+
+    repeat_freq: Optional[BillRepeatFrequency] = None
+    """How often the bill must be paid."""
+
+    skip: Optional[int] = None
+    """How often the subscription will be skipped. 1 means a bi-monthly subscription."""
+
+    updated_at: Optional[datetime] = None
+
+
+class BillRead(BaseModel):
+    id: str
+
+    attributes: Attributes
+
+    type: str
+    """Immutable value"""

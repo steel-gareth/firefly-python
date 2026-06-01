@@ -1,11 +1,11 @@
 [project]
 name = "emcees_prod_testing_5"
 version = "0.0.1"
-description = "The official Python library for the more-conflicting API"
+description = "The official Python library for the emcees-prod-testing-5 API"
 dynamic = ["readme"]
 license = "Apache-2.0"
 authors = [
-{ name = "More Conflicting", email = "" },
+{ name = "Emcees Prod Testing 5", email = "james@firefly-iii.org" },
 ]
 
 dependencies = [

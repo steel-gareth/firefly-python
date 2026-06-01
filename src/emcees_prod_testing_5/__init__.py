@@ -6,6 +6,7 @@ from . import types
 from ._types import NOT_GIVEN, Omit, NoneType, NotGiven, Transport, ProxiesTypes, omit, not_given
 from ._utils import file_from_path
 from ._client import (
+    ENVIRONMENTS,
     Client,
     Stream,
     Timeout,
@@ -13,8 +14,8 @@ from ._client import (
     AsyncClient,
     AsyncStream,
     RequestOptions,
-    MoreConflicting,
-    AsyncMoreConflicting,
+    EmceesProdTesting5,
+    AsyncEmceesProdTesting5,
 )
 from ._models import BaseModel
 from ._version import __title__, __version__
@@ -31,8 +32,8 @@ from ._exceptions import (
     APIConnectionError,
     AuthenticationError,
     InternalServerError,
-    MoreConflictingError,
     PermissionDeniedError,
+    EmceesProdTesting5Error,
     UnprocessableEntityError,
     APIResponseValidationError,
 )
@@ -51,7 +52,7 @@ __all__ = [
     "not_given",
     "Omit",
     "omit",
-    "MoreConflictingError",
+    "EmceesProdTesting5Error",
     "APIError",
     "APIStatusError",
     "APITimeoutError",
@@ -71,8 +72,9 @@ __all__ = [
     "AsyncClient",
     "Stream",
     "AsyncStream",
-    "MoreConflicting",
-    "AsyncMoreConflicting",
+    "EmceesProdTesting5",
+    "AsyncEmceesProdTesting5",
+    "ENVIRONMENTS",
     "file_from_path",
     "BaseModel",
     "DEFAULT_TIMEOUT",

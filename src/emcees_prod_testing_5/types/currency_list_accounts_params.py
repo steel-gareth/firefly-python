@@ -1,0 +1,31 @@
+# File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
+
+from __future__ import annotations
+
+import datetime
+from typing import Union
+from typing_extensions import Annotated, TypedDict
+
+from .._utils import PropertyInfo
+from .account_type_filter import AccountTypeFilter
+
+__all__ = ["CurrencyListAccountsParams"]
+
+
+class CurrencyListAccountsParams(TypedDict, total=False):
+    date: Annotated[Union[str, datetime.date], PropertyInfo(format="iso8601")]
+    """A date formatted YYYY-MM-DD.
+
+    When added to the request, Firefly III will show the account's balance on that
+    day.
+    """
+
+    limit: int
+    """Number of items per page. The default pagination is per 50 items."""
+
+    page: int
+    """Page number. The default pagination is per 50 items."""
+
+    type: AccountTypeFilter
+
+    x_trace_id: Annotated[str, PropertyInfo(alias="X-Trace-Id")]

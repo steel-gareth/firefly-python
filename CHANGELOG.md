@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.1 (2026-06-02)
+
+Full Changelog: [v0.1.0...v0.1.1](https://github.com/steel-gareth/firefly-python/compare/v0.1.0...v0.1.1)
+
+### Chores
+
+* reword package description to "startlingly unofficial" ([a9d29ba](https://github.com/steel-gareth/firefly-python/commit/a9d29ba2954e22b3b7f49baf5fff1fe6137f3cd2))
+
 ## 0.1.0 (2026-06-02)
 
 Full Changelog: [v0.0.1...v0.1.0](https://github.com/steel-gareth/firefly-python/compare/v0.0.1...v0.1.0)

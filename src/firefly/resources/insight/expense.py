@@ -57,7 +57,7 @@ class ExpenseResource(SyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/stainless-sdks/emcees-prod-testing-5-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/steel-gareth/firefly-python#accessing-raw-response-data-eg-headers
         """
         return ExpenseResourceWithRawResponse(self)
 
@@ -66,7 +66,7 @@ class ExpenseResource(SyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/stainless-sdks/emcees-prod-testing-5-python#with_streaming_response
+        For more information, see https://www.github.com/steel-gareth/firefly-python#with_streaming_response
         """
         return ExpenseResourceWithStreamingResponse(self)
 
@@ -704,7 +704,7 @@ class AsyncExpenseResource(AsyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/stainless-sdks/emcees-prod-testing-5-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/steel-gareth/firefly-python#accessing-raw-response-data-eg-headers
         """
         return AsyncExpenseResourceWithRawResponse(self)
 
@@ -713,7 +713,7 @@ class AsyncExpenseResource(AsyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/stainless-sdks/emcees-prod-testing-5-python#with_streaming_response
+        For more information, see https://www.github.com/steel-gareth/firefly-python#with_streaming_response
         """
         return AsyncExpenseResourceWithStreamingResponse(self)
 

@@ -503,9 +503,11 @@ class Firefly(SyncAPIClient):
 
     @override
     def _auth_headers(self, security: SecurityOptions) -> dict[str, str]:
-        return {
-            **(self._local_bearer_auth if security.get("local_bearer_auth", False) else {}),
-        }
+        headers: dict[str, str] = {}
+        if security.get("local_bearer_auth", False):
+            for key, value in self._local_bearer_auth.items():
+                headers.setdefault(key, value)
+        return headers
 
     @property
     def _local_bearer_auth(self) -> dict[str, str]:
@@ -1000,9 +1002,11 @@ class AsyncFirefly(AsyncAPIClient):
 
     @override
     def _auth_headers(self, security: SecurityOptions) -> dict[str, str]:
-        return {
-            **(self._local_bearer_auth if security.get("local_bearer_auth", False) else {}),
-        }
+        headers: dict[str, str] = {}
+        if security.get("local_bearer_auth", False):
+            for key, value in self._local_bearer_auth.items():
+                headers.setdefault(key, value)
+        return headers
 
     @property
     def _local_bearer_auth(self) -> dict[str, str]:

@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.2.0 (2026-07-18)
+
+Full Changelog: [v0.1.1...v0.2.0](https://github.com/steel-gareth/firefly-python/compare/v0.1.1...v0.2.0)
+
+### Features
+
+* **stlc:** configurable CI runner and private-production-repo support in workflow templates ([d4d787c](https://github.com/steel-gareth/firefly-python/commit/d4d787ce2facf5bc8e723c90ea743b0f722ca3ba))
+
+
+### Bug Fixes
+
+* **auth:** prioritize first auth header ([d1a7e5c](https://github.com/steel-gareth/firefly-python/commit/d1a7e5cff8cdd96abb9d4b63933565ebfec801e8))
+* **internal:** resolve build failures ([579959b](https://github.com/steel-gareth/firefly-python/commit/579959b31e0429c22df3d6d7ec56212b3b7067b4))
+
 ## 0.1.1 (2026-06-02)
 
 Full Changelog: [v0.1.0...v0.1.1](https://github.com/steel-gareth/firefly-python/compare/v0.1.0...v0.1.1)
